@@ -1,6 +1,6 @@
 const { Model, DataTypes } = require('sequelize')
 
-const { sequelize } = require('../util/db.js')
+const { sequelize } = require('../util/db')
 
 class Outfit extends Model {}
   Outfit.init({

@@ -1,6 +1,6 @@
 const { Model, DataTypes } = require('sequelize')
 
-const { sequelize } = require('../util/db.js')
+const { sequelize } = require('../util/db')
 
 class Pattern extends Model {}
   Pattern.init({
