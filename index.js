@@ -1,24 +1,29 @@
 require('dotenv').config()
 
 const express = require('express')
-const router = express()
-const PORT = process.env.PORT
+const app = express()
 const cors = require('cors');
-const { Book, Doll, Outfit, Pattern } = require('./models')
+//const { Book, Doll, Outfit, Pattern } = require('./models')
 
-router.use(cors())
+app.use(cors())
+app.use(express.json())
+app.use(express.urlencoded({extended: true}))
 
+const router = require('./routes/routes.js')
+app.use('/api', router)
 
-router.get('/', (request, response) => {
-    response.send('<h1>Hello World!</h1>')
+//api test
+app.get('/', (request, response) => {
+    response.json({message: 'API connection successful'})
   })
+
   
-router.get('/books', async (req, res) => {
+/*app.get('/api/books', async (req, res) => {
     const books = await Book.findAll()
     res.json(books)
   })
 
-router.get('/books/:id', async (request, response) => {
+app.get('/api/books/:id', async (request, response) => {
     const book = await Book.findByPk(request.params.id)
     if (book) {
         response.json(book)
@@ -27,12 +32,12 @@ router.get('/books/:id', async (request, response) => {
       }
   })
 
-  router.get('/dolls', async (req, res) => {
+  app.get('/api/dolls', async (req, res) => {
     const dolls = await Doll.findAll()
     res.json(dolls)
   })
 
-router.get('/dolls/:id', async (request, response) => {
+app.get('/api/dolls/:id', async (request, response) => {
     const doll = await Doll.findByPk(request.params.id)
     if (doll) {
         response.json(doll)
@@ -41,12 +46,12 @@ router.get('/dolls/:id', async (request, response) => {
       }
   })
 
-  router.get('/outfits', async (req, res) => {
+  app.get('/api/outfits', async (req, res) => {
     const outfits = await Outfit.findAll()
     res.json(outfits)
   })
 
-router.get('/outfits/:id', async (request, response) => {
+app.get('/api/outfits/:id', async (request, response) => {
     const outfit = await Outfit.findByPk(request.params.id)
     if (outfit) {
         response.json(outfit)
@@ -55,27 +60,29 @@ router.get('/outfits/:id', async (request, response) => {
       }
   })
 
-  router.get('/patterns', async (req, res) => {
+  app.get('/api/patterns', async (req, res) => {
     const patterns = await Pattern.findAll()
     res.json(patterns)
   })
 
-router.get('/patterns/:id', async (request, response) => {
+app.get('/api/patterns/:id', async (request, response) => {
     const pattern = await Pattern.findByPk(request.params.id)
     if (pattern) {
         response.json(pattern)
       } else {
         response.status(404).end()
       }
-  })
+  })*/
 
   const unknownEndpoint = (request, response) => {
     response.status(404).send({ error: 'unknown endpoint' })
   }
   
-  router.use(unknownEndpoint)
+  app.use(unknownEndpoint)
   
+  
+  const PORT = process.env.PORT
 
-  router.listen(PORT, () => {
+  app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`)
   })

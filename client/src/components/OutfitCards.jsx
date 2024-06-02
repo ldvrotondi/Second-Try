@@ -1,9 +1,41 @@
-import { Outfit, Pattern } from '../../../models'
+//import { Outfit, Pattern } from '../../../models'
+import OutfitData from '../services/outfit.service';
+import PatternData from '../services/pattern.service';
 import Card from '@mui/material/Card';
 
 //code works, issue with sequelize
 
-//make variable name more manageable
+function retrieveOutfits () {
+  OutfitData.getAll()
+    .then(response => {
+      this.setState({
+        outfits: response.data
+      });
+      console.log(response.data);
+    })
+    .catch(e => {
+      console.log(e);
+    });
+  }
+
+const outfits = retrieveOutfits()
+
+function retrievePatterns() {
+    PatternData.getAll()
+      .then(response => {
+        this.setState({
+          patterns: response.data
+        });
+        console.log(response.data);
+      })
+      .catch(e => {
+        console.log(e);
+      });
+    }
+
+const patterns = retrievePatterns()
+  
+/*//make variable name more manageable
 const OutfitList = Outfit.findAll({
   include: [{
     model: Pattern,
@@ -31,9 +63,28 @@ const OutfitList = Outfit.findAll({
 })
 .catch(error => {
   console.error('Error fetching patterns:', error);
-});
+});*/
 
-const outfits = OutfitList
+
+//make variable name more manageable
+const OutfitList = 
+   outfits.map(outfit => ({
+     outfitid: outfit.outfitid,
+     name: outfit.name,
+     issueid: outfit.issueid,
+     designer: outfit.designer,
+     patterns: outfit.patterns.map(patterns => {
+       return {
+         pattern: patterns.patternid,
+         dollid: patterns.dollid,
+         type: patterns.type
+       };
+     })
+   }));
+  
+
+
+//let outfits = OutfitList
 
 //concatenates list of values for outfits with multiple sizes, patterns
 function listSizes (data, value) {
@@ -62,7 +113,7 @@ function listSizes (data, value) {
 
 //create card of data
 export default function OutfitCards({props}) {
-  const listOutfits = outfits.map(outfit =>
+  const listOutfits = OutfitList.map(outfit =>
       <Card key={outfit.outfitid} sx={{ maxWidth: 275 }}>
         <p>
           {`Name: ${outfit.name}`}

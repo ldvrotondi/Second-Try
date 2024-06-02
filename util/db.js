@@ -15,4 +15,11 @@ const connectToDatabase = async () => {
   return null
 }
 
+sequelize.sync({force: false})
+.then(() =>{
+  console.log('Re-sync completed.')
+}
+
+)
+
 module.exports = { connectToDatabase, sequelize }

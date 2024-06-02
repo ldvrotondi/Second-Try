@@ -1,4 +1,4 @@
-import './App.css';
+import "bootstrap/dist/css/bootstrap.min.css";
 import OutfitCards from './components/OutfitCards';
 import Navbar from './components/NavBar';
 
