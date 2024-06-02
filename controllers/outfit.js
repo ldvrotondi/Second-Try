@@ -32,11 +32,36 @@ const findByBook = async (req, res, next) => {
   res.status(200).send(outfit)
 }  
 
+const getPatterns = async (req, res) => {
+  const data = await Outfit.findAll({
+    include: [{
+      model: Pattern,
+      as: "pattern"
+    }],
+    where: {outfitid: req.params.id}
+  })
+  res.status(200).send(data)
+}
+
+
+const getAllPatterns = async (req, res) => {
+  const data = await Outfit.findAll({
+    include: [{
+      model: Pattern,
+      as: 'pattern'
+    }],
+  })
+  res.status(200).send(data)
+
+}
+
 //module.exports = router
 
 module.exports = {
 getAllOutfits,
 outfitFinder,
 findByBook,
-addOutfit
+addOutfit,
+getPatterns,
+getAllPatterns
 }

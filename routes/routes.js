@@ -6,34 +6,38 @@ const router = require('express').Router()
 
 
 //for books
-router.post('/addBook', bookController.addBook)
+router.post('/books/addbook', bookController.addBook)
 
-router.get('/books/:id', bookController.bookFinder)
+router.get('/books/book/:id', bookController.bookFinder)
 
 router.get('/books', bookController.getAllBooks)
 
 //for dolls
-router.post('/adddoll', dollController.addDoll)
+router.post('/dolls/adddoll', dollController.addDoll)
 
 router.get('/dolls', dollController.getAllDolls)
 
 router.get('/dolls/bysize/:height', dollController.findByHeight)
 
-router.get('/dolls/:id', dollController.dollFinder)
+router.get('/dolls/doll/:id', dollController.dollFinder)
 
 //for outfits
-router.post('/addoutfit', outfitController.addOutfit)
+router.post('/outfits/addoutfit', outfitController.addOutfit)
 
-router.get('/outfits/:id', outfitController.outfitFinder)
+router.get('/outfits/outfit/:id', outfitController.outfitFinder)
 
 router.get('/outfits/bybook/:id', outfitController.findByBook)
 
 router.get('/outfits', outfitController.getAllOutfits)
 
-//for patterns
-router.post('/addpattern', patternController.addPattern)
+router.get('/outfits/patterns/:id', outfitController.getPatterns)
 
-router.get('/patterns/:id', patternController.patternFinder)
+router.get('/outfits/patterns', outfitController.getAllPatterns)
+
+//for patterns
+router.post('/patterns/addpattern', patternController.addPattern)
+
+router.get('/patterns/pattern/:id', patternController.patternFinder)
 
 router.get('/patterns', patternController.getAllPatterns)
 

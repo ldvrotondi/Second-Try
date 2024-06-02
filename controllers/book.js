@@ -1,3 +1,4 @@
+const { configDotenv } = require('dotenv')
 const db = require('../models')
 
 const Book = db.Book
@@ -25,6 +26,7 @@ const addBook = async (req, res) => {
   publisher: req.body.publisher,
   isbn: req.body.isbn,
 }
+console.log(info)
   const book = await Book.create(info)
   res.status(200).send(book)
 }
