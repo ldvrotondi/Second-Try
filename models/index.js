@@ -10,11 +10,12 @@ Pattern.sync()
 
 Book.hasMany(Outfit,{foreignKey: 'issueid', as: "outfit"})
 Outfit.hasMany(Pattern, {foreignKey: 'outfitid', as: "pattern"})
-Pattern.hasOne(Doll, {foreignKey: 'dollid', as: "doll"})
+Doll.hasMany(Pattern, {foreignKey: 'dollid', as: "pattern"})
 
 Outfit.belongsTo(Book,{foreignKey: 'issueid', as:"book"})
 Pattern.belongsTo(Outfit, {foreignKey: 'outfitid', as: "outfit"})
-Doll.belongsTo(Pattern, {foreignKey: 'dollid', as: "pattern"})
+Pattern.belongsTo(Doll, {foreignKey: 'dollid', as: "doll"})
+
 
 
 

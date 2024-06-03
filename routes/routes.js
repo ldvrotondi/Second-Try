@@ -34,6 +34,8 @@ router.get('/outfits/patterns/:id', outfitController.getPatterns)
 
 router.get('/outfits/patterns', outfitController.getAllPatterns)
 
+router.get('/outfits/all', outfitController.getAllData)
+
 //for patterns
 router.post('/patterns/addpattern', patternController.addPattern)
 

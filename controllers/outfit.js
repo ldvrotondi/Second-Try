@@ -43,12 +43,32 @@ const getPatterns = async (req, res) => {
   res.status(200).send(data)
 }
 
-
 const getAllPatterns = async (req, res) => {
   const data = await Outfit.findAll({
     include: [{
       model: Pattern,
-      as: 'pattern'
+      as: 'pattern', include: [{model: Doll, as: 'doll', attributes: ['brand', 'line', 'type']}]
+    }, {model: Book, as: 'book', attributes: ['issue', 'series']}],
+  })
+  res.status(200).send(data)
+
+}
+
+const getAllData = async (req, res) => {
+  const data = await Book.findAll({
+    attributes: ['issue', 'series'],
+    include: [{
+      model: Outfit,
+      as: 'outfit',
+      include: [{
+        model: Pattern,
+        as: 'pattern',
+        include: [{
+          model: Doll,
+          as: 'doll',
+          attributes: ['dollid', 'brand', 'line', 'type']
+        }]
+      }]
     }],
   })
   res.status(200).send(data)
@@ -63,5 +83,6 @@ outfitFinder,
 findByBook,
 addOutfit,
 getPatterns,
-getAllPatterns
+getAllPatterns,
+getAllData
 }
