@@ -43,6 +43,8 @@ router.get('/patterns/pattern/:id', patternController.patternFinder)
 
 router.get('/patterns', patternController.getAllPatterns)
 
+router.get('/patterns/all', patternController.findAllData)
+
 router.get('/patterns/byoutfit/:id', patternController.findByOutfit)
 
 router.get('/patterns/bytype/:id', patternController.findByType)

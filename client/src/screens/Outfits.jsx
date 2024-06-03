@@ -23,7 +23,7 @@ const ViewOutfits = () => {
         <Row>
         {
                 outfits.map(outfit => {
-                   return <Col md={8} lg={12} sm={6} key={outfit.outfitid}>
+                   return <Col key={outfit.outfitid}>
                    <OutfitCards outfit={outfit} />
                    </Col> 
                    

@@ -8,7 +8,7 @@ const ViewPatterns = () => {
 
     useEffect(() => {
         const getPatternData = async () => {
-            const {data} = await axios.get('api/patterns')
+            const {data} = await axios.get('api/patterns/all/')
             setPatterns(data)
         }
         getPatternData()
@@ -23,7 +23,7 @@ const ViewPatterns = () => {
         <Row>
         {
                 patterns.map(pattern => {
-                   return <Col md={8} lg={12} sm={6} key={pattern.patternid}>
+                   return <Col key={pattern.patternid}>
                    <PatternCards pattern={pattern} />
                    </Col> 
                    

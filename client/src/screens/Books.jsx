@@ -23,7 +23,7 @@ const ViewBooks = () => {
         <Row>
         {
                 books.map(book => {
-                   return <Col md={8} lg={12} sm={6} key={book.issueid}>
+                   return <Col key={book.issueid}>
                    <BookCards book={book} />
                    </Col> 
                    

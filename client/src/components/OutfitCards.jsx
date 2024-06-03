@@ -8,8 +8,10 @@ import image from '../img/test.jpg'
 const listPatterns = (data, value) => {
   let array = []
       for (let i = 0; i < data.length; i++) {
-         if (i > 0){
-          array.push(data[i][value]);
+        let str = data[i][value]
+        str = str.charAt(0).toUpperCase() + str.slice(1)
+        if (!array.includes(str)){
+        array.push(str)
         }
       };
     let text = array.join(', ');
@@ -21,11 +23,12 @@ const listPatterns = (data, value) => {
     console.log(data)
     let array = []
         for (let i = 0; i < data.length; i++) {
-           if (i > 0){
             var dollexists = data[i].doll
             if (!dollexists){
-              if (!array.includes(data[i].dollid)){
-              array.push(data[i].dollid)
+              let str = data[i].dollid
+              str = str.charAt(0).toUpperCase() + str.slice(1)
+              if (!array.includes(str)){
+              array.push(str)
               }
             }else{
             console.log(data[i].doll)
@@ -37,7 +40,6 @@ const listPatterns = (data, value) => {
               array.push(result);
             }
           }
-        }
         };
       let text = array.join(', ');
       return text
@@ -56,8 +58,10 @@ const OutfitCards = ({outfit}) => {
        <Card.Text>
   
           From: {outfit.book.series} {outfit.book.issue} <br />
+          Designer: {outfit.designer} <br />
           Patterns: {listPatterns(outfit.pattern, 'type')} <br />
           Sizes:  {listSizes(outfit.pattern)}<br />
+          
                 </Card.Text>
                 
               <Link to={`/outfits/${outfit.outfitid}`}><Button>View Details</Button></Link>

@@ -32,6 +32,26 @@ const findByDoll = async (req, res, next) => {
     res.status(200).send(patterns)
   }
 
+  const findAllData = async (req, res, next) => {
+    let patterns = await Pattern.findAll({
+      include: [{
+        model: Outfit,
+        as: 'outfit',
+        attributes: [ 'name', 'designer'],
+        include: [{
+          model: Book,
+          as: 'book',
+          attributes: [ 'issue', 'series']
+          }]
+        }, {
+          model: Doll,
+          as: 'doll',
+          attributes: [ 'brand', 'line', 'type']
+      }],
+   })
+    res.status(200).send(patterns)
+  }
+
 /*
 const findByOutfit = async (req, res) => {
    await Pattern.findOne({ where: { outfitid: req.params.id } });
@@ -61,5 +81,6 @@ patternFinder,
 findByOutfit,
 findByType,
 findByDoll,
-addPattern
+addPattern,
+findAllData
 }

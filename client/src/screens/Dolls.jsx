@@ -23,7 +23,7 @@ const ViewDolls = () => {
         <Row>
         {
                 dolls.map(doll => {
-                   return <Col md={8} lg={12} sm={6} key={doll.issueid}>
+                   return <Col key={doll.issueid}>
                    <DollCards doll={doll} />
                    </Col> 
                    
