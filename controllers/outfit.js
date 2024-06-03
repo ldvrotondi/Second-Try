@@ -15,10 +15,18 @@ const outfitFinder = async (req, res, next) => {
     res.status(200).send(outfit)
   }
 
-const findByBook = async (req, res, next) => {
-    let outfit = await Outfit.findOne({ where: { issueid: req.params.id } })
-    res.status(200).send(outfit)
-  }
+const findByBook = async (req, res) => {
+  const data = await Outfit.findAll({
+    where:{issueid: req.params.id},
+    include: [{
+      model: Pattern,
+      as: 'pattern', include: [{model: Doll, as: 'doll', attributes: ['brand', 'line', 'type']}]
+    }, 
+    {model: Book, as: 'book', attributes: ['issue', 'series']}],
+  })
+  res.status(200).send(data)
+
+}
   
 
   const addOutfit = async (req, res) => {

@@ -15,6 +15,7 @@ import BookDetails from "./screens/BookDetails";
 import DollDetails from "./screens/DollDetails";
 import PatternDetails from "./screens/PatternDetails";
 import OutfitDetails from "./screens/OutfitDetails";
+import CompareDolls from "./screens/CompareDolls";
 
 
 const App = () => {
@@ -23,7 +24,8 @@ const App = () => {
       <Navbar />
       <Routes>
         {/* 
-        <Route exact path="/addDoll" Component={AddDoll} />*/}
+        <Route exact path="/addDoll" Component={AddDoll} />
+        <Route exact path="/dolls/compare" Component={CompareDolls} />*/}
         
         <Route exact path="/addPattern" Component={AddPattern} />
         <Route exact path="/addBook" Component={AddBook} />

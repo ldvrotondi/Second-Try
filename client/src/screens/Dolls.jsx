@@ -2,6 +2,7 @@ import React, {useState, useEffect} from "react";
 import axios from 'axios';
 import {Container, Row, Col} from 'react-bootstrap'
 import DollCards from '../components/DollCards'
+import SearchBar from "../components/SearchBar";
 
 const ViewDolls = () => {
     const [dolls, setDolls] = useState([])
@@ -21,6 +22,7 @@ const ViewDolls = () => {
         <h1 className='text-left'>All Dolls</h1>
         <hr />
         <Row>
+            <SearchBar />
         {
                 dolls.map(doll => {
                    return <Col key={doll.issueid}>

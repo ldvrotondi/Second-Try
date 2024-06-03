@@ -17,8 +17,9 @@ const BookCard = ({book}) => {
                   ISBN: {book.isbn} <br />
                 </Card.Text>
                 
-              <Link to={`/books/${book.issueid}`}><Button>View Details</Button></Link>
+              <Link to={`${book.issueid}`}><Button>View Details</Button></Link>
               </Card.Body>
+
             </Card>
           );
 }
