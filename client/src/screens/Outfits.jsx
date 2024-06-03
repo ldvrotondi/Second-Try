@@ -1,11 +1,39 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
+import axios from 'axios';
+import {Container, Row, Col} from 'react-bootstrap'
+import OutfitCards from '../components/OutfitCards'
 
 const ViewOutfits = () => {
+    const [outfits, setOutfits] = useState([])
+
+    useEffect(() => {
+        const getOutfitData = async () => {
+            const {data} = await axios.get('api/outfits/patterns')
+            setOutfits(data)
+        }
+        getOutfitData()
+    },[]
+    )
+
     return (
         <>
-        <h1>
-            Outfits
-            </h1></>
+       <Container>
+        <h1 className='text-left'>All Outfits</h1>
+        <hr />
+        <Row>
+        {
+                outfits.map(outfit => {
+                   return <Col md={8} lg={12} sm={6} key={outfit.outfitid}>
+                   <OutfitCards outfit={outfit} />
+                   </Col> 
+                   
+                })
+            }
+        </Row>
+       </Container>
+           
+            
+            </>
     )
 }
 

@@ -4,23 +4,21 @@ import Card from 'react-bootstrap/Card';
 import image from '../img/test.jpg'
 import { Link } from "react-router-dom";
 
-const BookCard = ({book}) => {
+const PatternCard = ({pattern}) => {
     return (
         
             <Card style={{ width: '18rem', margin: '5px' }}>
               <Card.Img variant="top" src={image} />
               <Card.Body>
-                <Card.Title>{book.series} {book.issue}</Card.Title>
+                <Card.Title>{pattern.dollid} {pattern.type}</Card.Title>
                 <Card.Text>
-                  {book.seriesjp} {book.issuejp} <br />
-                  {book.publisher} <br />
-                  {book.isbn} <br />
+                  Outfit: {pattern.outfitid} <br />
                 </Card.Text>
                 
-              <Link to={`/books/${book.issueid}`}><Button>View Details</Button></Link>
+              <Link to={`/patterns/${pattern.patternid}`}><Button>View Details</Button></Link>
               </Card.Body>
             </Card>
           );
 }
 
-export default BookCard
+export default PatternCard

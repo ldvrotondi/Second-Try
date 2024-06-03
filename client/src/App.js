@@ -1,9 +1,7 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-
 import "bootstrap/dist/css/bootstrap.min.css";
-//import OutfitCards from './components/OutfitCards';
 import Navbar from './components/NavBar';
 import AddDoll from "./screens/AddDoll";
 import ViewBooks from "./screens/Books";
