@@ -1,5 +1,7 @@
 import React from "react";
 
+//placeholder; build form to add new dolls, make sure to password-protect this page
+
 const AddDoll = () =>{
     return(
         <>

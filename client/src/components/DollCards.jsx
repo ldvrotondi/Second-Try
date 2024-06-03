@@ -9,8 +9,8 @@ const DollCard = ({doll}) => {
         
             <Card style={{ width: '18rem', margin: '5px' }}>
               <Card.Body>
-                <Card.Title>{doll.brand} {doll.line}
-                <br /><h6>{doll.type}</h6>
+                <Card.Title>{doll.brand} <br />
+                <h6>{doll.line} {doll.type}</h6>
                 </Card.Title>
                 <Card.Text>
                     <Table class="table table-striped">

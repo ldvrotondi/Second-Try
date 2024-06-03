@@ -4,6 +4,9 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Navbar from './components/NavBar';
 import AddDoll from "./screens/AddDoll";
+import AddBook from "./screens/AddBook";
+import AddOutfit from "./screens/AddOutfit";
+import AddPattern from "./screens/AddPattern";
 import ViewBooks from "./screens/Books";
 import ViewOutfits from "./screens/Outfits";
 import ViewDolls from "./screens/Dolls";
@@ -13,19 +16,18 @@ import DollDetails from "./screens/DollDetails";
 import PatternDetails from "./screens/PatternDetails";
 import OutfitDetails from "./screens/OutfitDetails";
 
-/*const App = () => {
-    return(<div>
-      <Navbar />
-  <OutfitCards /></div>
-   );
-}*/
 
 const App = () => {
     return(
     <Router>
       <Navbar />
       <Routes>
-        <Route exact path="/addDoll" Component={AddDoll} />
+        {/* 
+        <Route exact path="/addDoll" Component={AddDoll} />*/}
+        
+        <Route exact path="/addPattern" Component={AddPattern} />
+        <Route exact path="/addBook" Component={AddBook} />
+        <Route exact path="/addOutfit" Component={AddOutfit} />
         <Route exact path="/books" Component={ViewBooks} />
         <Route exact path="/books/:id" Component={BookDetails} />
         <Route exact path="/outfits" Component={ViewOutfits} />

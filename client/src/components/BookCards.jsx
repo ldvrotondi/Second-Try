@@ -10,11 +10,11 @@ const BookCard = ({book}) => {
             <Card style={{ width: '18rem', margin: '5px' }}>
               <Card.Img variant="top" src={image} />
               <Card.Body>
-                <Card.Title>{book.series} {book.issue}</Card.Title>
+                <Card.Title>{book.series}: {book.issue}</Card.Title>
                 <Card.Text>
                   {book.seriesjp} {book.issuejp} <br />
                   {book.publisher} <br />
-                  {book.isbn} <br />
+                  ISBN: {book.isbn} <br />
                 </Card.Text>
                 
               <Link to={`/books/${book.issueid}`}><Button>View Details</Button></Link>
