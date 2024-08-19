@@ -4,6 +4,8 @@ import {Container, Row, Col} from 'react-bootstrap'
 import DollCards from '../components/DollCards'
 import SearchBar from "../components/SearchBar";
 
+import { Link } from "react-router-dom";
+
 const ViewDolls = () => {
     const [dolls, setDolls] = useState([])
 
@@ -26,7 +28,7 @@ const ViewDolls = () => {
         {
                 dolls.map(doll => {
                    return <Col key={doll.dollid}>
-                   <DollCards doll={doll} />
+                   <Link to={`${doll.dollid}`} style={{ textDecoration: 'none' }}><DollCards doll={doll} /></Link>
                    </Col> 
                    
                 })

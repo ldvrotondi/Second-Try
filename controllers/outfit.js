@@ -28,7 +28,19 @@ const findByBook = async (req, res) => {
 }
 
 const findByDoll = async (req, res) => {
-  const data = await Outfit.findAll({ where: { '$pattern.dollid$':  req.params.id},
+  const data = await Outfit.findAll({ 
+    where: { '$pattern.dollid$':  req.params.id},
+    include: [{
+      model: Pattern,
+      as: 'pattern', include: [{model: Doll, as: 'doll', attributes: ['brand', 'line', 'type']}]
+    }, {model: Book, as: 'book', attributes: ['issue', 'series']}],
+  })
+  res.status(200).send(data)
+}
+
+const getPatterns = async (req, res) => {
+  const data = await Outfit.findAll({ 
+    where: { outfitid:  req.params.id},
     include: [{
       model: Pattern,
       as: 'pattern', include: [{model: Doll, as: 'doll', attributes: ['brand', 'line', 'type']}]
@@ -48,16 +60,7 @@ const findByDoll = async (req, res) => {
   res.status(200).send(outfit)
 }  
 
-const getPatterns = async (req, res) => {
-  const data = await Outfit.findAll({
-    include: [{
-      model: Pattern,
-      as: "pattern"
-    }],
-    where: {outfitid: req.params.id}
-  })
-  res.status(200).send(data)
-}
+
 
 const getAllPatterns = async (req, res) => {
   const data = await Outfit.findAll({

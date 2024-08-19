@@ -9,14 +9,12 @@ const typeUppercase = (str) => {
 }
 
 const listSizes = (data) => {
-  console.log(data)
           var dollexists = data.doll
           if (!dollexists){
             let result = data.dollid
             result = typeUppercase(result)
             return result
           }else{
-          console.log(data.doll)
           let brand = data.doll.brand
           let line = data.doll.line
           let type = data.doll.type

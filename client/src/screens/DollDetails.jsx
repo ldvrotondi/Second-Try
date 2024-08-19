@@ -10,7 +10,7 @@ import DollCard from "../components/DollCards";
 const DollDetails = () => {
         const {id}  = useParams()
 
-        const [doll, setDoll] = useState({})
+        const [doll, setDoll] = useState([])
 
 
         useEffect(() => {
@@ -44,7 +44,7 @@ const DollDetails = () => {
                 <DollCard doll={doll} />
             </Row>
             <Row>
-                <h1>Indexed Patterns:</h1>
+                <h1>Indexed Outfits:</h1>
         {
                 outfits.map(outfit => {
                    return <Col key={outfit.outfitid}>
