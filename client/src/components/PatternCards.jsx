@@ -36,7 +36,7 @@ const PatternCard = ({pattern}) => {
                   Source: {pattern.outfit.book.series} {pattern.outfit.book.issue}<br />
                 </Card.Text>
                 
-              <Link to={`/patterns/${pattern.patternid}`}><Button>View Details</Button></Link>
+              <Link to={`/outfits/${pattern.outfitid}`}><Button>View Details</Button></Link>
               </Card.Body>
             </Card>
           );
