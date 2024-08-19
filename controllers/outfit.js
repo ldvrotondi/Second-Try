@@ -10,7 +10,7 @@ const getAllOutfits = async (req, res, next) => {
   res.status(200).send(outfits)
 }
 
-const outfitFinder = async (req, res, next) => {
+const outfitFinder = async (req, res) => {
     let outfit = await Outfit.findByPk(req.params.id)
     res.status(200).send(outfit)
   }
@@ -25,9 +25,17 @@ const findByBook = async (req, res) => {
     {model: Book, as: 'book', attributes: ['issue', 'series']}],
   })
   res.status(200).send(data)
-
 }
-  
+
+const findByDoll = async (req, res) => {
+  const data = await Outfit.findAll({ where: { '$pattern.dollid$':  req.params.id},
+    include: [{
+      model: Pattern,
+      as: 'pattern', include: [{model: Doll, as: 'doll', attributes: ['brand', 'line', 'type']}]
+    }, {model: Book, as: 'book', attributes: ['issue', 'series']}],
+  })
+  res.status(200).send(data)
+}
 
   const addOutfit = async (req, res) => {
     let info ={
@@ -80,7 +88,6 @@ const getAllData = async (req, res) => {
     }],
   })
   res.status(200).send(data)
-
 }
 
 //module.exports = router
@@ -89,6 +96,7 @@ module.exports = {
 getAllOutfits,
 outfitFinder,
 findByBook,
+findByDoll,
 addOutfit,
 getPatterns,
 getAllPatterns,

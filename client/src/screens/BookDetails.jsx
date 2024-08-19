@@ -37,7 +37,6 @@ const BookDetails = () => {
     useEffect(() => {
         const getOutfitData = async () => {
             const {data} = await axios.get(`/api/outfits/bybook/${id}`)
-            console.log(data)
             setOutfits(data)
         }
         getOutfitData()

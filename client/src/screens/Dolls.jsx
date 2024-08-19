@@ -25,7 +25,7 @@ const ViewDolls = () => {
             <SearchBar />
         {
                 dolls.map(doll => {
-                   return <Col key={doll.issueid}>
+                   return <Col key={doll.dollid}>
                    <DollCards doll={doll} />
                    </Col> 
                    

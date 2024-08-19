@@ -6,11 +6,13 @@ import axios from "axios";
 const SearchBar = ({setResults}) => {
 
     const [input, setInput] = useState('')
+    const [data, setData] = useState([])
 
     const fetchData =  async (value) => {
                 const response = await axios.get(`/api/dolls/doll/${value}`)
                 //setResults(response)
                 console.log(response)
+                setData(response.data)
             };
     
     const handleChange = (value) => {
@@ -19,8 +21,10 @@ const SearchBar = ({setResults}) => {
     }
 
     return <div className="input-wrapper">
-        <input placeholder="Enter a name" value={input} onChange={(e) => handleChange(e.target.value)}></input>
-        <FaSearch id="search-icon"/>
+        <input placeholder="Enter a name" 
+        value={input} 
+        onChange={(e) => handleChange(e.target.value)}></input>
+        
     </div>
 
 }

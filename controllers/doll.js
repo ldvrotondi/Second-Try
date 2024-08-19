@@ -19,7 +19,8 @@ const dollFinder = async (req, res, next) => {
     res.status(200).send(doll)
   }
 
-  const findByHeight = async (req, res, next) => {
+//return dolls within a similar size range
+const findByHeight = async (req, res, next) => {
     if (req.params.height < 35) {
       maxHeight = parseFloat(req.params.height) * 1.2;
       minHeight = parseFloat(req.params.height) * 0.8;

@@ -32,7 +32,7 @@ const DollCard = ({doll}) => {
                         <tr><td>Foot Width:</td><td> {doll.footwid} cm</td></tr>
                 </Table>
                 </Card.Text>
-               {/*<Link to={`/patterns/${doll.patternid}`}><Button>View Patterns</Button></Link>*/}
+               {<Link to={`${doll.dollid}`}><Button>View Patterns</Button></Link>}
               </Card.Body>
             </Card>
           );

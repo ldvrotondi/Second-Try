@@ -23,7 +23,22 @@ const findByOutfit = async (req, res, next) => {
   }
 
 const findByDoll = async (req, res, next) => {
-    let patterns = await Pattern.findAll({ where: { dollid: req.params.id } })
+    let patterns = await Pattern.findAll({ where: { dollid: req.params.id },
+      include: [{
+        model: Outfit,
+        as: 'outfit',
+        attributes: [ 'name', 'designer'],
+        include: [{
+          model: Book,
+          as: 'book',
+          attributes: [ 'issue', 'series']
+          }]
+        }, {
+          model: Doll,
+          as: 'doll',
+          attributes: [ 'brand', 'line', 'type']
+      }],
+    })
     res.status(200).send(patterns)
   }
 

@@ -20,7 +20,6 @@ const listPatterns = (data, value) => {
 
 //sizes that an outfit has patterns for
   const listSizes = (data) => {
-    console.log(data)
     let array = []
         for (let i = 0; i < data.length; i++) {
             var dollexists = data[i].doll
@@ -31,7 +30,6 @@ const listPatterns = (data, value) => {
               array.push(str)
               }
             }else{
-            console.log(data[i].doll)
             let brand = data[i].doll.brand
             let line = data[i].doll.line
             let type = data[i].doll.type
