@@ -15,6 +15,13 @@ const ViewPatterns = () => {
     },[]
     )
 
+    /*const [selectedType, setSelectedType] = useState(null)
+    const handleChange = e => {
+        setSelectedType(e.target.value)
+    }
+
+    const filteredPatterns(patterns,selected)*/
+
     return (
         <>
        <Container>
