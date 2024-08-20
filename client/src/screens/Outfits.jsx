@@ -23,15 +23,30 @@ const ViewOutfits = () => {
     };
 
     const getNestedValue = (obj, path) => {
-        return path.split('.').reduce((value, key) => {
-            return (value && value[key] !== undefined) ? value[key] : undefined;
-        }, obj);
+        const keys = path.split('.');
+        let currentValue = obj;
+    
+        for (let key of keys) {
+            if (Array.isArray(currentValue)) {
+                currentValue = currentValue.map(item => item && item[key]).filter(Boolean);
+            } else if (currentValue && currentValue.hasOwnProperty(key)) {
+                currentValue = currentValue[key];
+            } else {
+                return undefined;
+            }
+        }
+    
+        return Array.isArray(currentValue) ? currentValue.flat() : currentValue;
     };
 
     const filteredOutfits = outfits.filter((item) => 
-        keys.some((key) => 
-            getNestedValue(item, key)?.toLowerCase().includes(query.toLowerCase())
-        )
+        keys.some((key) => {
+            const value = getNestedValue(item, key);
+            if (Array.isArray(value)) {
+                return value.some(v => v?.toLowerCase().includes(query.toLowerCase()));
+            }
+            return value?.toLowerCase().includes(query.toLowerCase());
+        })
     );
 
     return (
