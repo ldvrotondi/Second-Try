@@ -5,6 +5,7 @@ import BookCards from '../components/BookCards'
 
 const ViewBooks = () => {
     const [books, setBooks] = useState([])
+    const [query, setQuery] = useState('');
 
     useEffect(() => {
         const getBookData = async () => {
@@ -15,14 +16,33 @@ const ViewBooks = () => {
     },[]
     )
 
+    const keys = ['series', 'issue', 'publisher'];
+
+    const handleChange = (value) => {
+        setQuery(value);
+    };
+
+    const filteredBooks = books.filter((item) => 
+        keys.some((key) => 
+            item[key]?.toLowerCase().includes(query.toLowerCase())
+        )
+    );
+
     return (
         <>
        <Container>
         <h1 className='text-left'>All Books</h1>
         <hr />
         <Row>
+        <div className="query"> 
+                    <input 
+                        value={query} 
+                        onChange={(e) => handleChange(e.target.value)}
+                        placeholder="Search..."
+                    />
+                </div>
         {
-                books.map(book => {
+                filteredBooks.map(book => {
                    return <Col key={book.issueid}>
                    <BookCards book={book} />
                    </Col> 
