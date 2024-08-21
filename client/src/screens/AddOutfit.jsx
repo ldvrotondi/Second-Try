@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState,useEffect} from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
@@ -16,6 +16,8 @@ const AddOutfit = () =>{
     const [name, setName] = useState('')
     const [designer, setDesigner] = useState('')
 
+    const [outfits, setOutfits] = useState([])
+
 
     const addOutfitHandler = async () => {
             const data = {
@@ -28,6 +30,18 @@ const AddOutfit = () =>{
             await axios.post('/api/outfits/addoutfit', data)
     }
 
+    useEffect(() => {
+        const getOutfitData = async () => {
+            const {data} = await axios.get('api/outfits/patterns/')
+            setOutfits(data)
+        }
+        getOutfitData()
+    },[]
+    )
+
+    const nextOutfitID = (Math.max(...outfits.map(outfit => outfit.outfitid), 0)) + 1
+
+
     return(
         <>
       <Container>
@@ -37,6 +51,7 @@ const AddOutfit = () =>{
             <Col>
             <Form onSubmit={addOutfitHandler}>
             <Form.Group className="mb-3" controlId="outfitid">
+            Next Outfit ID: {nextOutfitID}
                 <Form.Control type="text" value={outfitid} onChange={((e)=> setOutfitID(e.target.value))} placeholder="Enter OutfitID" />
             </Form.Group>
             <Form.Group className="mb-3" controlId="issueid">
