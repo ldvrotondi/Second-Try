@@ -36,14 +36,14 @@
     border-top-right-radius: 0px;
   }
   
-  .a {
+  .link {
     text-decoration: none;
     font-size: larger;
     font-weight: 500;
     color: #fff;
   }
 
-  a:hover {
+  .link:hover {
     text-decoration: none;
     font-size: larger;
     font-weight: 700;

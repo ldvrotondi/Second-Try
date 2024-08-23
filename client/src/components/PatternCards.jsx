@@ -30,7 +30,7 @@ const PatternCard = ({pattern}) => {
               <Card.ImgOverlay>
               <Card.Body className="overlay-text">
                 <Card.Text>
-                <Link to={`/outfits/${pattern.outfitid}`} className={`a`}>{typeUppercase(pattern.type)} from {pattern.outfit.name}</Link> <br />
+                <Link to={`/outfits/${pattern.outfitid}`} className={`link`}>{typeUppercase(pattern.type)} from {pattern.outfit.name}</Link> <br />
                   Size: {listSizes(pattern)} <br />
                   Designer: {pattern.outfit.designer} <br />
                   Source: {pattern.outfit.book.series} {pattern.outfit.book.issue}<br />

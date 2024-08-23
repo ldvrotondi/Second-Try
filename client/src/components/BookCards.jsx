@@ -11,7 +11,7 @@ const BookCard = ({book}) => {
               <Card.ImgOverlay>
               <Card.Body className="overlay-text">
                 <Card.Text className="overlay-text">
-                <Link to={`${book.issueid}`} className={`a`}>{book.series}: {book.issue}</Link><br />
+                <Link to={`${book.issueid}`} className={`link`}>{book.series}: {book.issue}</Link><br />
                   {book.seriesjp} {book.issuejp} <br />
                   {book.publisher} <br />
                   ISBN: {book.isbn} <br />
