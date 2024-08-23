@@ -22,7 +22,6 @@ const BookDetails = () => {
         useEffect(() => {
             const getBook = async () => {
                 const {data} = await axios.get(`/api/books/book/${id}`)
-                console.log(data)
                 setSeries(data.series)
                 setSeriesJP(data.seriesjp)
                 setIssue(data.issue)

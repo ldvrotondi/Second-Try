@@ -2,7 +2,7 @@ import React from "react";
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import { Link } from "react-router-dom";
-
+import './card.css';
 
 
 //single list of all pattern types within an outfit
@@ -48,23 +48,20 @@ const listPatterns = (data, value) => {
 //create card of data
 const OutfitCards = ({outfit}) => {
   return (
-    <Card style={{ width: '18rem', margin: '5px' }}>
+    <Card className="bg-dark text-white card-overlay" style={{ width: '18rem', margin: '5px' }}>
     <Card.Img variant="top" src={`/images/outfits/${outfit.outfitid}.bmp`} />
-    <Card.Body>
-      <Card.Title>
-      {outfit.name}
-       </Card.Title>
+    <Card.ImgOverlay>
+    <Card.Body className="overlay-text">
        <Card.Text>
-  
+       <Link to={`/outfits/${outfit.outfitid}`} className={`a`}> {outfit.name} </Link><br />
           From: {outfit.book.series} {outfit.book.issue} <br />
           Designer: {outfit.designer} <br />
           Patterns: {listPatterns(outfit.pattern, 'type')} <br />
           Sizes:  {listSizes(outfit.pattern)}<br />
           
                 </Card.Text>
-                
-              <Link to={`/outfits/${outfit.outfitid}`}><Button>View Details</Button></Link>
               </Card.Body>
+              </Card.ImgOverlay>
             </Card>)
 }
   

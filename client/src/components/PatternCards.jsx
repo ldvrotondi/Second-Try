@@ -25,18 +25,18 @@ const listSizes = (data) => {
 const PatternCard = ({pattern}) => {
     return (
         
-            <Card style={{ width: '18rem', margin: '5px' }}>
+            <Card style={{ width: '18rem', margin: '5px' }} className="bg-dark text-white card-overlay">
               <Card.Img variant="top" src={`/images/outfits/${pattern.outfitid}.bmp`} />
-              <Card.Body>
-                <Card.Title>{typeUppercase(pattern.type)} from {pattern.outfit.name} </Card.Title>
+              <Card.ImgOverlay>
+              <Card.Body className="overlay-text">
                 <Card.Text>
+                <Link to={`/outfits/${pattern.outfitid}`} className={`a`}>{typeUppercase(pattern.type)} from {pattern.outfit.name}</Link> <br />
                   Size: {listSizes(pattern)} <br />
                   Designer: {pattern.outfit.designer} <br />
                   Source: {pattern.outfit.book.series} {pattern.outfit.book.issue}<br />
                 </Card.Text>
-                
-              <Link to={`/outfits/${pattern.outfitid}`}><Button>View Details</Button></Link>
               </Card.Body>
+              </Card.ImgOverlay>
             </Card>
           );
 }
