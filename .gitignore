@@ -1,3 +1,6 @@
+# Images
+client/public/images/
+
 # Logs
 logs
 *.log

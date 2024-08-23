@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 
 const DollCard = ({doll}) => {
 
+  //formats measurements into XXX.X format and replaces missing entries with '---' for better readability
   const formatMeasurements = ( measurement ) =>
   {if (!measurement){
     return '---'

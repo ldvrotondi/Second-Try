@@ -2,7 +2,6 @@ import React, {useEffect, useState} from "react";
 import axios from 'axios';
 import {Container, Row, Col, Card} from 'react-bootstrap'
 import OutfitCards from "../components/OutfitCards";
-import image from '../img/test.jpg'
 import { useParams } from "react-router-dom";
 import SearchBar from "../components/SearchBar";
 import filteredData from "../utils/filteredData";
@@ -53,7 +52,7 @@ const BookDetails = () => {
             <Row>
                 <h1>Book Details:</h1>
             <Card style={{ width: '18rem', margin: '5px' }}>
-              <Card.Img variant="top" src={image} />
+              <Card.Img variant="top" src={`/images/books/${id}.bmp`} />
               <Card.Body>
                 <Card.Title>{series}: {issue}</Card.Title>
                 <Card.Text>

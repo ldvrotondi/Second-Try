@@ -2,7 +2,8 @@ import React from "react";
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import { Link } from "react-router-dom";
-import image from '../img/test.jpg'
+
+
 
 //single list of all pattern types within an outfit
 const listPatterns = (data, value) => {
@@ -48,7 +49,7 @@ const listPatterns = (data, value) => {
 const OutfitCards = ({outfit}) => {
   return (
     <Card style={{ width: '18rem', margin: '5px' }}>
-    <Card.Img variant="top" src={image} />
+    <Card.Img variant="top" src={`/images/outfits/${outfit.outfitid}.bmp`} />
     <Card.Body>
       <Card.Title>
       {outfit.name}

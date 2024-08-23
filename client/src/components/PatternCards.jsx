@@ -1,7 +1,6 @@
 import React from "react";
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
-import image from '../img/test.jpg'
 import { Link } from "react-router-dom";
 
 const typeUppercase = (str) => {
@@ -27,7 +26,7 @@ const PatternCard = ({pattern}) => {
     return (
         
             <Card style={{ width: '18rem', margin: '5px' }}>
-              <Card.Img variant="top" src={image} />
+              <Card.Img variant="top" src={`/images/outfits/${pattern.outfitid}.bmp`} />
               <Card.Body>
                 <Card.Title>{typeUppercase(pattern.type)} from {pattern.outfit.name} </Card.Title>
                 <Card.Text>

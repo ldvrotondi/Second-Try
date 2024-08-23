@@ -3,7 +3,6 @@ import axios from 'axios';
 import {Container, Row, Col, Card} from 'react-bootstrap'
 import OutfitCards from "../components/OutfitCards";
 //import { Link } from "react-router-dom";
-import image from '../img/test.jpg'
 import { useParams } from "react-router-dom";
 import DollCard from "../components/DollCards";
 import SearchBar from "../components/SearchBar";
