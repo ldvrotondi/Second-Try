@@ -2,12 +2,15 @@ import React, {useEffect, useState} from "react";
 import axios from 'axios';
 import {Container, Row, Col, Card} from 'react-bootstrap'
 import OutfitCards from "../components/OutfitCards";
-//import { Link } from "react-router-dom";
 import image from '../img/test.jpg'
 import { useParams } from "react-router-dom";
+import SearchBar from "../components/SearchBar";
+import filteredData from "../utils/filteredData";
+import { outfitKeys } from "../utils/searchKeys";
 
 const BookDetails = () => {
         const {id}  = useParams()
+        const [query, setQuery] = useState('')
 
         const [series, setSeries] = useState('')
         const [seriesjp, setSeriesJP] = useState('')
@@ -43,7 +46,6 @@ const BookDetails = () => {
     },[]
     )
 
-
     return (
         <>
         <Container>
@@ -64,8 +66,9 @@ const BookDetails = () => {
             </Row>
             <Row>
                 <h1>Included Patterns:</h1>
+                <SearchBar query={query} setQuery={setQuery} />
         {
-                outfits.map(outfit => {
+                filteredData(outfits, outfitKeys, query).map(outfit => {
                    return <Col key={outfit.outfitid}>
                    <OutfitCards outfit={outfit} />
                    </Col> 

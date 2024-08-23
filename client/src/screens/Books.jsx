@@ -2,6 +2,9 @@ import React, {useState, useEffect} from "react";
 import axios from 'axios';
 import {Container, Row, Col} from 'react-bootstrap'
 import BookCards from '../components/BookCards'
+import SearchBar from "../components/SearchBar";
+import filteredData from "../utils/filteredData";
+import { bookKeys } from "../utils/searchKeys";
 
 const ViewBooks = () => {
     const [books, setBooks] = useState([])
@@ -16,17 +19,6 @@ const ViewBooks = () => {
     },[]
     )
 
-    const keys = ['series', 'issue', 'publisher'];
-
-    const handleChange = (value) => {
-        setQuery(value);
-    };
-
-    const filteredBooks = books.filter((item) => 
-        keys.some((key) => 
-            item[key]?.toLowerCase().includes(query.toLowerCase())
-        )
-    );
 
     return (
         <>
@@ -34,15 +26,9 @@ const ViewBooks = () => {
         <h1 className='text-left'>All Books</h1>
         <hr />
         <Row>
-        <div className="query"> 
-                    <input 
-                        value={query} 
-                        onChange={(e) => handleChange(e.target.value)}
-                        placeholder="Search..."
-                    />
-                </div>
+        <SearchBar query={query} setQuery={setQuery} />
         {
-                filteredBooks.map(book => {
+                filteredData(books, bookKeys, query).map(book => {
                    return <Col key={book.issueid}>
                    <BookCards book={book} />
                    </Col> 

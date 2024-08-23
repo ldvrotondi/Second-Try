@@ -4,10 +4,14 @@ import {Container, Row, Col} from 'react-bootstrap'
 import OutfitCards from "../components/OutfitCards";
 //import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
-import PatternCard from "../components/PatternCards";
+import PatternCards from "../components/PatternCards";
+import SearchBar from "../components/SearchBar";
+import filteredData from "../utils/filteredData";
+import { patternKeys } from "../utils/searchKeys";
 
 const OutfitDetails = () => {
     const {id}  = useParams()
+    const [query, setQuery] = useState('')
     
     const [outfits, setOutfits] = useState([])
 
@@ -50,15 +54,15 @@ return (
         </Row>
         <Row>
             <h1>Associated Patterns:</h1>
-    {
-            patterns.map(pattern => {
-               return <Col key={pattern.patternid}>
-                
-               <PatternCard pattern={pattern} />
-               </Col> 
-               
-            })
-        }
+            <SearchBar query={query} setQuery={setQuery} />
+        {
+                filteredData(patterns,patternKeys,query).map(pattern => {
+                   return <Col key={pattern.patternid}>
+                   <PatternCards pattern={pattern} />
+                   </Col> 
+                   
+                })
+            }
         </Row>
         </Col>
     </Container>
