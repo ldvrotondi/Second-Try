@@ -6,9 +6,13 @@ import OutfitCards from "../components/OutfitCards";
 import image from '../img/test.jpg'
 import { useParams } from "react-router-dom";
 import DollCard from "../components/DollCards";
+import SearchBar from "../components/SearchBar";
+import { outfitKeys } from "../utils/searchKeys";
+import filteredData from "../utils/filteredData";
 
 const DollDetails = () => {
         const {id}  = useParams()
+        const [query, setQuery] = useState('')
 
         const [doll, setDoll] = useState([])
 
@@ -45,10 +49,10 @@ const DollDetails = () => {
             </Row>
             <Row>
                 <h1>Indexed Outfits:</h1>
+                <SearchBar query={query} setQuery={setQuery} />
         {
-                outfits.map(outfit => {
+                filteredData(outfits, outfitKeys, query).map(outfit => {
                    return <Col key={outfit.outfitid}>
-                    
                    <OutfitCards outfit={outfit} />
                    </Col> 
                    

@@ -28,9 +28,8 @@ const ViewDolls = () => {
                 {
                     filteredData(dolls, dollKeys, query).map(doll => (
                         <Col key={doll.dollid}>
-                            <Link to={`${doll.dollid}`} style={{ textDecoration: 'none' }}>
+                           
                                 <DollCards doll={doll} />
-                            </Link>
                         </Col> 
                     ))
                 }
