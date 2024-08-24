@@ -7,7 +7,7 @@ const BookCard = ({book}) => {
     return (
         
             <Card className="bg-dark text-white card-overlay" style={{ width: '18rem', margin: '5px' }}>
-              <Card.Img src={`/images/books/${book.issueid}.bmp`} />
+              <Card.Img src={`/images/books/${book.issueid}.png`} />
               <Card.ImgOverlay>
               <Card.Body className="overlay-text">
                 <Card.Text className="overlay-text">

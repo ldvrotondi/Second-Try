@@ -2,6 +2,11 @@
   text-align: center;
 }
 
+html, body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+}
 
 .App-header {
   background-color: #282c34;
@@ -26,3 +31,32 @@
     transform: rotate(360deg);
   }
 }
+
+.appContainer {
+  margin-top: 56px; /* Height of the fixed navbar */
+  width: 100%;
+  height: calc(100vh - 56px); /* Full viewport height minus navbar height */
+  overflow-y: auto; /* Make the content area scrollable */
+  background-color: #e0f4f8; /* Optional: Background color for the content area */
+}
+
+.stickyCol {
+  height: 100%;
+  overflow-y: auto; /* Enables vertical scrolling */
+  overflow-x: hidden; /* Prevents horizontal scrolling  */
+  border: 0px solid #ccc; /* Optional: Add a border */
+  padding: 10px; /* Optional: Add some padding */
+  position: sticky; /* Sticky positioning */
+  top: 0; /* Stick to the top when scrolling */
+}
+
+.subordinate-container {
+  height: 100vh; /* Set the height of the container */
+  width: 100%; /* Set the width as needed */
+  overflow-y: auto; /* Enables vertical scrolling */
+  overflow-x: hidden; /* Prevents horizontal scrolling (optional) */
+  border: 0px solid #ccc; /* Optional: Add a border */
+  padding: 10px; /* Optional: Add some padding */
+  align-items: left;
+}
+

@@ -46,12 +46,13 @@ const BookDetails = () => {
 
     return (
         <>
-        <Container>
-        <Col>
+        <Container fluid >
             <Row>
+        <Col md="auto" className="stickyCol">
+            
                 <h1>Book Details:</h1>
             <Card style={{ width: '18rem', margin: '5px' }}>
-              <Card.Img variant="top" src={`/images/books/${id}.bmp`} />
+              <Card.Img variant="top" src={`/images/books/${id}.png`} />
               <Card.Body>
                 <Card.Title>{series}: {issue}</Card.Title>
                 <Card.Text>
@@ -61,10 +62,13 @@ const BookDetails = () => {
                 </Card.Text>
               </Card.Body>
             </Card>
-            </Row>
+            </Col>
+            <Col>
             <Row>
-                <h1>Included Patterns:</h1>
-                <SearchBar query={query} setQuery={setQuery} />
+               <Col> <h1>Included Patterns:</h1></Col>
+               <Col>   <SearchBar query={query} setQuery={setQuery} /></Col>
+               </Row>
+               <Row>
         {
                 filteredData(outfits, outfitKeys, query).map(outfit => {
                    return <Col key={outfit.outfitid}>
@@ -75,6 +79,7 @@ const BookDetails = () => {
             }
             </Row>
             </Col>
+            </Row>
         </Container>
     </>
     )

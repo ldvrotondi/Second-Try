@@ -26,7 +26,7 @@ const PatternCard = ({pattern}) => {
     return (
         
             <Card style={{ width: '18rem', margin: '5px' }} className="bg-dark text-white card-overlay">
-              <Card.Img variant="top" src={`/images/outfits/${pattern.outfitid}.bmp`} />
+              <Card.Img variant="top" src={`/images/outfits/${pattern.outfitid}.png`} />
               <Card.ImgOverlay>
               <Card.Body className="overlay-text">
                 <Card.Text>

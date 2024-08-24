@@ -1,5 +1,4 @@
 import React from "react";
-import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import { Link } from "react-router-dom";
 import './card.css';
@@ -48,16 +47,16 @@ const listPatterns = (data, value) => {
 //create card of data
 const OutfitCards = ({outfit}) => {
   return (
-    <Card className="bg-dark text-white card-overlay" style={{ width: '18rem', margin: '5px' }}>
-    <Card.Img variant="top" src={`/images/outfits/${outfit.outfitid}.bmp`} />
+    <Card className="bg-dark text-white border-secondary card-overlay" style={{ margin: '5px' }}>
+    <Card.Img variant="top" src={`/images/outfits/${outfit.outfitid}.png`} className="card-img"/>
     <Card.ImgOverlay>
     <Card.Body className="overlay-text">
        <Card.Text>
        <Link to={`/outfits/${outfit.outfitid}`} className={`link`}> {outfit.name} </Link><br />
-          From: {outfit.book.series} {outfit.book.issue} <br />
-          Designer: {outfit.designer} <br />
-          Patterns: {listPatterns(outfit.pattern, 'type')} <br />
-          Sizes:  {listSizes(outfit.pattern)}<br />
+          <i>From:</i> <Link to={`/books/${outfit.issueid}`} className={`innerLink`}> {outfit.book.series} {outfit.book.issue} </Link><br />
+          <i>Designer:</i> {outfit.designer} <br />
+          <i>Patterns:</i> {listPatterns(outfit.pattern, 'type')} <br />
+          <i>Sizes:</i>  {listSizes(outfit.pattern)}<br />
           
                 </Card.Text>
               </Card.Body>

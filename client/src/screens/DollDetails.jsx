@@ -8,6 +8,7 @@ import DollCard from "../components/DollCards";
 import SearchBar from "../components/SearchBar";
 import { outfitKeys } from "../utils/searchKeys";
 import filteredData from "../utils/filteredData";
+import '../App.css'
 
 const DollDetails = () => {
         const {id}  = useParams()
@@ -40,15 +41,16 @@ const DollDetails = () => {
 
     return (
         <>
-        <Container>
-        <Col>
-            <Row>
-                <h1>Doll Details:</h1>
+        <Container fluid >
+       <Row >
+         <Col md="auto" className="stickyCol">
                 <DollCard doll={doll} />
-            </Row>
-            <Row>
-                <h1>Indexed Outfits:</h1>
-                <SearchBar query={query} setQuery={setQuery} />
+            </Col>
+            <Col>
+                <Row>
+                <Col><h1>Indexed Outfits:</h1></Col>
+                <Col style={{padding:'10px'}}><SearchBar query={query} setQuery={setQuery} /></Col>
+                </Row><Row>
         {
                 filteredData(outfits, outfitKeys, query).map(outfit => {
                    return <Col key={outfit.outfitid}>
@@ -59,6 +61,7 @@ const DollDetails = () => {
             }
             </Row>
             </Col>
+            </Row>
         </Container>
     </>
     )

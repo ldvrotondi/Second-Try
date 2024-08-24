@@ -2,15 +2,15 @@
     position: relative;
     overflow: hidden;
     border-radius: 5px;
-    width: 300px;
-    height: 400px;
+    width: 250px;
+    height: 300px;
   }
   
   .card-img {
-    width: 300px;
-    height: 400px;
-    object-fit: cover;
-    transition: transform 0.3s ease;
+    width: auto;
+    height: 100%; 
+    object-fit: cover; /* Ensures the image covers the entire area */
+    flex-shrink: 0; /* Prevents the image from shrinking */
   }
   
   .card-img-overlay {
@@ -47,6 +47,18 @@
     text-decoration: none;
     font-size: larger;
     font-weight: 700;
+    color: #fff;
+  }
+
+  .innerLink {
+    text-decoration: none;
+    font-weight: 400;
+    color: #fff;
+  }
+
+  .innerLink:hover {
+    text-decoration: none;
+    font-weight: 400;
     color: #fff;
   }
 
