@@ -2,12 +2,11 @@
     position: relative;
     overflow: hidden;
     border-radius: 5px;
-    width: 250px;
-    height: 300px;
+    width: 10rem;
+    height:15rem;
   }
   
   .card-img {
-    width: auto;
     height: 100%; 
     object-fit: cover; /* Ensures the image covers the entire area */
     flex-shrink: 0; /* Prevents the image from shrinking */
@@ -17,8 +16,7 @@
     position: absolute;
     bottom: 0;
     left: 0;
-    width: 100%;
-    height: relative;
+    height: 100%;
     background: rgba(0, 0, 0, 0.5); 
     opacity: 0;
     transition: opacity 0.3s ease;
@@ -34,24 +32,25 @@
     width: 100%;
     border-top-left-radius: 0px;
     border-top-right-radius: 0px;
+    font-size: .8rem;
   }
   
   .link {
     text-decoration: none;
-    font-size: larger;
+    font-size: 1rem;
     font-weight: 500;
     color: #fff;
   }
 
   .link:hover {
     text-decoration: none;
-    font-size: larger;
+    font-size: 1rem;
     font-weight: 700;
     color: #fff;
   }
 
   .innerLink {
-    text-decoration: none;
+    text-decoration: underline;
     font-weight: 400;
     color: #fff;
   }

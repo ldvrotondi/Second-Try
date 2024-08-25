@@ -1,5 +1,7 @@
 .App {
   text-align: center;
+  width: 100vw; 
+  background-color: #001e24;
 }
 
 html, body {
@@ -34,7 +36,7 @@ html, body {
 
 .appContainer {
   margin-top: 56px; /* Height of the fixed navbar */
-  width: 100%;
+  width: 100vw;
   height: calc(100vh - 56px); /* Full viewport height minus navbar height */
   overflow-y: auto; /* Make the content area scrollable */
   background-color: #e0f4f8; /* Optional: Background color for the content area */
@@ -44,10 +46,12 @@ html, body {
   height: 100%;
   overflow-y: auto; /* Enables vertical scrolling */
   overflow-x: hidden; /* Prevents horizontal scrolling  */
+  margin-left: 0px;
   border: 0px solid #ccc; /* Optional: Add a border */
-  padding: 10px; /* Optional: Add some padding */
+  padding: 0.6rem; /* Optional: Add some padding */
   position: sticky; /* Sticky positioning */
   top: 0; /* Stick to the top when scrolling */
+  background-color: #88aab0;
 }
 
 .subordinate-container {

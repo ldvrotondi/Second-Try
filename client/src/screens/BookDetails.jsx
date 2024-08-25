@@ -46,11 +46,9 @@ const BookDetails = () => {
 
     return (
         <>
-        <Container fluid >
+        <Container >
             <Row>
         <Col md="auto" className="stickyCol">
-            
-                <h1>Book Details:</h1>
             <Card style={{ width: '18rem', margin: '5px' }}>
               <Card.Img variant="top" src={`/images/books/${id}.png`} />
               <Card.Body>
@@ -66,7 +64,7 @@ const BookDetails = () => {
             <Col>
             <Row>
                <Col> <h1>Included Patterns:</h1></Col>
-               <Col>   <SearchBar query={query} setQuery={setQuery} /></Col>
+               <Col>   <SearchBar query={query} setQuery={setQuery} className="searchBar" /></Col>
                </Row>
                <Row>
         {

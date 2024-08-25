@@ -1,0 +1,124 @@
+
+
+/*----------------filter dropdown list----------------*/
+/* Container for the entire dropdown */
+.filterDropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  /* The dropdown toggle button */
+  .filterDropdown-toggle {
+    background-color: #052950; /* Dark background */
+    color: white; /* Text color */
+    padding: .6rem .8rem;
+    font-size: .9rem;
+    border: none;
+    border-radius: 0px;
+    cursor: pointer;
+  }
+  
+  .filterDropdown-toggle:hover {
+    background-color: #26435f; /*  Change shade on hover */
+  }
+  
+  .filterDropdown-toggle:active {
+    background-color: #26435f; /*  Change shade on hover */
+  }
+  
+  /* The dropdown menu */
+  .filterDropdown-menu {
+    display: none; /* Hidden by default */
+    position: absolute;
+    background-color: #f8f9fa; /* Light background */
+    min-width: 100%;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    border-radius: .5rem;
+    padding: 0.8rem;
+  }
+  
+  /* Each item in the dropdown */
+  .filterDropdown-menu .form-check {
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .filterDropdown-menu .form-check:hover {
+    background-color: #e9ecef; /* Light gray background on hover */
+  }
+  
+  /* Style for the label inside the checkbox */
+  .filterDropdown-menu .form-check-label {
+    font-size: .9rem;
+    color: #343a40; /* Dark text */
+    margin-left: 0.3rem;
+    vertical-align: middle;
+  }
+  
+  /* Custom checkbox styling */
+  .filterDropdown-menu .form-check-input {
+    margin-right: 0.3rem;
+    cursor: pointer;
+  }
+  
+  /* Optional: Add a scrollbar if the list is too long */
+  .filterDropdown-menu {
+    max-height: 20rem;
+    overflow-y: auto;
+  }
+  
+  /* Custom scrollbar styling */
+  .filterDropdown-menu::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  .filterDropdown-menu::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  
+  .filterDropdown-menu::-webkit-scrollbar-thumb {
+    background-color: #495057;
+    border-radius: .5rem;
+  }
+  
+  /* Ensure each label (which wraps the checkbox and text) is displayed as a block element */
+  .filterDropdown-item {
+    display: block;  /* Makes each item take up the full width, ensuring line breaks */
+    padding: 8px 16px; /* Optional: Add padding for better spacing */
+    cursor: pointer;
+    margin: 0; /* Remove default margin */
+    width: 100%; /* Ensure full width */
+  }
+  
+  /* Style the label text with some space between the checkbox and the text */
+  .filterDropdown-item .form-check-label {
+    margin-left: 8px; /* Space between checkbox and label text */
+  }
+  
+  /* Optional: Add hover effect for the entire item */
+  .filterDropdown-item:hover {
+    background-color: #e9ecef; /* Light gray background on hover */
+  }
+  
+  /* Style for the Clear All button */
+  .clear-all-button {
+    background-color: #052950; /* Dark background */
+    color: white; /* Text color */
+    padding: .6rem .8rem;
+    font-size: .9rem;
+    border: none;
+    border-radius: 0px;
+    cursor: pointer;
+  }
+  
+  /* Hover effect for the Clear All button */
+  .clear-all-button:hover {
+    background-color: #26435f; /* Light gray background on hover */
+  }
+  
+  /* Active state for the Clear All button */
+  .clear-all-button:active {
+    background-color: #103962; /* Slightly darker gray when clicked */
+  }
+  

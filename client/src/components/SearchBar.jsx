@@ -1,21 +1,17 @@
 import React, {useState} from "react";
+import Form from "react-bootstrap/Form";
 
-const SearchBar = ({query, setQuery}) => {
 
-    const handleChange = (e) => {
-        setQuery(e.target.value)
-    }
-
-    return <div className="search">
-             <div className="query"> 
-                 <input 
-                    value={query} 
-                    onChange= {handleChange}
-                    placeholder="Search..."
-                    />
-                </div>
-    </div>
-}
+const SearchBar = ({ query, setQuery }) => {
+    return (
+        <Form.Control
+            type="text"
+            placeholder="Search..."
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+        />
+    );
+};
 
 export default SearchBar
 

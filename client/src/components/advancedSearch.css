@@ -1,0 +1,12 @@
+/* Container for the search bar and filter button */
+.advanced-search {
+    display: flex;
+    align-items: center; /* Vertically center the items */
+    width: 100%;
+    gap: 1rem; /* Space between the search bar and filter button */
+}
+
+/* Optional: Add specific styles if needed */
+.advanced-search .search-bar {
+    flex: 1; /* Allows the search bar to take up remaining space */
+}

@@ -1,5 +1,4 @@
 import React from "react";
-import { createRoot } from "react-dom/client";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Navbar from './components/NavBar';
@@ -13,7 +12,7 @@ import ViewDolls from "./screens/Dolls";
 import ViewPatterns from "./screens/Patterns";
 import BookDetails from "./screens/BookDetails";
 import DollDetails from "./screens/DollDetails";
-import PatternDetails from "./screens/PatternDetails";
+//import PatternDetails from "./screens/PatternDetails";
 import OutfitDetails from "./screens/OutfitDetails";
 import CompareDolls from "./screens/CompareDolls";
 import { Container, Row } from "react-bootstrap";

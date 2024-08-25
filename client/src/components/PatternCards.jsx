@@ -1,5 +1,4 @@
 import React from "react";
-import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import { Link } from "react-router-dom";
 
@@ -25,8 +24,8 @@ const listSizes = (data) => {
 const PatternCard = ({pattern}) => {
     return (
         
-            <Card style={{ width: '18rem', margin: '5px' }} className="bg-dark text-white card-overlay">
-              <Card.Img variant="top" src={`/images/outfits/${pattern.outfitid}.png`} />
+            <Card style={{ margin: '5px' }} className="bg-dark text-white border-secondary card-overlay">
+              <Card.Img variant="top" src={`/images/outfits/${pattern.outfitid}.png`} className="card-img" />
               <Card.ImgOverlay>
               <Card.Body className="overlay-text">
                 <Card.Text>
