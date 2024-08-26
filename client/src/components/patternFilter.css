@@ -22,10 +22,7 @@
     background-color: #26435f; /*  Change shade on hover */
   }
   
-  .filterDropdown-toggle:active {
-    background-color: #26435f; /*  Change shade on hover */
-  }
-  
+
   /* The dropdown menu */
   .filterDropdown-menu {
     display: none; /* Hidden by default */
@@ -85,7 +82,7 @@
   /* Ensure each label (which wraps the checkbox and text) is displayed as a block element */
   .filterDropdown-item {
     display: block;  /* Makes each item take up the full width, ensuring line breaks */
-    padding: 8px 16px; /* Optional: Add padding for better spacing */
+    padding: .3rem; /* Optional: Add padding for better spacing */
     cursor: pointer;
     margin: 0; /* Remove default margin */
     width: 100%; /* Ensure full width */
@@ -93,7 +90,7 @@
   
   /* Style the label text with some space between the checkbox and the text */
   .filterDropdown-item .form-check-label {
-    margin-left: 8px; /* Space between checkbox and label text */
+    margin-left: .3rem; /* Space between checkbox and label text */
   }
   
   /* Optional: Add hover effect for the entire item */

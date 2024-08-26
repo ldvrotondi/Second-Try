@@ -3,9 +3,11 @@ import axios from 'axios';
 import {Container, Row, Col, Card} from 'react-bootstrap'
 import OutfitCards from "../components/OutfitCards";
 import { useParams } from "react-router-dom";
-import SearchBar from "../components/SearchBar";
 import filteredData from "../utils/filteredData";
 import { outfitKeys } from "../utils/searchKeys";
+import AdvancedSearch from "../components/AdvancedSearch";
+import filterByPatternType from "../utils/filterbyPattern";
+
 
 const BookDetails = () => {
         const {id}  = useParams()
@@ -17,6 +19,10 @@ const BookDetails = () => {
         const [issuejp, setIssueJP] = useState('')
         const [publisher, setPublisher] = useState('')
         const [isbn, setISBN] = useState(0)
+
+        const [outfits, setOutfits] = useState([])
+        const [selectedPatterns, setSelectedPatterns] = useState([]);
+        const [patternTypes, setPatternTypes] = useState([]);
 
 
         useEffect(() => {
@@ -33,16 +39,22 @@ const BookDetails = () => {
         },[]
         )
 
-    const [outfits, setOutfits] = useState([])
+
 
     useEffect(() => {
         const getOutfitData = async () => {
             const {data} = await axios.get(`/api/outfits/bybook/${id}`)
             setOutfits(data)
+            const allPatterns = data.flatMap(outfit => outfit.pattern.map(p => p.type));
+            const uniquePatterns = [...new Set(allPatterns)];
+            setPatternTypes(uniquePatterns);
         }
         getOutfitData()
     },[]
     )
+
+    //filter outfits
+    const filteredOutfits = filterByPatternType((filteredData(outfits, outfitKeys, query)), selectedPatterns);
 
     return (
         <>
@@ -64,17 +76,20 @@ const BookDetails = () => {
             <Col>
             <Row>
                <Col> <h1>Included Patterns:</h1></Col>
-               <Col>   <SearchBar query={query} setQuery={setQuery} className="searchBar" /></Col>
+               <Row> 
+                            <AdvancedSearch query={query} setQuery={setQuery} patternTypes={patternTypes} 
+                                selectedPatterns={selectedPatterns} 
+                                setSelectedPatterns={setSelectedPatterns} />
+                            
+                        </Row>
                </Row>
                <Row>
-        {
-                filteredData(outfits, outfitKeys, query).map(outfit => {
-                   return <Col key={outfit.outfitid}>
-                   <OutfitCards outfit={outfit} />
-                   </Col> 
-                   
-                })
-            }
+      {filteredOutfits.map(outfit => (
+                                    <Col key={outfit.outfitid}>
+                                        <OutfitCards outfit={outfit} />
+                                    </Col>
+                                ))
+                        }
             </Row>
             </Col>
             </Row>

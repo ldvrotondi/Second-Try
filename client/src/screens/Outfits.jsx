@@ -5,6 +5,7 @@ import OutfitCards from '../components/OutfitCards';
 import filteredData from "../utils/filteredData";
 import { outfitKeys } from "../utils/searchKeys";
 import AdvancedSearch from "../components/AdvancedSearch";
+import filterByPatternType from "../utils/filterbyPattern";
 
 const ViewOutfits = () => {
     const [outfits, setOutfits] = useState([]);
@@ -25,14 +26,8 @@ const ViewOutfits = () => {
         getOutfitData();
     }, []);
 
-    const filterByPatternType = (data) => {
-        if (selectedPatterns.length === 0) return data;
-        return data.filter(outfit => 
-            outfit.pattern.some(p => selectedPatterns.includes(p.type))
-        );
-    };
 
-    const filteredOutfits = filterByPatternType(filteredData(outfits, outfitKeys, query));
+    const filteredOutfits = filterByPatternType((filteredData(outfits, outfitKeys, query)), selectedPatterns);
 
     return (
         <Container>
@@ -41,7 +36,7 @@ const ViewOutfits = () => {
             <Row>
 
                 <Col>
-                   <Row className="advSearch-layout"> 
+                   <Row> 
                     <AdvancedSearch query={query} setQuery={setQuery} patternTypes={patternTypes} 
                         selectedPatterns={selectedPatterns} 
                         setSelectedPatterns={setSelectedPatterns} />

@@ -8,12 +8,17 @@ import PatternCards from "../components/PatternCards";
 import SearchBar from "../components/SearchBar";
 import filteredData from "../utils/filteredData";
 import { patternKeys } from "../utils/searchKeys";
+import AdvancedSearch from "../components/AdvancedSearch";
 
 const OutfitDetails = () => {
     const {id}  = useParams()
     const [query, setQuery] = useState('')
     
     const [outfits, setOutfits] = useState([])
+    
+    const [patterns, setPatterns] = useState([])
+    const [selectedPatterns, setSelectedPatterns] = useState([]);
+    const [patternTypes, setPatternTypes] = useState([]);
 
     useEffect(() => {
         const getOutfit = async () => {
@@ -26,23 +31,34 @@ const OutfitDetails = () => {
     )
 
 
-    const [patterns, setPatterns] = useState([])
 
     useEffect(() => {
         const getPatternData = async () => {
             const {data} = await axios.get(`/api/patterns/byoutfit/${id}`)
             setPatterns(data)
+            const uniquePatterns = [...new Set(data.flatMap(pattern => pattern.type))];
+            setPatternTypes(uniquePatterns);
+        
         }
         getPatternData()
     },[]
     )
 
+    const filterByPatternType = (data, selectedPatterns) => {
+        if (selectedPatterns.length === 0) return data;
+        return data.filter(pattern => 
+             selectedPatterns.includes(pattern.type)
+        );
+    };
+
+    const filteredOutfits = filterByPatternType((filteredData(patterns, patternKeys, query)), selectedPatterns);
 
 return (
     <>
     <Container>
-    <Col>
+    
         <Row>
+        <Col>
             <h1>Outfit Details:</h1>
 
             {
@@ -51,20 +67,28 @@ return (
                 
                <OutfitCards outfit={outfit} /></Col>
             })}
-        </Row>
-        <Row>
-            <h1>Associated Patterns:</h1>
-            <SearchBar query={query} setQuery={setQuery} />
-        {
-                filteredData(patterns,patternKeys,query).map(pattern => {
-                   return <Col key={pattern.patternid}>
-                   <PatternCards pattern={pattern} />
-                   </Col> 
-                   
-                })
-            }
-        </Row>
+            
         </Col>
+   <Col>
+            <h1>Associated Patterns:</h1>
+            <Row> 
+                    <AdvancedSearch query={query} setQuery={setQuery} patternTypes={patternTypes} 
+                        selectedPatterns={selectedPatterns} 
+                        setSelectedPatterns={setSelectedPatterns} />
+                    
+                 </Row>
+                 <Row>
+                    {
+                            filteredOutfits.map(pattern => {
+                            return <Col key={pattern.patternid}>
+                            <PatternCards pattern={pattern} />
+                            </Col> 
+                            
+                            })
+                        }
+                        </Row>
+                        </Col>
+        </Row>
     </Container>
 </>
 )

@@ -8,7 +8,7 @@ import { Container, Row, Col } from 'react-bootstrap';
 const AdvancedSearch = ({ patternTypes, selectedPatterns, setSelectedPatterns, query, setQuery }) => {
     return (
         <Row className="advanced-search">
-            <SearchBar query={query} setQuery={setQuery} className="search-bar"/>
+            <SearchBar query={query} setQuery={setQuery} />
             <PatternFilter
                 patternTypes={patternTypes}
                 selectedPatterns={selectedPatterns}

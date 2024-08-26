@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Dropdown, Form, Button, Container } from "react-bootstrap";
 import { Col } from "react-bootstrap"
+import './patternFilter.css'; 
 
 const PatternFilter = ({ patternTypes, selectedPatterns, setSelectedPatterns }) => {
 
@@ -17,7 +18,7 @@ const PatternFilter = ({ patternTypes, selectedPatterns, setSelectedPatterns }) 
     };
 
     return (
-        <Container>
+        <Col className="filter-button">
         <Dropdown className="filterDropdown">
             <Dropdown.Toggle className="filterDropdown-toggle ">
                 Garment Type
@@ -44,7 +45,7 @@ const PatternFilter = ({ patternTypes, selectedPatterns, setSelectedPatterns }) 
          <Button onClick={clearAll} className="clear-all-button">
          X
         </Button>
-        </Container>
+        </Col>
     );
 };
 

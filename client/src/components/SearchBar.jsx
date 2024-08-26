@@ -9,6 +9,7 @@ const SearchBar = ({ query, setQuery }) => {
             placeholder="Search..."
             value={query}
             onChange={(e) => setQuery(e.target.value)}
+            className="search-bar"
         />
     );
 };

@@ -2,11 +2,16 @@
 .advanced-search {
     display: flex;
     align-items: center; /* Vertically center the items */
+    gap: 0.8rem; /* Space between the search bar and filter button */
     width: 100%;
-    gap: 1rem; /* Space between the search bar and filter button */
 }
 
 /* Optional: Add specific styles if needed */
 .advanced-search .search-bar {
     flex: 1; /* Allows the search bar to take up remaining space */
+    height: auto;
+}
+
+/* Optional: Style adjustments for the filter button */
+.advanced-search .filter-button {
 }
