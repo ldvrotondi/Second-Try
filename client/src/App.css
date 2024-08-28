@@ -64,3 +64,13 @@ html, body {
   align-items: left;
 }
 
+.subordinate-container {
+  height: 100vh; /* Set the height of the container */
+  width: 100%; /* Set the width as needed */
+  overflow-y: auto; /* Enables vertical scrolling */
+  overflow-x: hidden; /* Prevents horizontal scrolling (optional) */
+  border: 0px solid #ccc; /* Optional: Add a border */
+  padding: 10px; /* Optional: Add some padding */
+  align-items: left;
+}
+

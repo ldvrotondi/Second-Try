@@ -7,7 +7,7 @@ const DollCard = ({doll}) => {
 
   //formats measurements into XXX.X format and replaces missing entries with '---' for better readability
   const formatMeasurements = ( measurement ) =>
-  {if (!measurement){
+  {if (!measurement || measurement==0){
     return '---'
   }else{
       measurement = measurement.toString()
