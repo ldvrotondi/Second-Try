@@ -61,6 +61,18 @@
     color: #fff;
   }
 
+  .outerLink {
+    text-decoration: underline;
+    font-weight: 400;
+    color: #000000;
+  }
+
+  .outerLink:hover {
+    text-decoration: none;
+    font-weight: 400;
+    color: #000000;
+  }
+
   .card-overlay:hover .card-img-overlay {
     opacity: 1;
   }

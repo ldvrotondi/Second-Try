@@ -27,7 +27,7 @@ const findByOutfit = async (req, res, next) => {
         include: [{
           model: Book,
           as: 'book',
-          attributes: [ 'issue', 'series']
+          attributes: [ 'issue', 'series', 'issueid']
           }]
         }, {
           model: Doll,
@@ -72,7 +72,7 @@ const findByDoll = async (req, res, next) => {
         include: [{
           model: Book,
           as: 'book',
-          attributes: [ 'issue', 'series']
+          attributes: [ 'issue', 'series', 'issueid']
           }]
         }, {
           model: Doll,

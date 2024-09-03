@@ -2,27 +2,12 @@
   text-align: center;
   width: 100vw; 
   background-color: #001e24;
-}
-
-html, body {
-  height: 100%;
-  width: 100%;
-  margin: 0;
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  overflow-y: hidden;
+  height: 100vh;
 }
 
 .App-link {
-  color: #61dafb;
+  color: #2bb40c;
 }
 
 @keyframes App-logo-spin {
@@ -35,42 +20,41 @@ html, body {
 }
 
 .appContainer {
+  margin-left: 0px;
+  margin-bottom: 0px;
+  margin-right: 0px;
   margin-top: 56px; /* Height of the fixed navbar */
   width: 100vw;
-  height: calc(100vh - 56px); /* Full viewport height minus navbar height */
-  overflow-y: auto; /* Make the content area scrollable */
+  height: 100vh; 
   background-color: #e0f4f8; /* Optional: Background color for the content area */
+  overflow-y: auto; /* Make the content area scrollable */
+  padding-left: 5rem;
+  padding-right: 5rem;
 }
 
+
+.subordinate-container {
+  height: 100vh; /* Set the height of the container */
+  width: 100vw; /* Set the width as needed */
+  overflow-y: scroll; /* Enables vertical scrolling */
+  border: 0px solid #ccc; /* Optional: Add a border */
+  padding-left: 2rem;
+  align-items: left;
+  flex-grow: 1;
+}
+
+.patterns-row {
+  display: flex;
+  flex-wrap: wrap; /* Allow cards to wrap to the next row */
+  margin-right: -15px; /* Adjust the margin for proper alignment */
+  margin-left: -15px;  /* Adjust the margin for proper alignment */
+}
 .stickyCol {
-  height: 100%;
-  overflow-y: auto; /* Enables vertical scrolling */
-  overflow-x: hidden; /* Prevents horizontal scrolling  */
-  margin-left: 0px;
-  border: 0px solid #ccc; /* Optional: Add a border */
-  padding: 0.6rem; /* Optional: Add some padding */
-  position: sticky; /* Sticky positioning */
-  top: 0; /* Stick to the top when scrolling */
-  background-color: #88aab0;
-}
-
-.subordinate-container {
-  height: 100vh; /* Set the height of the container */
-  width: 100%; /* Set the width as needed */
-  overflow-y: auto; /* Enables vertical scrolling */
-  overflow-x: hidden; /* Prevents horizontal scrolling (optional) */
-  border: 0px solid #ccc; /* Optional: Add a border */
-  padding: 10px; /* Optional: Add some padding */
-  align-items: left;
-}
-
-.subordinate-container {
-  height: 100vh; /* Set the height of the container */
-  width: 100%; /* Set the width as needed */
-  overflow-y: auto; /* Enables vertical scrolling */
-  overflow-x: hidden; /* Prevents horizontal scrolling (optional) */
-  border: 0px solid #ccc; /* Optional: Add a border */
-  padding: 10px; /* Optional: Add some padding */
-  align-items: left;
+  flex: 0 0 auto;
+  max-height: 100vh; /* Ensure it does not exceed the viewport height */
+  overflow-y: auto; /* Enable vertical scrolling if content exceeds the column height */
+  position: sticky;
+  top: 0;
+  
 }
 

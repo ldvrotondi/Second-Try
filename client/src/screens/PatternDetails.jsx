@@ -1,4 +1,6 @@
-import React from "react";
+//OutfitDetails page being used instead
+
+/*import React from "react";
 
 const PatternDetails = () => {
     return (
@@ -9,4 +11,4 @@ const PatternDetails = () => {
     )
 }
 
-export default PatternDetails
+export default PatternDetails*/

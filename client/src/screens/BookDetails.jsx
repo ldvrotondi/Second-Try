@@ -73,7 +73,7 @@ const BookDetails = () => {
               </Card.Body>
             </Card>
             </Col>
-            <Col>
+            <Col className="subordinate-container">
             <Row>
                <Col> <h1>Included Patterns:</h1></Col>
                <Row> 
