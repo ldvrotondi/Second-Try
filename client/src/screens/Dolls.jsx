@@ -2,7 +2,6 @@ import React, {useState, useEffect} from "react";
 import axios from 'axios';
 import {Container, Row, Col} from 'react-bootstrap';
 import DollCards from '../components/DollCards';
-import { Link } from "react-router-dom";
 import SearchBar from "../components/SearchBar";
 import filteredData from "../utils/filteredData";
 import {dollKeys} from "../utils/searchKeys";

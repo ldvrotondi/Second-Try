@@ -13,11 +13,14 @@ const NavBar =() => {
           <Nav className="me-auto">
             {/*<Nav.Link href="/">Home</Nav.Link> /> */}
             <NavDropdown title="Dolls" id="basic-nav-dropdown">
-              <NavDropdown.Item href="/dolls">
+            <NavDropdown.Item href="/dolls">
+                View All Dolls
+              </NavDropdown.Item>
+              <NavDropdown.Item href="/comparedolls">
                 Compare Sizes
                 </NavDropdown.Item>
-              <NavDropdown.Item href="/dolls">
-                Find Similar
+              <NavDropdown.Item href="/findsimilar">
+                Find Similar Sizes
               </NavDropdown.Item>
             </NavDropdown>
             <Nav.Link href="/patterns">Patterns</Nav.Link>

@@ -27,7 +27,7 @@ const DollDetails = () => {
                 setDoll(data) 
             }
             getDoll()
-        },[]
+        },[id]
         )
 
 
@@ -41,7 +41,7 @@ const DollDetails = () => {
             setPatternTypes(uniquePatterns);
         }
         getOutfitData()
-    },[]
+    },[id]
     )
 
     //filter outfits

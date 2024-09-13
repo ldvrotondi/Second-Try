@@ -2,27 +2,14 @@ import React from "react";
 import { Table } from "react-bootstrap";
 import Card from 'react-bootstrap/Card';
 import { Link } from "react-router-dom";
+import formatMeasurements from "../utils/formatMeasurements.js";
 
 const DollCard = ({doll}) => {
-
-  //formats measurements into XXX.X format and replaces missing entries with '---' for better readability
-  const formatMeasurements = ( measurement ) =>
-  {if (!measurement || measurement==0){
-    return '---'
-  }else{
-      measurement = measurement.toString()
-      if (measurement.includes('.')){
-        return measurement
-      }else{
-        return (measurement + '.0')
-      }
-    }
-  }
 
     return (
             <Card style={{ width: '18rem', margin: '5px' }}>
               <Card.Body>
-                <Card.Title> <Link to={`${doll.dollid}`} style={{ textDecoration: 'none' }}>{doll.brand} <br />
+                <Card.Title> <Link to={`${doll.dollid}`} className={"outerLink"}> {doll.brand} <br />
                 <h6>{doll.line} {doll.type}</h6> <br />
                 </Link>
                 </Card.Title>

@@ -1,6 +1,8 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import "bootstrap/dist/css/bootstrap.min.css";
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+
 import Navbar from './components/NavBar';
 import AddDoll from "./screens/AddDoll";
 import AddBook from "./screens/AddBook";
@@ -16,6 +18,7 @@ import DollDetails from "./screens/DollDetails";
 import OutfitDetails from "./screens/OutfitDetails";
 import CompareDolls from "./screens/CompareDolls";
 import { Container, Row } from "react-bootstrap";
+import FindSimilar from "./screens/FindSimilar";
 
 
 const App = () => {
@@ -42,6 +45,8 @@ const App = () => {
               {/*<Route exact path="/patterns/:id" Component={PatternDetails} />*/}
 
               <Route exact path="/dolls" Component={ViewDolls} />
+              <Route exact path="/comparedolls" Component={CompareDolls} />
+              <Route exact path="/findsimilar" Component={FindSimilar} />
               <Route exact path="/dolls/:id" Component={DollDetails} />
             </Routes>
           </Row>

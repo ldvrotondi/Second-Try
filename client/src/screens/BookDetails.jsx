@@ -36,7 +36,7 @@ const BookDetails = () => {
                 setISBN(data.isbn)
             }
             getBook()
-        },[]
+        },[id]
         )
 
 
@@ -50,7 +50,7 @@ const BookDetails = () => {
             setPatternTypes(uniquePatterns);
         }
         getOutfitData()
-    },[]
+    },[id]
     )
 
     //filter outfits

@@ -1,9 +1,5 @@
 .App {
-  text-align: center;
-  width: 100vw; 
-  background-color: #001e24;
-  overflow-y: hidden;
-  height: 100vh;
+  background-color: #e0f4f8; 
 }
 
 .App-link {
@@ -24,23 +20,20 @@
   margin-bottom: 0px;
   margin-right: 0px;
   margin-top: 56px; /* Height of the fixed navbar */
-  width: 100vw;
-  height: 100vh; 
-  background-color: #e0f4f8; /* Optional: Background color for the content area */
-  overflow-y: auto; /* Make the content area scrollable */
+  
   padding-left: 5rem;
   padding-right: 5rem;
+  box-sizing: border-box; 
+  
 }
 
 
 .subordinate-container {
-  height: 100vh; /* Set the height of the container */
-  width: 100vw; /* Set the width as needed */
-  overflow-y: scroll; /* Enables vertical scrolling */
   border: 0px solid #ccc; /* Optional: Add a border */
   padding-left: 2rem;
   align-items: left;
   flex-grow: 1;
+  
 }
 
 .patterns-row {
@@ -49,12 +42,56 @@
   margin-right: -15px; /* Adjust the margin for proper alignment */
   margin-left: -15px;  /* Adjust the margin for proper alignment */
 }
+
 .stickyCol {
   flex: 0 0 auto;
-  max-height: 100vh; /* Ensure it does not exceed the viewport height */
   overflow-y: auto; /* Enable vertical scrolling if content exceeds the column height */
   position: sticky;
   top: 0;
-  
 }
 
+.search-results {
+  max-height: 200px; /* Adjust based on your design */
+  overflow-y: auto;
+  position: absolute;
+  z-index: 1000;
+  background: white; /* Ensure background is white for readability */
+}
+
+.compare-table {
+  width: 100%;
+  table-layout: fixed; /* Ensures columns are fixed and do not auto-expand */
+}
+
+.attribute-col {
+  width: 8rem; /* Fixed width for the attribute column */
+  text-align: left; /* Left-aligns text in attribute column */
+}
+
+.doll-header-col {
+  text-align: center;
+  width: 11rem; /* Fixed width for doll columns */
+}
+
+.value-col {
+  text-align: center;
+  width: 15rem; /* Same fixed width for values for consistency */
+}
+
+.doll-link {
+  text-decoration: none;
+  color: black; /* Adjust color as needed */
+}
+
+.remove-link {
+  color: red;
+  text-decoration: none;
+}
+
+.search-results {
+  max-height: 200px; /* Adjust based on your design */
+  overflow-y: auto;
+  position: absolute;
+  z-index: 1000;
+  background: white; /* Ensure background is white for readability */
+}
