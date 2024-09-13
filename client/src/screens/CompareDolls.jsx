@@ -5,7 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import concatenateDollInfo from "../utils/concatenateDollInfo.js";
 import filterDolls from "../utils/filterDolls.js";
 import DollTable from "../components/DollTable.jsx";
-import { Card } from "react-bootstrap"; 
+import { Card } from "react-bootstrap";
 
 const CompareDolls = () => {
   const [dolls, setDolls] = useState([]);
@@ -15,7 +15,7 @@ const CompareDolls = () => {
 
   useEffect(() => {
     const getDollData = async () => {
-      const { data } = await axios.get('api/dolls'); 
+      const { data } = await axios.get('api/dolls');
       setDolls(data);
     };
     getDollData();
@@ -48,11 +48,11 @@ const CompareDolls = () => {
   return (
     <Container className="mt-3">
       <Row style={{ padding: '0.8rem' }}>
-        
-      <h3>Compare Dolls</h3>
-      <p>Enter the name, brand, or type of a doll in the search bar to view its data. Once you’ve selected a doll, you can search for additional dolls to add them to the table.</p>
 
-<p>You can remove any dolls from the results if you no longer wish to see them. </p>
+        <h3>Compare Dolls</h3>
+        <p>Enter the name, brand, or type of a doll in the search bar to view its data. Once you’ve selected a doll, you can search for additional dolls to add them to the table.</p>
+
+        <p>You can remove any dolls from the results if you no longer wish to see them. </p>
         <Col>
           <input
             type="text"
@@ -78,13 +78,13 @@ const CompareDolls = () => {
           )}
         </Col>
       </Row>
-  
+
       {selectedDolls.length > 0 && (
         <Row>
-        <Col>
-          <DollTable dolls={selectedDolls} onRemoveDoll={handleRemoveDoll} />
-        </Col>
-      </Row>
+          <Col>
+            <DollTable dolls={selectedDolls} onRemoveDoll={handleRemoveDoll} />
+          </Col>
+        </Row>
       )}
     </Container>
   );
