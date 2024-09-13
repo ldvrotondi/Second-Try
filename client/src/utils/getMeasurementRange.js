@@ -9,8 +9,8 @@ const getMeasurementRanges = (doll) => {
       maxHeight = heightNumber * 1.14;
       minHeight = heightNumber * 0.86;
     } else {
-      maxHeight = heightNumber * 1.07;
-      minHeight = heightNumber * 0.93;
+      maxHeight = heightNumber * 1.1;
+      minHeight = heightNumber * 0.9;
     }
   
     return {

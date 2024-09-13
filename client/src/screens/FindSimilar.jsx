@@ -6,6 +6,8 @@ import DollTable from "../components/DollTable";
 import filterByRange from "../utils/filterbyRange"
 import getMeasurementRanges from "../utils/getMeasurementRange";
 import filterDolls from "../utils/filterDolls"
+import { Card } from "react-bootstrap";
+import '../components/advancedSearch.css'; 
 
 const FindSimilar = () => {
   const [dolls, setDolls] = useState([]);
@@ -49,9 +51,14 @@ const FindSimilar = () => {
   };
 
   return (
-    <Container className="mt-3">
-      <Row>
+    <Container >
+      <Row style={{ padding: '0.8rem' }}>
         <Col>
+        <h3>Find Similar Dolls</h3>
+        <p>Enter the name, brand, or type of a doll in the search bar to find similar dolls. This search will return dolls with comparable height, bust, waist, and hip measurements, helping you find compatible clothing sizes.</p>
+
+              <p>You can remove any dolls that you don't want to see from the results. Please note that if you remove the reference doll (the one you searched for), all results will be cleared.</p>
+             
           <DollSearch value={searchTerm} onChange={handleSearch} />
           {searchTerm && filteredDolls.length > 0 && (
             <ul className="list-group mt-2">
@@ -69,6 +76,7 @@ const FindSimilar = () => {
           )}
         </Col>
       </Row>
+
       {selectedDoll && (
         <Row>
           <Col>

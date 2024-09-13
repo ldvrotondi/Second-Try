@@ -59,23 +59,25 @@
 }
 
 .compare-table {
-  width: 100%;
-  table-layout: fixed; /* Ensures columns are fixed and do not auto-expand */
+  width: auto;
+  table-layout: auto; /* Ensures columns are fixed and do not auto-expand */
 }
 
 .attribute-col {
   width: 8rem; /* Fixed width for the attribute column */
   text-align: left; /* Left-aligns text in attribute column */
+  vertical-align: middle;
 }
 
 .doll-header-col {
   text-align: center;
-  width: 11rem; /* Fixed width for doll columns */
+  vertical-align: middle
+  
 }
 
 .value-col {
   text-align: center;
-  width: 15rem; /* Same fixed width for values for consistency */
+ 
 }
 
 .doll-link {

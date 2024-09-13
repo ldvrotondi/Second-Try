@@ -30,7 +30,7 @@ const DollTable = ({ dolls, onRemoveDoll }) => (
       </tr>
     </thead>
     <tbody>
-      {['height', 'head', 'neck', 'bust', 'waist', 'hips', 'thigh', 'calf', 'shoulders', 'armlen', 'upperarmcirc', 'lowerarmcirc', 'wrist', 'inseam', 'footlen', 'footwid'].map(attr => (
+      {['height', 'head', 'neck', 'bust', 'waist', 'hips', 'thigh', 'calf', 'shoulders', 'armlen', 'upper arm circ.', 'lower arm circ.', 'wrist', 'inseam', 'foot length', 'foot width'].map(attr => (
         <tr key={attr}>
           <td>{attr.charAt(0).toUpperCase() + attr.slice(1)}</td>
           {dolls.map(doll => (
