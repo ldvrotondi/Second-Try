@@ -5,8 +5,11 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import concatenateDollInfo from "../utils/concatenateDollInfo.js";
 import filterDolls from "../utils/filterDolls.js";
 import DollTable from "../components/DollTable.jsx";
-import { Card } from "react-bootstrap";
+import DollSearch from "../components/DollSearch.jsx";
+import {
+  Accordion
 
+} from "react-bootstrap";
 const CompareDolls = () => {
   const [dolls, setDolls] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
@@ -48,19 +51,22 @@ const CompareDolls = () => {
   return (
     <Container className="mt-3">
       <Row style={{ padding: '0.8rem' }}>
+        <Row style={{ padding: '0.8rem' }}>
+        <Accordion >
+          <Accordion.Item eventKey="0">
+            <Accordion.Header>
+              <h3>Compare Dolls</h3>
+            </Accordion.Header>
+            <Accordion.Body>
+              <p>Enter the name, brand, or type of a doll in the search bar to view its data. Once you’ve selected a doll, you can search for additional dolls to add them to the table.</p>
 
-        <h3>Compare Dolls</h3>
-        <p>Enter the name, brand, or type of a doll in the search bar to view its data. Once you’ve selected a doll, you can search for additional dolls to add them to the table.</p>
-
-        <p>You can remove any dolls from the results if you no longer wish to see them. </p>
+              <p>You can remove any dolls from the results if you no longer wish to see them. </p>
+            </Accordion.Body>
+          </Accordion.Item>
+        </Accordion>
+        </Row>
         <Col>
-          <input
-            type="text"
-            className="form-control"
-            placeholder="Search dolls..."
-            value={searchTerm}
-            onChange={handleSearch}
-          />
+          <DollSearch value={searchTerm} onChange={handleSearch} />
 
           {searchTerm && filteredDolls.length > 0 && (
             <ul className="list-group mt-2">
