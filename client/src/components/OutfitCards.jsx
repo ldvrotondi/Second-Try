@@ -1,5 +1,4 @@
 import React from "react";
-import Card from 'react-bootstrap/Card';
 import { Link } from "react-router-dom";
 import './card.css';
 import listSizes from "../utils/listSizes";
@@ -15,9 +14,9 @@ const OutfitCards = ({ outfit }) => {
     <div className="outfit-card-overlay">
       <div className="outfit-card-content">
         <h3 className="outfit-card-title">
-          <a href={`/outfits/${outfit.outfitid}`} className="outfit-card-link">{outfit.name}</a>
+          <Link to={`/outfits/${outfit.outfitid}`} className="outfit-card-link">{outfit.name}</Link>
         </h3>
-          From: <a href={`/books/${outfit.issueid}`} className="outfit-card-innerLink">{outfit.book.series} {outfit.book.issue}</a><br />
+          From: <Link to={`/books/${outfit.issueid}`} className="outfit-card-innerLink">{outfit.book.series} {outfit.book.issue}</Link><br />
           Designer: {outfit.designer}<br />
           Patterns: {listPatterns(outfit.pattern, 'type')}<br />
           Sizes: {listSizes(outfit.pattern, 'outfit-card-innerLink')}

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
-import { Container, Row, Col } from 'react-bootstrap';
 import OutfitCards from '../components/OutfitCards';
 import filteredData from "../utils/filteredData";
 import { outfitKeys } from "../utils/searchKeys";
@@ -30,29 +29,27 @@ const ViewOutfits = () => {
     const filteredOutfits = filterByPatternType((filteredData(outfits, outfitKeys, query)), selectedPatterns);
 
     return (
-        <Container>
-            <h1 className='text-left'>All Outfits</h1>
-            <hr />
-            <Row>
-
-                <Col>
-                   <Row> 
-                    <AdvancedSearch query={query} setQuery={setQuery} patternTypes={patternTypes} 
-                        selectedPatterns={selectedPatterns} 
-                        setSelectedPatterns={setSelectedPatterns} />
-                    
-                 </Row>
-                    <Row>
-                        {filteredOutfits.map(outfit => (
-                            <Col key={outfit.outfitid}>
-                                <OutfitCards outfit={outfit} />
-                            </Col>
-                        ))}
-                    </Row>
-                </Col>
-            </Row>
-        </Container>
-    );
-};
+        <div className="container px-5 my-3 text-white">
+        <div className="text-center">
+          <h2 className="display-6 fe-shadow fw-bolder mb-3">View All Outfits</h2>
+        </div>
+            <AdvancedSearch
+              query={query}
+              setQuery={setQuery}
+              patternTypes={patternTypes}
+              selectedPatterns={selectedPatterns}
+              setSelectedPatterns={setSelectedPatterns}
+            />
+          <div className="row justify-content-center">
+            {filteredOutfits.map(outfit => (
+              <div key={outfit.outfitid} className="col-md-auto col-sm-auto col-lg-auto mb-4"> 
+                <OutfitCards outfit={outfit} />
+              </div>
+            ))}
+          </div>
+        </div>
+      );
+    };
+    
 
 export default ViewOutfits;

@@ -2,11 +2,13 @@ const Book = require('./book')
 const Doll = require('./doll')
 const Outfit = require('./outfit')
 const Pattern = require('./pattern')
+const User = require('./user')
 
 Book.sync()
 Doll.sync()
 Outfit.sync()
 Pattern.sync()
+User.sync()
 
 Book.hasMany(Outfit,{foreignKey: 'issueid', as: "outfit"})
 Outfit.hasMany(Pattern, {foreignKey: 'outfitid', as: "pattern"})
@@ -20,5 +22,5 @@ Pattern.belongsTo(Doll, {foreignKey: 'dollid', as: "doll"})
 
 
 module.exports = {
-  Book, Doll, Outfit, Pattern
+  Book, Doll, Outfit, Pattern, User
 }

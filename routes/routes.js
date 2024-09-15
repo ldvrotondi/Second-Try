@@ -2,6 +2,10 @@ const bookController = require('../controllers/book.js')
 const dollController = require('../controllers/doll.js')
 const outfitController = require('../controllers/outfit.js')
 const patternController = require('../controllers/pattern.js')
+const userController = require('../controllers/user.js')
+const authenticateToken = require('../util/authenticateToken.js')
+
+
 const router = require('express').Router()
 
 //for books
@@ -80,5 +84,13 @@ router.get('/patterns/bytype/:id', patternController.findByType)
 
 //get pattern by doll size
 router.get('/patterns/bydoll/:id', patternController.findByDoll)
+
+// Route to handle login (public)
+router.post('/login', userController.login);
+
+// Route to get user info (protected)
+router.get('/user', userController.getUser);
+
+//
 
 module.exports = router

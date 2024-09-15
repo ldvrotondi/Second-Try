@@ -1,23 +1,23 @@
 const getMeasurementRanges = (doll) => {
-    const heightNumber = parseFloat(doll.height);
+    const height = parseFloat(doll.height);
     let minHeight, maxHeight;
   
-    if (heightNumber < 35) {
-      maxHeight = heightNumber * 1.2;
-      minHeight = heightNumber * 0.8;
-    } else if (heightNumber < 55) {
-      maxHeight = heightNumber * 1.14;
-      minHeight = heightNumber * 0.86;
+    if (height < 35) {
+      maxHeight = height * 1.2;
+      minHeight = height * 0.8;
+    } else if (height < 55) {
+      maxHeight = height * 1.14;
+      minHeight = height * 0.86;
     } else {
-      maxHeight = heightNumber * 1.1;
-      minHeight = heightNumber * 0.9;
+      maxHeight = height * 1.1;
+      minHeight = height * 0.9;
     }
   
     return {
       height: { min: minHeight, max: maxHeight },
-      bust: { min: doll.bust * 0.87, max: doll.bust * 1.13 },
-      waist: { min: doll.waist * 0.90, max: doll.waist * 1.10 },
-      hips: { min: doll.hips * 0.90, max: doll.hips * 1.10 },
+      bust: { min: doll.bust * 0.85, max: doll.bust * 1.15 },
+      waist: { min: doll.waist * 0.85, max: doll.waist * 1.15 },
+      hips: { min: doll.hips * 0.85, max: doll.hips * 1.15 },
     };
   };
 

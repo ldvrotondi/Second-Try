@@ -34,7 +34,7 @@
   --bs-gray-700: #495057;
   --bs-gray-800: #343a40;
   --bs-gray-900: #212529;
-  --bs-primary: #1e30f3;
+  --bs-primary: #2c8add;
   --bs-secondary: #e21e80;
   --bs-success: #198754;
   --bs-info: #0dcaf0;
@@ -42,7 +42,7 @@
   --bs-danger: #dc3545;
   --bs-light: #f8f9fa;
   --bs-dark: #212529;
-  --bs-primary-rgb: 30, 48, 243;
+  --bs-primary-rgb: 44, 138, 221;
   --bs-secondary-rgb: 226, 30, 128;
   --bs-success-rgb: 25, 135, 84;
   --bs-info-rgb: 13, 202, 240;
@@ -1789,6 +1789,16 @@ progress {
 
 .table-sm > :not(caption) > * > * {
   padding: 0.25rem 0.25rem;
+}
+
+.table-attribute-col{
+  width:fit-content;
+  flex-shrink: 1;
+}
+
+.table-data-col{
+  width: fit-content;
+  flex-shrink: 0;
 }
 
 .table-bordered > :not(caption) > * {
@@ -11596,6 +11606,21 @@ html {
   color: #424649;
   text-align: center;
   padding: 10px;
+}
+
+.doll-remove-link {
+  font-weight: bold;
+  color: #fff; 
+  background-color: #ff0000; 
+  padding: 1px 25px;
+  text-decoration: none;
+  border-radius: 3px; 
+  display: inline-block; 
+}
+
+.doll-remove-link:hover {
+  background-color: #cc0000; 
+  color: #fff; 
 }
 
 .bg-gradient-primary-to-secondary {

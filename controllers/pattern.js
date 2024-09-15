@@ -1,6 +1,5 @@
 const router = require('express').Router()
 const db = require('../models')
-const { outfitFinder } = require('./outfit')
 
 const Book = db.Book
 const Doll = db.Doll
@@ -83,16 +82,6 @@ const findByDoll = async (req, res, next) => {
     res.status(200).send(patterns)
   }
 
-/*
-const findByOutfit = async (req, res) => {
-   await Pattern.findOne({ where: { outfitid: req.params.id } });
-    if (findByOutfit === null) {
-    console.log('Not found!');
-    } else {
-    console.log(findByOutfit instanceof Pattern); 
-    console.log(pattern.name); 
-    }}*/
-
 const addPattern = async (req, res) => {
       let info ={
         patternid: req.body.patternid,
@@ -103,8 +92,6 @@ const addPattern = async (req, res) => {
         const pattern = await Pattern.create(info)
         res.status(200).send(pattern)
       }
-
-//module.exports = router
 
 module.exports = {
 getAllPatterns,

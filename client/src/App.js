@@ -17,34 +17,43 @@ import OutfitDetails from "./screens/OutfitDetails";
 import CompareDolls from "./screens/CompareDolls";
 import FindSimilar from "./screens/FindSimilar";
 import Homepage from "./screens/Homepage";
+import Login from "./screens/Login";
 
 const App = () => {
   return (
     <div className="wrapper">
-        <Router>
-          
-      <div className="main-content">
+      <Router>
+
+        <div className="main-content">
           <Navbar />
           <Routes>
             <Route path="/" element={<Homepage />} />
-            <Route path="/addDoll" element={<AddDoll />} />
-            <Route path="/addPattern" element={<AddPattern />} />
-            <Route path="/addBook" element={<AddBook />} />
-            <Route path="/addOutfit" element={<AddOutfit />} />
+
             <Route path="/books" element={<ViewBooks />} />
             <Route path="/books/:id" element={<BookDetails />} />
+
             <Route path="/outfits" element={<ViewOutfits />} />
             <Route path="/outfits/:id" element={<OutfitDetails />} />
+
             <Route path="/patterns" element={<ViewPatterns />} />
+
             <Route path="/dolls" element={<ViewDolls />} />
             <Route path="/comparedolls" element={<CompareDolls />} />
             <Route path="/findsimilar" element={<FindSimilar />} />
             <Route path="/dolls/:id" element={<DollDetails />} />
+
+            <Route path="/login" element={<Login />} />
+
+              <Route path="/addDoll" element={<AddDoll />} />
+              <Route path="/addPattern" element={<AddPattern />} />
+              <Route path="/addBook" element={<AddBook />} />
+              <Route path="/addOutfit" element={<AddOutfit />} />
+            
           </Routes>
-          </div>
-          <Footer />
-        </Router>
-      
+        </div>
+        <Footer />
+      </Router>
+
     </div>
 
   );
