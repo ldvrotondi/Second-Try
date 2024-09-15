@@ -73,8 +73,7 @@ const FindSimilar = () => {
   };
 
   return (
-    <section className="py-3 bg-gradient-primary-to-secondary text-white">
-      <div className="container px-5 my-3">
+      <div className="container px-5 my-3 text-white">
         <div className="text-center">
           <h2 className="display-6 fw-bolder mb-3 fe-shadow">Find Similar Dolls</h2>
           <div className="text-center my-2 mx-5">
@@ -123,7 +122,6 @@ const FindSimilar = () => {
           )}
         </div>
       </div>
-    </section>
   );
 };
 

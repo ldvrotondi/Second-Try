@@ -99,7 +99,9 @@ body {
   line-height: var(--bs-body-line-height);
   color: var(--bs-body-color);
   text-align: var(--bs-body-text-align);
-  background-color: var(--bs-body-bg);
+  background: #1e30f3;
+  background: linear-gradient(135deg, #76dcee 0%, #e795ff 100%);
+  background-attachment: fixed;
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
@@ -11575,6 +11577,25 @@ textarea.form-control-lg {
 body,
 html {
   height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; 
+}
+
+.main-content {
+  flex: 1; 
+}
+
+.footer {
+  background-color: #fff;
+  color: #424649;
+  text-align: center;
+  padding: 10px;
 }
 
 .bg-gradient-primary-to-secondary {

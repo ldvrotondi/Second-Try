@@ -20,12 +20,11 @@ import Homepage from "./screens/Homepage";
 
 const App = () => {
   return (
-    <header>
-                <div class="container pb-5">
-                    <div class="row gx-5 align-items-center">
-                        <div class="col-xxl-5">
-      <Router>
-        <Navbar />
+    <div className="wrapper">
+        <Router>
+          
+      <div className="main-content">
+          <Navbar />
           <Routes>
             <Route path="/" element={<Homepage />} />
             <Route path="/addDoll" element={<AddDoll />} />
@@ -42,13 +41,12 @@ const App = () => {
             <Route path="/findsimilar" element={<FindSimilar />} />
             <Route path="/dolls/:id" element={<DollDetails />} />
           </Routes>
-        <Footer />
-      </Router>
-     
-                        </div>
-                    </div>
-                </div>
-            </header>
+          </div>
+          <Footer />
+        </Router>
+      
+    </div>
+
   );
 }
 

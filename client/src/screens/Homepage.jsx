@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 
 const Homepage = () => {
   return (
-    <section className="py-5 bg-gradient-primary-to-secondary text-white">
-      <div className="container px-5 my-5">
+    
+      <div className="container px-5 my-5 text-white">
         <div className="text-center">
           <h2 className="display-4 fw-bolder mb-4 fe-shadow">Welcome to the Doll Database!</h2>
           <div className="text-center my-5 fe-shadow">
@@ -38,7 +38,6 @@ const Homepage = () => {
           </div>
         </div>
       </div>
-    </section>
   );
 };
 

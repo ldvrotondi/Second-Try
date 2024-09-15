@@ -59,8 +59,7 @@ const ViewDolls = () => {
       };
 
     return (
-        <section className="py-3 bg-gradient-primary-to-secondary text-white">
-      <div className="container px-5 my-3">
+      <div className="container px-5 my-3 text-white">
         <div className="text-center">
           <h2 className="display-6 fe-shadow fw-bolder mb-3">View Doll Data</h2>
           </div>
@@ -89,7 +88,6 @@ const ViewDolls = () => {
                 </div>
             )}
             </div>
-        </section>
     );
 };
 
