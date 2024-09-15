@@ -1,9 +1,8 @@
 import React from "react";
-import { Button } from "react-bootstrap";
 import SearchBar from "../components/SearchBar";
 import PatternFilter from "../components/PatternFilter";
 import './advancedSearch.css'; 
-import { Container, Row, Col } from 'react-bootstrap';
+import { Row,  } from 'react-bootstrap';
 
 const AdvancedSearch = ({ patternTypes, selectedPatterns, setSelectedPatterns, query, setQuery }) => {
     return (

@@ -6,25 +6,26 @@ import listSizes from "../utils/listSizes";
 import listPatterns from "../utils/listPatterns";
 
 
-//create card of data
-const OutfitCards = ({outfit}) => {
+const OutfitCards = ({ outfit }) => {
   return (
-    <Card className="bg-dark text-white border-secondary card-overlay" style={{ margin: '5px' }}>
-    <Card.Img variant="top" src={`/images/outfits/${outfit.outfitid}.png`} className="card-img"/>
-    <Card.ImgOverlay>
-    <Card.Body className="overlay-text">
-       <Card.Text>
-       <Link to={`/outfits/${outfit.outfitid}`} className={`link`}> {outfit.name} </Link><br />
-          <i>From:</i> <Link to={`/books/${outfit.issueid}`} className={`innerLink`}> {outfit.book.series} {outfit.book.issue} </Link><br />
-          <i>Designer:</i> {outfit.designer} <br />
-          <i>Patterns:</i> {listPatterns(outfit.pattern, 'type')} <br />
-          <i>Sizes:</i>  {listSizes(outfit.pattern, `innerLink`)}<br />
-          
-                </Card.Text>
-              </Card.Body>
-              </Card.ImgOverlay>
-            </Card>)
-}
+    <div className="outfit-card">
+    <div className="outfit-card-image-wrapper">
+      <img src={`/images/outfits/${outfit.outfitid}.png`} alt={outfit.name} className="outfit-card-image"/>
+    </div>
+    <div className="outfit-card-overlay">
+      <div className="outfit-card-content">
+        <h3 className="outfit-card-title">
+          <a href={`/outfits/${outfit.outfitid}`} className="outfit-card-link">{outfit.name}</a>
+        </h3>
+          From: <a href={`/books/${outfit.issueid}`} className="outfit-card-innerLink">{outfit.book.series} {outfit.book.issue}</a><br />
+          Designer: {outfit.designer}<br />
+          Patterns: {listPatterns(outfit.pattern, 'type')}<br />
+          Sizes: {listSizes(outfit.pattern, 'outfit-card-innerLink')}
+      </div>
+    </div>
+  </div>
   
-export default OutfitCards
+  );
+};
 
+export default OutfitCards;

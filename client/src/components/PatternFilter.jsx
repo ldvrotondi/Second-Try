@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Dropdown, Form, Button, Container } from "react-bootstrap";
+import React from "react";
+import { Dropdown, Form, Button } from "react-bootstrap";
 import { Col } from "react-bootstrap"
 import './patternFilter.css'; 
 

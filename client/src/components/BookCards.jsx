@@ -3,23 +3,31 @@ import Card from 'react-bootstrap/Card';
 import { Link } from "react-router-dom";
 import './card.css';
 
-const BookCard = ({book}) => {
-    return (
-        
-            <Card className="bg-dark text-white card-overlay" style={{ width: '18rem', margin: '5px' }}>
-              <Card.Img src={`/images/books/${book.issueid}.png`} />
-              <Card.ImgOverlay>
-              <Card.Body className="overlay-text">
-                <Card.Text className="overlay-text">
-                <Link to={`${book.issueid}`} className={`link`}>{book.series}: {book.issue}</Link><br />
-                  {book.seriesjp} {book.issuejp} <br />
-                  {book.publisher} <br />
-                  ISBN: {book.isbn} <br />
-                </Card.Text>
-              </Card.Body>
-              </Card.ImgOverlay>
-            </Card>
-          );
-}
+const BookCard = ({ book }) => {
+  return (
+    <div className="outfit-card">
+      <div className="outfit-card-image-wrapper">
+        <img
+          src={`/images/books/${book.issueid}.png`}
+          alt={`${book.series} ${book.issue}`}
+          className="outfit-card-image"
+        />
+      </div>
+      <div className="outfit-card-overlay">
+        <div className="outfit-card-content">
+          <h3 className="outfit-card-title">
+            <Link to={`/books/${book.issueid}`} className="outfit-card-link">
+              {book.series}: {book.issue}
+            </Link>
+          </h3>
+          {book.seriesjp} {book.issuejp} <br />
+          {book.publisher} <br />
+          ISBN: {book.isbn}
+        </div>
+      </div>
+    </div>
+  );
+};
+
 
 export default BookCard

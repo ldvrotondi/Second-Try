@@ -17,29 +17,39 @@ const listSizes = (data) => {
           let line = data.doll.line
           let type = data.doll.type
           let result = [brand, line, type].filter(Boolean).join(" ");
-          return <Link to={`/dolls/${data.dollid}`} key={result} className={`innerLink`}>
+          return <Link to={`/dolls/${data.dollid}`} key={result} className={`outfit-card-innerLink`}>
           {result}
         </Link>
           }
   }
 
-const PatternCard = ({pattern}) => {
+  const PatternCard = ({ pattern }) => {
     return (
-            <Card style={{ margin: '5px' }} className="bg-dark text-white border-secondary card-overlay">
-              {console.log(pattern)}
-              <Card.Img variant="top" src={`/images/outfits/${pattern.outfitid}.png`} className="card-img" />
-              <Card.ImgOverlay>
-              <Card.Body className="overlay-text">
-                <Card.Text>
-                <Link to={`/outfits/${pattern.outfitid}`} className={`link`}>{typeUppercase(pattern.type)} from {pattern.outfit.name}</Link> <br />
-                  Size: {listSizes(pattern)} <br />
-                  Designer: {pattern.outfit.designer} <br />
-                  Source: <Link to={`/books/${pattern.outfit.book.issueid}`} className={`innerLink`}> {pattern.outfit.book.series} {pattern.outfit.book.issue}</Link><br />
-                </Card.Text>
-              </Card.Body>
-              </Card.ImgOverlay>
-            </Card>
-          );
-}
-
-export default PatternCard
+      <div className="outfit-card">
+        <div className="outfit-card-image-wrapper">
+          <img
+            src={`/images/outfits/${pattern.outfitid}.png`}
+            alt={pattern.outfit.name}
+            className="outfit-card-image"
+          />
+        </div>
+        <div className="outfit-card-overlay">
+          <div className="outfit-card-content">
+            <h3 className="outfit-card-title">
+              <Link to={`/outfits/${pattern.outfitid}`} className="outfit-card-link">
+                {typeUppercase(pattern.type)} from {pattern.outfit.name}
+              </Link>
+            </h3>
+            Size: {listSizes(pattern)}<br />
+            Designer: {pattern.outfit.designer}<br />
+            Source: <Link to={`/books/${pattern.outfit.book.issueid}`} className="outfit-card-innerLink">
+              {pattern.outfit.book.series} {pattern.outfit.book.issue}
+            </Link>
+          </div>
+        </div>
+      </div>
+    );
+  };
+  
+  export default PatternCard;
+  

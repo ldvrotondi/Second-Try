@@ -1,6 +1,6 @@
 export const bookKeys = ['series', 'issue', 'publisher']
 
-export const dollKeys = ['brand', 'line', 'type']
+export const dollKeys = ['brand', 'line', 'type', 'dollid']
 
 export const outfitKeys = ['pattern.type', 'designer', 'name', 'pattern.doll.brand', 'pattern.doll.line', 'pattern.doll.type', 'book.series']
 
