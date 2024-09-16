@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
-import concatenateDollInfo from "../utils/concatenateDollInfo";
 import filterDolls from "../utils/filterDolls";
 import DollSearch from "../components/DollSearch";
 import DollTable from "../components/DollTable";

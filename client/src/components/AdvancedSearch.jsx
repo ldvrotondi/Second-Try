@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import SearchBar from "../components/SearchBar";
 import PatternFilter from "../components/PatternFilter";
-import DollSearch from "./DollSearch";
+import FindSimilarDolls from "./FindSimilarDolls";
 
-const AdvancedSearch = ({ patternTypes, selectedPatterns, setSelectedPatterns, query, setQuery }) => {
-    const [includeSimilar, setIncludeSimilar] = useState(false);
+
+const AdvancedSearch = ({ patternTypes, selectedPatterns, setSelectedPatterns, query, setQuery, dolls, filteredDolls, setFilteredDolls }) => {
+    
 
     return (
         <div className="container mt-5">
@@ -23,7 +24,10 @@ const AdvancedSearch = ({ patternTypes, selectedPatterns, setSelectedPatterns, q
 
             <div className="row mt-3">
             <div className="mb-4">
-
+            <div className="mb-4">
+                
+            <FindSimilarDolls dolls={dolls} filteredDolls={filteredDolls} setFilteredDolls={setFilteredDolls} />
+        </div>
           </div>
             </div>
         </div>
