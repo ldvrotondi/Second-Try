@@ -2,10 +2,8 @@ import React, { useEffect, useState } from "react";
 import axios from 'axios';
 import { Link, useParams } from "react-router-dom";
 import PatternCards from "../components/PatternCards";
-import filteredData from "../utils/filteredData";
 import AdvancedSearch from "../components/AdvancedSearch";
 import listSizes from "../utils/listSizes";
-import { outfitKeys } from "../utils/searchKeys";
 import getMeasurementRanges from "../utils/getMeasurementRange";
 import filterByRange from "../utils/filterByRange";
 import filterDolls from "../utils/filterDolls";
@@ -122,9 +120,6 @@ const OutfitDetails = () => {
         setFilteredDolls([]);
         setSearchTerm("");
     };
-
-    console.log(outfits)
-    console.log(dolls)
 
     const filterByDoll = (patterns, selectedDolls) => {
         if (selectedDolls.length === 0) return patterns;
