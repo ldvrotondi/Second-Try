@@ -7,7 +7,7 @@ const Footer =() => {
           <div className="small m-0">Copyright &copy; DollDB 2024</div>
         </div>
         <div className="col-auto">
-          <a className="small" href="#!">FAQ</a>
+          <a className="small" href="/faq">FAQ</a>
           <span className="mx-1">&middot;</span>
           <a className="small" href="#!">Contact</a>
         </div>

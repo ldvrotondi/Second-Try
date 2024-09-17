@@ -18,6 +18,7 @@ import CompareDolls from "./screens/CompareDolls";
 import FindSimilar from "./screens/FindSimilar";
 import Homepage from "./screens/Homepage";
 import Login from "./screens/Login";
+import FAQ from "./screens/FAQ";
 
 const App = () => {
   return (
@@ -28,6 +29,7 @@ const App = () => {
           <Navbar />
           <Routes>
             <Route path="/" element={<Homepage />} />
+            <Route path="/faq" element={<FAQ />} />
 
             <Route path="/books" element={<ViewBooks />} />
             <Route path="/books/:id" element={<BookDetails />} />
