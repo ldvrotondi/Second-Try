@@ -13,6 +13,9 @@ const ViewPatterns = () => {
     const [selectedPatterns, setSelectedPatterns] = useState([]);
     const [patternTypes, setPatternTypes] = useState([]);
 
+    const [dolls, setDolls] = useState([]);
+    const [selectedDolls, setSelectedDolls] = useState([]);
+
     useEffect(() => {
         const getPatternData = async () => {
             const {data} = await axios.get('api/patterns/all/')
@@ -24,6 +27,15 @@ const ViewPatterns = () => {
     },[]
     )
 
+    useEffect(() => {
+      const fetchDolls = async () => {
+        const { data } = await axios.get('api/dolls');
+        setDolls(data);
+      };
+      fetchDolls();
+    }, []);
+
+
     const filterByPatternType = (data, selectedPatterns) => {
         if (selectedPatterns.length === 0) return data;
         return data.filter(pattern => 
@@ -31,8 +43,15 @@ const ViewPatterns = () => {
         );
     };
 
-    const filteredOutfits = filterByPatternType((filteredData(patterns, patternKeys, query)), selectedPatterns);
-
+    const filterByDollType = (data, selectedDolls) => {
+      if (selectedDolls.length === 0) return data;
+      const selectedDollIds = new Set(selectedDolls.map(doll => doll.dollid));
+      return data.filter(pattern =>
+        selectedDollIds.has(pattern.dollid)
+      );
+    };
+    
+    const filteredOutfits = filterByDollType(filterByPatternType((filteredData(patterns, patternKeys, query)), selectedPatterns),selectedDolls);
 
     return (
         <div className="container px-5 my-3 text-white">
@@ -40,12 +59,15 @@ const ViewPatterns = () => {
             <h2 className="display-6 fe-shadow fw-bolder mb-3">View All Patterns</h2>
           </div>
           <AdvancedSearch
-            query={query}
-            setQuery={setQuery}
-            patternTypes={patternTypes}
-            selectedPatterns={selectedPatterns}
-            setSelectedPatterns={setSelectedPatterns}
-          />
+                query={query}
+                setQuery={setQuery}
+                patternTypes={patternTypes}
+                selectedPatterns={selectedPatterns}
+                setSelectedPatterns={setSelectedPatterns}
+                dolls={dolls}
+                filteredDolls={selectedDolls} 
+                setFilteredDolls={setSelectedDolls}
+            />
           <div className="row justify-content-center">
             {filteredOutfits.map(pattern => (
               <div key={pattern.patternid} className="col-md-auto col-sm-auto col-lg-auto mb-4">

@@ -1,8 +1,7 @@
 import React from "react";
-import { Dropdown, Form, Button } from "react-bootstrap";
+import { Form, Button } from "react-bootstrap";
 
 const PatternFilter = ({ patternTypes, selectedPatterns, setSelectedPatterns }) => {
-
     const handleCheckboxChange = (type) => {
         setSelectedPatterns((prev) =>
             prev.includes(type)
@@ -15,56 +14,37 @@ const PatternFilter = ({ patternTypes, selectedPatterns, setSelectedPatterns }) 
         setSelectedPatterns([]);
     };
 
-    const handleItemClick = (type) => {
-        handleCheckboxChange(type);
-    };
-
     return (
         <div className="container mt-3">
             <div className="row">
-                <div className="col-md-3">
-                    <div className="d-flex align-items-center">
-                        <div className="dropdown">
-                            <Dropdown>
-                                <Dropdown.Toggle variant="primary" id="dropdown-basic" className="w-100">
-                                    Garment Type
-                                </Dropdown.Toggle>
-
-                                <Dropdown.Menu className="w-100">
-                                    {patternTypes
-                                        .sort((a, b) => a.localeCompare(b))  // Sort in alphabetical order
-                                        .map((type, index) => {
-                                            const checkboxId = `checkbox-${type}-${index}`;
-                                            return (
-                                                <Dropdown.Item
-                                                    key={index}
-                                                    as="button"
-                                                    className={`d-flex align-items-center ${selectedPatterns.includes(type) ? 'bg-light' : ''}`}
-                                                    onClick={() => handleItemClick(type)}
-                                                >
-                                                    <Form.Check
-                                                        type="checkbox"
-                                                        id={checkboxId}
-                                                        checked={selectedPatterns.includes(type)}
-                                                        onChange={() => handleCheckboxChange(type)}
-                                                        custom
-                                                        className="mr-2"
-                                                    />
-                                                    <span>{`${type.charAt(0).toUpperCase() + type.slice(1)}`}</span>
-                                                </Dropdown.Item>
-                                            );
-                                        })}
-                                </Dropdown.Menu>
-                            </Dropdown>
-                        </div>
+                <div className="col-md-12">
+                    <div className="d-flex justify-content-between align-items-center mb-2">
+                        <h5 className=" text-custom">Filter by Garment Type</h5>
                         <Button 
                             onClick={clearAll} 
                             variant="danger" 
-                            className="ml-2 p-1"
-                            style={{ width: '30px', height: '30px' }}
-                        >
-                            <span style={{ fontSize: '16px' }}>X</span>
+                            className="p-1"
+                        >Clear Garment Type
                         </Button>
+                    </div>
+                    <div className="row">
+                        {patternTypes
+                            .sort((a, b) => a.localeCompare(b))  // Sort in alphabetical order
+                            .map((type, index) => {
+                                const checkboxId = `checkbox-${type}-${index}`;
+                                return (
+                                    <div key={index} className="col-md-4 col-lg-3 mb-2">
+                                        <Form.Check
+                                            type="checkbox"
+                                            id={checkboxId}
+                                            label={type.charAt(0).toUpperCase() + type.slice(1)}
+                                            checked={selectedPatterns.includes(type)}
+                                            onChange={() => handleCheckboxChange(type)}
+                                            custom
+                                        />
+                                    </div>
+                                );
+                            })}
                     </div>
                 </div>
             </div>

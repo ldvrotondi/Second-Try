@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 
-const DollSearch = ({ value, onChange, onKeyDown, results, onSelect }) => {
+const DollSearch = ({ value, onChange, results, onSelect }) => {
   const [focusedIndex, setFocusedIndex] = useState(null);
+  const [showDropdown, setShowDropdown] = useState(false); // New state for dropdown visibility
 
   const handleKeyDown = (e) => {
     if (results.length === 0) return;
@@ -16,6 +17,7 @@ const DollSearch = ({ value, onChange, onKeyDown, results, onSelect }) => {
       e.preventDefault();
       if (focusedIndex !== null) {
         onSelect(results[focusedIndex]);
+        setShowDropdown(false); // Close dropdown on selection
       }
     }
   };
@@ -27,19 +29,23 @@ const DollSearch = ({ value, onChange, onKeyDown, results, onSelect }) => {
         className="form-control"
         placeholder="Search dolls..."
         value={value}
-        onChange={onChange}
-        onKeyDown={(e) => { 
-          handleKeyDown(e); 
-          onKeyDown && onKeyDown(e); 
-        }} 
+        onChange={(e) => {
+          onChange(e);
+          setShowDropdown(true); // Open dropdown when typing
+        }}
+        onKeyDown={handleKeyDown}
+        onFocus={() => setShowDropdown(true)} // Reopen dropdown on input focus if necessary
       />
-      {value && results.length > 0 && (
+      {showDropdown && results.length > 0 && (
         <ul className="list-group mt-2">
           {results.map((doll, index) => (
             <li
               key={doll.dollid}
               className={`list-group-item ${index === focusedIndex ? 'active' : ''}`}
-              onClick={() => onSelect(doll)}
+              onClick={() => {
+                onSelect(doll);
+                setShowDropdown(false); // Close dropdown on selection
+              }}
               onMouseEnter={() => setFocusedIndex(index)}
               style={{ cursor: 'pointer' }}
             >

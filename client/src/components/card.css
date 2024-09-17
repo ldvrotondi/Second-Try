@@ -67,6 +67,7 @@
 
 .outfit-card-link:hover {
   text-decoration: underline;
+  color: #e1a5ff;
 }
 
 .outfit-card-innerLink {
@@ -76,4 +77,5 @@
 
 .outfit-card-innerLink:hover {
   text-decoration: underline;
+  color: #e1a5ff;
 }
