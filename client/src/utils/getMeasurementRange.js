@@ -15,9 +15,9 @@ const getMeasurementRanges = (doll) => {
   
     return {
       height: { min: minHeight, max: maxHeight },
-      bust: { min: doll.bust * 0.85, max: doll.bust * 1.15 },
-      waist: { min: doll.waist * 0.85, max: doll.waist * 1.15 },
-      hips: { min: doll.hips * 0.85, max: doll.hips * 1.15 },
+      bust: { min: doll.bust * 0.85, max: doll.bust * 1.20 },
+      waist: { min: doll.waist * 0.85, max: doll.waist * 1.5 },
+      hips: { min: doll.hips * 0.85, max: doll.hips * 1.20 },
     };
   };
 

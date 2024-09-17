@@ -18,15 +18,18 @@ const ViewBooks = () => {
   }, []);
 
   return (
-    <div className="container px-5 my-3 text-white">
-      <div className="text-center">
-        <h2 className="display-6 fe-shadow fw-bolder mb-3">View All Books</h2>
+    <div className="container px-5 my-3 text-dark">
+      <div className="row justify-content-center mb-4 text-center bg-transparent-white">
+        <h2 className="display-6 text-custom fw-bolder">View All Books</h2>
       </div>
-      <SearchBar query={query} setQuery={setQuery} />
-      <div className="row justify-content-center"> 
+
+      <div className="row justify-content-center mb-4 text-center bg-transparent-white">
+        <SearchBar query={query} setQuery={setQuery} />
+      </div>
+      <div className="row justify-content-center bg-transparent-white">
         {
           filteredData(books, bookKeys, query).map(book => (
-            <div key={book.issueid} className="col-md-auto col-sm-auto col-lg-auto mb-4"> 
+            <div key={book.issueid} className="col-md-auto col-sm-auto col-lg-auto mb-4">
               <BookCards book={book} />
             </div>
           ))

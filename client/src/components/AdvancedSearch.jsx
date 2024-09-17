@@ -32,7 +32,7 @@ const AdvancedSearch = ({
                             aria-controls="advanced-search-collapse"
                             aria-expanded={open}
                             variant="primary"
-                            className="flex-shrink-0 mx-4"
+                            className="flex-shrink-0 mx-4 text-white"
                         >
                             {open ? "Hide Advanced Search" : "Show Advanced Search"}
                         </Button>

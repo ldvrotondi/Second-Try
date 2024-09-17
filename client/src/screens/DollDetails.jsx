@@ -88,6 +88,7 @@ const DollDetails = () => {
         });
     };
 
+
     // Filter outfits
     const filteredOutfits = filterByDoll(
         filterByPatternType(outfits, selectedPatterns),
@@ -111,7 +112,7 @@ const DollDetails = () => {
                             aria-controls="advanced-search-collapse"
                             aria-expanded={open}
                             variant="primary"
-                            className="ml-3"
+                            className="ml-3 text-light"
                         >
                             {open ? "Hide Options" : "More Options"}
                         </Button>
