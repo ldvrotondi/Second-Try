@@ -5,15 +5,15 @@ import { Link } from "react-router-dom";
 const DollTable = ({ dolls, onRemoveDoll }) => (
   <div className="container mt-3">
     <div className="table-responsive">
-      <table className="table responsive table-bordered bg-white text-dark">
+      <table className="table table-striped table-bordered bg-white text-dark">
         <thead>
           <tr className="font-weight-bold">
-            <th className="fw-bold table-attribute-col text-start">Attribute</th>
+            <th className="fw-bold table-attribute-col text-start">Name</th>
             {dolls.map(doll => (
               <th key={doll.dollid} className="text-center table-data-col">
                 <Link to={`/dolls/${doll.dollid}`} className="text-primary fw-bold">
                   {doll.brand} <br />
-                  {doll.line}  <br />
+                  {doll.line} <br />
                   {doll.type}
                 </Link>
               </th>
@@ -39,7 +39,7 @@ const DollTable = ({ dolls, onRemoveDoll }) => (
               </td>
             ))}
           </tr>
-          
+
           {/* Rows for the doll attributes */}
           {['height', 'head', 'neck', 'bust', 'waist', 'hips', 'thigh', 'calf', 'shoulders', 'arm length', 'upper arm circ.', 'lower arm circ.', 'wrist', 'inseam', 'foot length', 'foot width'].map(attr => (
             <tr key={attr}>

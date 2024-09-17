@@ -43,28 +43,28 @@ const CompareDolls = () => {
   };
 
   return (
-    <div className="container px-5 my-3 text-white">
-      <div className="text-center">
-        <h2 className="display-6 fw-bolder mb-3 fe-shadow">Compare Dolls</h2>
-        <div className="text-center my-2 mx-5">
-          <p className="fs-6 text-light fe-shadow">
+    <div className="container px-5 my-3 text-custom">
+      <div className="text-center bg-transparent-white">
+        <h2 className="display-6 fw-bolder mb-3">Compare Dolls</h2>
+        <div className="text-center my-2 mx-5 fs-6 text-dark">
+          <p>
             Enter the name, brand, or type of a doll in the search bar to view its data. Once you’ve selected a doll, you can search for additional dolls to add them to the table.
           </p>
-          <p className="fs-6 text-light fe-shadow">
+          <p>
             You can remove any dolls from the results if you no longer wish to see them.
           </p>
-          <p className="fs-6 text-light fe-shadow">
-            If you would like to see all sizes similar to a specific doll, try the <Link to="/findsimilar" className="fs-6 text-light">Find Similar</Link> page.
+          <p>
+            If you would like to see all sizes similar to a specific doll, try the <Link to="/findsimilar">Find Similar</Link> page.
           </p>
         </div>
 
         <div className="mb-4">
-          <DollSearch
-            value={searchTerm}
-            onChange={handleSearch}
-            results={filteredDolls}
-            onSelect={handleSelectDoll}
-          />
+        <DollSearch
+                    value={searchTerm}
+                    onChange={handleSearch}
+                    results={filteredDolls}
+                    onSelect={handleSelectDoll}
+                />
         </div>
 
         {selectedDolls.length > 0 && (
