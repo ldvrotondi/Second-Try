@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 const DollSearch = ({ value, onChange, results, onSelect }) => {
   const [focusedIndex, setFocusedIndex] = useState(null);
-  const [showDropdown, setShowDropdown] = useState(false); // New state for dropdown visibility
+  const [showDropdown, setShowDropdown] = useState(false);
 
   const handleKeyDown = (e) => {
     if (results.length === 0) return;
@@ -17,7 +17,7 @@ const DollSearch = ({ value, onChange, results, onSelect }) => {
       e.preventDefault();
       if (focusedIndex !== null) {
         onSelect(results[focusedIndex]);
-        setShowDropdown(false); // Close dropdown on selection
+        setShowDropdown(false); 
       }
     }
   };

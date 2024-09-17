@@ -6,9 +6,9 @@ const DollCard = ({ doll }) => {
   return (
     <div className="card" style={{ width: '18rem', margin: '5px' }}>
       <div className="card-body">
-        <Link to={`${doll.dollid}`} className="text-decoration-none text-dark">
+        <Link to={`${doll.dollid}`} className="text-decoration-none text-custom">
           <h5 className="card-title">{doll.brand}</h5>
-          <h6 className="card-subtitle mb-2 text-muted">{doll.line} {doll.type}</h6>
+          <h6 className="card-subtitle mb-2">{doll.line} {doll.type}</h6>
         </Link>
 
         <table className="table table-striped mt-3">

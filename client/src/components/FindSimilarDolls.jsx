@@ -13,7 +13,7 @@ const FindSimilarDolls = ({ includeSimilar, onChange }) => {
                     onChange={onChange}
                 />
                 <label className="form-check-label" htmlFor="includeSimilarCheckbox">
-                    Include similar doll sizes
+                    Include results for similar sizes
                 </label>
             </div>
         );

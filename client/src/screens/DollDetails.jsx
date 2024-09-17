@@ -1,84 +1,159 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import axios from 'axios';
-import {Container, Row, Col } from 'react-bootstrap'
-import OutfitCards from "../components/OutfitCards";
 import { useParams } from "react-router-dom";
 import DollCard from "../components/DollCards";
-import { outfitKeys } from "../utils/searchKeys";
-import filteredData from "../utils/filteredData";
-import '../App.css'
-import AdvancedSearch from "../components/AdvancedSearch";
+import OutfitCards from "../components/OutfitCards";
+import '../App.css';
+import PatternFilter from "../components/PatternFilter";
+import FindSimilarDolls from "../components/FindSimilarDolls";
 import filterByPatternType from "../utils/filterbyPattern";
+import getMeasurementRanges from "../utils/getMeasurementRange";
+import filterByRange from "../utils/filterByRange";
+import { Button, Collapse } from "react-bootstrap";
+import filterByDoll from "../utils/filterByDoll";
+
 
 const DollDetails = () => {
-        const {id}  = useParams()
-        const [query, setQuery] = useState('')
+    const { id } = useParams();
+    const [dolls, setDolls] = useState([]);
+    const [selectedPatterns, setSelectedPatterns] = useState([]);
+    const [patternTypes, setPatternTypes] = useState([]);
+    const [outfits, setOutfits] = useState([]);
+    const [includeSimilar, setIncludeSimilar] = useState(false);
+    const [filteredDolls, setFilteredDolls] = useState([]);
+    const [selectedDoll, setSelectedDoll] = useState('')
+    const [open, setOpen] = useState(false);
 
-        const [doll, setDoll] = useState([])
+    // Get doll data & set active doll
+    useEffect(() => {
+        const getDollData = async () => {
+            try {
+                const { data } = await axios.get('/api/dolls');
+                setDolls(data);
 
-        const [selectedPatterns, setSelectedPatterns] = useState([]);
-        const [patternTypes, setPatternTypes] = useState([]);
-        const [outfits, setOutfits] = useState([])
-    
-    //get doll data
-        useEffect(() => {
-            const getDoll = async () => {
-                const {data} = await axios.get(`/api/dolls/doll/${id}`)
-                setDoll(data) 
+                const doll = data.find(d => d.dollid === id);
+                setSelectedDoll(doll);
+                setFilteredDolls(doll ? [doll] : []);
+            } catch (error) {
+                console.error("Error fetching doll data:", error);
             }
-            getDoll()
-        },[id]
-        )
+        };
+        getDollData();
+    }, [id]);
 
-
-    //get outfit data
+    // Get outfit data
     useEffect(() => {
         const getOutfitData = async () => {
-            const {data} = await axios.get(`/api/outfits/bydoll/${id}`)
-            setOutfits(data)
-            const allPatterns = data.flatMap(outfit => outfit.pattern.map(p => p.type));
-            const uniquePatterns = [...new Set(allPatterns)];
-            setPatternTypes(uniquePatterns);
-        }
-        getOutfitData()
-    },[id]
-    )
+            try {
+                const { data } = await axios.get('/api/outfits/patterns'); 
+                setOutfits(data);
+    
+                // Extract all pattern types for the checkboxes
+                const allPatterns = data.flatMap(outfit =>
+                    outfit.pattern.map(p => p.type)
+                );
+                const uniquePatterns = [...new Set(allPatterns)];
+                setPatternTypes(uniquePatterns);
+    
+            } catch (error) {
+                console.error("Error fetching outfit data:", error);
+            }
+        };
+    
+        getOutfitData();
+    }, []);
+    
+    
 
-    //filter outfits
-    const filteredOutfits = filterByPatternType((filteredData(outfits, outfitKeys, query)), selectedPatterns);
+    const handleCheck = () => {
+        setIncludeSimilar((prevIncludeSimilar) => {
+            const checked = !prevIncludeSimilar;
+
+            // If there's a selected doll, update filtered dolls based on "Include Similar" being checked or unchecked
+            if (selectedDoll) {
+                let filtered = [selectedDoll];
+                if (checked) {
+                    const measurementRanges = getMeasurementRanges(selectedDoll);
+                    const dollsInRange = filterByRange(
+                        dolls,
+                        selectedDoll,
+                        measurementRanges
+                    );
+                    filtered = [...filtered, ...dollsInRange];
+                }
+                setFilteredDolls(filtered);
+            }
+
+            return checked;
+        });
+    };
+
+    // Filter outfits
+    const filteredOutfits = filterByDoll(
+        filterByPatternType(outfits, selectedPatterns),
+        filteredDolls
+    );
+
 
     return (
-        <>
-        <Container fluid >
-            <Row >
-                <Col md="auto" className="stickyCol">
-                        <DollCard doll={doll} />
-                </Col>
+        <div className="container px-5 my-3 text-dark">
+        <div className="row">
+            <div className="col-md-auto position-static">
+                <DollCard doll={selectedDoll} />
+            </div>
+    
+            <div className="col">
+                <div className="row justify-content-center mb-3 text-center bg-transparent-white">
+                    <div className="col text-custom d-flex justify-content-between align-items-center">
+                        <h1>Indexed Outfits</h1>
+                        <Button
+                            onClick={() => setOpen(!open)}
+                            aria-controls="advanced-search-collapse"
+                            aria-expanded={open}
+                            variant="primary"
+                            className="ml-3"
+                        >
+                            {open ? "Hide Options" : "More Options"}
+                        </Button>
+                    </div>
+                </div>
+    
+                <Collapse in={open}>
+                    <div id="advanced-search-collapse" className="container bg-transparent-white">
+                        <hr className="hr-bolder" />
+                        <div className="row">
+                            <div className="col-md-12">
+                                <PatternFilter
+                                    patternTypes={patternTypes}
+                                    selectedPatterns={selectedPatterns}
+                                    setSelectedPatterns={setSelectedPatterns}
+                                />
+                            </div>
+                        </div>
+                        <hr className="hr-medium" />
+                        <div className="row">
+                            <div className="col-md-12">
+                                        <FindSimilarDolls
+                                            includeSimilar={includeSimilar}
+                                            onChange={handleCheck}
+                                        />
+                            </div>
+                        </div>
+                        <hr className="hr-bolder" />
+                    </div>
+                </Collapse>
+    
+                <div className="row justify-content-center bg-transparent-white mt-3">
+                    {filteredOutfits.map((outfit) => (
+                        <div key={outfit.outfitid} className="col-md-auto col-sm-auto col-lg-auto mb-4">
+                            <OutfitCards outfit={outfit} />
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </div>
+    </div>
+    );
+};
 
-                <Col>
-                    <Row>
-                        <Col><h1>Indexed Outfits:</h1></Col>
-                        <Row> 
-                            <AdvancedSearch query={query} setQuery={setQuery} patternTypes={patternTypes} 
-                                selectedPatterns={selectedPatterns} 
-                                setSelectedPatterns={setSelectedPatterns} />
-                            
-                        </Row>
-                        </Row>
-                        <Row>
-                        {filteredOutfits.map(outfit => (
-                                    <Col key={outfit.outfitid}>
-                                        <OutfitCards outfit={outfit} />
-                                    </Col>
-                                ))
-                        }
-                    </Row>
-                </Col>
-            </Row>
-        </Container>
-    </>
-    )
-}
-
-
-export default DollDetails
+export default DollDetails;
