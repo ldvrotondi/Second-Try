@@ -27,13 +27,17 @@ const ViewBooks = () => {
         <SearchBar query={query} setQuery={setQuery} />
       </div>
       <div className="row justify-content-center bg-transparent-white">
-        {
-          filteredData(books, bookKeys, query).map(book => (
+        {filteredData(books, bookKeys, query).length === 0 ? (
+          <div className="col-12 text-center">
+            <p className="lead text-dark">No results found</p>
+          </div>
+        ) : (
+          filteredData(books, bookKeys, query).map((book) => (
             <div key={book.issueid} className="col-md-auto col-sm-auto col-lg-auto mb-4">
               <BookCards book={book} />
             </div>
           ))
-        }
+        )}
       </div>
     </div>
   )

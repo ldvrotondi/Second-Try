@@ -53,75 +53,75 @@ const ViewPatterns = () => {
     const value = e.target.value
     setSearchTerm(value)
     setFilteredDolls(filterDolls(dolls, value))
-}
+  }
 
   const handleSelectDoll = (doll) => {
     setSelectedDoll(doll)
 
     const formattedSearchTerm = [doll.brand, doll.line, doll.type]
-        .filter(Boolean)
-        .join(" ")
-        .trim()
+      .filter(Boolean)
+      .join(" ")
+      .trim()
 
     setSearchTerm(formattedSearchTerm)
 
     // Filter and add similar dolls if "Include Similar" is checked
     let filtered = [doll]
     if (includeSimilar) {
-        const measurementRanges = getMeasurementRanges(doll)
-        const dollsInRange = filterByRange(dolls, doll, measurementRanges)
-        filtered = [...filtered, ...dollsInRange]
+      const measurementRanges = getMeasurementRanges(doll)
+      const dollsInRange = filterByRange(dolls, doll, measurementRanges)
+      filtered = [...filtered, ...dollsInRange]
     }
 
     setFilteredDolls(filtered)
-}
+  }
 
-const handleCheck = () => {
+  const handleCheck = () => {
     setIncludeSimilar((prevIncludeSimilar) => {
-        const checked = !prevIncludeSimilar
+      const checked = !prevIncludeSimilar
 
-        // If there's a selected doll, update filtered dolls based on "Include Similar" being checked or unchecked
-        if (selectedDoll) {
-            let filtered = [selectedDoll]
-            if (checked) {
-                const measurementRanges = getMeasurementRanges(selectedDoll)
-                const dollsInRange = filterByRange(
-                    dolls,
-                    selectedDoll,
-                    measurementRanges
-                )
-                filtered = [...filtered, ...dollsInRange]
-            }
-            setFilteredDolls(filtered)
+      // If there's a selected doll, update filtered dolls based on "Include Similar" being checked or unchecked
+      if (selectedDoll) {
+        let filtered = [selectedDoll]
+        if (checked) {
+          const measurementRanges = getMeasurementRanges(selectedDoll)
+          const dollsInRange = filterByRange(
+            dolls,
+            selectedDoll,
+            measurementRanges
+          )
+          filtered = [...filtered, ...dollsInRange]
         }
+        setFilteredDolls(filtered)
+      }
 
-        return checked
+      return checked
     })
-}
+  }
 
-const clearDoll = () => {
+  const clearDoll = () => {
     setIncludeSimilar(false)
     setSelectedDoll(null)
     setFilteredDolls([])
     setSearchTerm("")
-}
+  }
 
-const filterByDoll = (patterns, selectedDolls) => {
+  const filterByDoll = (patterns, selectedDolls) => {
     if (selectedDolls.length === 0) return patterns
 
     // Create a Set of selected doll IDs for efficient lookup
     const selectedDollIds = new Set(selectedDolls.map(doll => doll.dollid))
 
-    return patterns.filter(pattern => 
-        selectedDollIds.has(pattern.dollid)
+    return patterns.filter(pattern =>
+      selectedDollIds.has(pattern.dollid)
     )
-}
+  }
 
 
-const filteredPatterns = filterByDoll(
-  filterByPatternType(filteredData(patterns, patternKeys, query), selectedPatterns),
-  filteredDolls
-)
+  const filteredPatterns = filterByDoll(
+    filterByPatternType(filteredData(patterns, patternKeys, query), selectedPatterns),
+    filteredDolls
+  )
 
   return (
     <div className="container px-5 my-3 text-dark">
@@ -147,12 +147,19 @@ const filteredPatterns = filterByDoll(
       </div>
 
       <div className="row justify-content-center bg-transparent-white">
-        {filteredPatterns.map(pattern => (
-          <div key={pattern.patternid} className="col-md-auto col-sm-auto col-lg-auto mb-4">
-            <PatternCards pattern={pattern} />
+        {filteredPatterns.length === 0 ? (
+          <div className="col-12 text-center mt-4">
+            <p className="lead text-dark">No results found.</p>
           </div>
-        ))}
+        ) : (
+          filteredPatterns.map(pattern => (
+            <div key={pattern.patternid} className="col-md-auto col-sm-auto col-lg-auto mb-4">
+              <PatternCards pattern={pattern} />
+            </div>
+          ))
+        )}
       </div>
+
     </div>
   )
 }

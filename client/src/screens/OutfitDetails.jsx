@@ -7,6 +7,8 @@ import listSizes from "../utils/listSizes"
 import getMeasurementRanges from "../utils/getMeasurementRange"
 import filterByRange from "../utils/filterByRange"
 import filterDolls from "../utils/filterDolls"
+import { patternKeys } from "../utils/searchKeys"
+import filteredData from "../utils/filteredData"
 
 const OutfitDetails = () => {
     const { id } = useParams()
@@ -33,29 +35,29 @@ const OutfitDetails = () => {
         const getPatternData = async () => {
             const { data } = await axios.get(`/api/patterns/byoutfit/${id}`)
             setPatterns(data)
-    
+
             // Extract doll IDs directly from each pattern
             const allDollIds = data.map(pattern => pattern.dollid)
             const uniqueDollIds = [...new Set(allDollIds)]
-    
+
             // Fetch and filter dolls based on unique doll IDs
             getDollData(uniqueDollIds)
-    
+
             // Extract unique pattern types
             const uniquePatterns = [...new Set(data.map(pattern => pattern.type))]
             setPatternTypes(uniquePatterns)
         }
-    
+
         const getDollData = async (dollIds) => {
             const { data } = await axios.get('/api/dolls')
             const filtered = data.filter(doll => dollIds.includes(doll.dollid))
             setDolls(filtered)
         }
-    
+
         getPatternData()
     }, [id])
-    
-    
+
+
 
     const filterByPatternType = (data, selectedPatterns) => {
         if (selectedPatterns.length === 0) return data
@@ -123,18 +125,18 @@ const OutfitDetails = () => {
 
     const filterByDoll = (patterns, selectedDolls) => {
         if (selectedDolls.length === 0) return patterns
-    
+
         // Create a Set of selected doll IDs for efficient lookup
         const selectedDollIds = new Set(selectedDolls.map(doll => doll.dollid))
-    
-        return patterns.filter(pattern => 
+
+        return patterns.filter(pattern =>
             selectedDollIds.has(pattern.dollid)
         )
     }
-    
+
 
     const filteredPatterns = filterByDoll(
-        filterByPatternType(patterns, selectedPatterns),
+        filterByPatternType(filteredData(patterns, patternKeys, query), selectedPatterns),
         filteredDolls
     )
 
@@ -185,12 +187,18 @@ const OutfitDetails = () => {
                             handleCheck={handleCheck}
                         />
                     </div>
-                    <div className="row justify-content-center bg-transparent-white mt-3">
-                        {filteredPatterns.map(pattern => (
-                            <div key={pattern.patternid} className="col-md-auto col-sm-auto col-lg-auto mb-4">
-                                <PatternCards pattern={pattern} />
+                    <div className="row justify-content-center bg-transparent-white">
+                        {filteredPatterns.length === 0 ? (
+                            <div className="col-12 text-center mt-4">
+                                <p className="lead text-dark">No results found.</p>
                             </div>
-                        ))}
+                        ) : (
+                            filteredPatterns.map(pattern => (
+                                <div key={pattern.patternid} className="col-md-auto col-sm-auto col-lg-auto mb-4">
+                                    <PatternCards pattern={pattern} />
+                                </div>
+                            ))
+                        )}
                     </div>
                 </div>
             </div>

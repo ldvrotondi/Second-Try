@@ -171,12 +171,18 @@ const BookDetails = () => {
                             handleCheck={handleCheck}
                         />
                     </div>
-                    <div className="row justify-content-center bg-transparent-white mt-3">
-                        {filteredOutfits.map(outfit => (
-                            <div className="col-md-auto col-sm-auto col-lg-auto mb-4" key={outfit.outfitid}>
-                                <OutfitCards outfit={outfit} />
+                    <div className="row justify-content-center bg-transparent-white">
+                        {filteredOutfits.length === 0 ? (
+                            <div className="col-12 text-center mt-4">
+                                <p className="lead text-dark">No results found.</p>
                             </div>
-                        ))}
+                        ) : (
+                            filteredOutfits.map((outfit) => (
+                                <div key={outfit.outfitid} className="col-md-auto col-sm-auto col-lg-auto mb-4">
+                                    <OutfitCards outfit={outfit} />
+                                </div>
+                            ))
+                        )}
                     </div>
                 </div>
             </div>

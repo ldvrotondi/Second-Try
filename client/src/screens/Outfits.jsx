@@ -128,11 +128,17 @@ const ViewOutfits = () => {
             </div>
 
             <div className="row justify-content-center bg-transparent-white">
-                {filteredOutfits.map((outfit) => (
-                    <div key={outfit.outfitid} className="col-md-auto col-sm-auto col-lg-auto mb-4">
-                        <OutfitCards outfit={outfit} />
+                {filteredOutfits.length === 0 ? (
+                    <div className="col-12 text-center mt-4">
+                        <p className="lead text-dark">No results found.</p>
                     </div>
-                ))}
+                ) : (
+                    filteredOutfits.map((outfit) => (
+                        <div key={outfit.outfitid} className="col-md-auto col-sm-auto col-lg-auto mb-4">
+                            <OutfitCards outfit={outfit} />
+                        </div>
+                    ))
+                )}
             </div>
         </div>
     )
