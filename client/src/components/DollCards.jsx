@@ -1,10 +1,10 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import formatMeasurements from "../utils/formatMeasurements.js";
+import React from "react"
+import { Link } from "react-router-dom"
+import formatMeasurements from "../utils/formatMeasurements.js"
 
 const DollCard = ({ doll }) => {
   return (
-    <div className="card" style={{ width: '18rem', margin: '5px' }}>
+    <div className="card" style={{ width: '18rem'}}>
       <div className="card-body">
         <Link to={`${doll.dollid}`} className="text-decoration-none text-custom">
           <h5 className="card-title">{doll.brand}</h5>
@@ -33,7 +33,7 @@ const DollCard = ({ doll }) => {
         </table>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default DollCard;
+export default DollCard

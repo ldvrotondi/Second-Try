@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 
 const FindSimilarDolls = ({ includeSimilar, onChange }) => {
 
@@ -16,9 +16,9 @@ const FindSimilarDolls = ({ includeSimilar, onChange }) => {
                     Include results for similar sizes
                 </label>
             </div>
-        );
+        )
         
 
-};
+}
 
-export default FindSimilarDolls;
+export default FindSimilarDolls

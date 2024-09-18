@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-import SearchBar from "../components/SearchBar";
-import PatternFilter from "../components/PatternFilter";
-import DollSearch from "../components/DollSearch";
-import FindSimilarDolls from "../components/FindSimilarDolls";
-import { Button, Collapse } from "react-bootstrap";
+import React, { useState } from "react"
+import SearchBar from "../components/SearchBar"
+import PatternFilter from "../components/PatternFilter"
+import DollSearch from "../components/DollSearch"
+import FindSimilarDolls from "../components/FindSimilarDolls"
+import { Button, Collapse } from "react-bootstrap"
 
 const AdvancedSearch = ({
     patternTypes,
@@ -19,7 +19,7 @@ const AdvancedSearch = ({
     includeSimilar,
     handleCheck
 }) => {
-    const [open, setOpen] = useState(false);
+    const [open, setOpen] = useState(false)
 
     return (
         <div>
@@ -92,7 +92,7 @@ const AdvancedSearch = ({
 
             </Collapse>
         </div>
-    );
-};
+    )
+}
 
-export default AdvancedSearch;
+export default AdvancedSearch

@@ -1,26 +1,26 @@
-import React from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import React from "react"
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom"
 
-import Navbar from './components/NavBar';
-import Footer from "./components/Footer";
-import AddDoll from "./screens/AddDoll";
-import AddBook from "./screens/AddBook";
-import AddOutfit from "./screens/AddOutfit";
-import AddPattern from "./screens/AddPattern";
-import ViewBooks from "./screens/Books";
-import ViewOutfits from "./screens/Outfits";
-import ViewDolls from "./screens/Dolls";
-import ViewPatterns from "./screens/Patterns";
-import BookDetails from "./screens/BookDetails";
-import DollDetails from "./screens/DollDetails";
-import OutfitDetails from "./screens/OutfitDetails";
-import CompareDolls from "./screens/CompareDolls";
-import FindSimilar from "./screens/FindSimilar";
-import Homepage from "./screens/Homepage";
-import Login from "./screens/Login";
-import FAQ from "./screens/FAQ";
-import Dashboard from "./screens/Dashboard";
-import ProtectedRoute from "./components/ProtectedRoute";
+import Navbar from './components/NavBar'
+import Footer from "./components/Footer"
+import AddDoll from "./screens/AddDoll"
+import AddBook from "./screens/AddBook"
+import AddOutfit from "./screens/AddOutfit"
+import AddPattern from "./screens/AddPattern"
+import ViewBooks from "./screens/Books"
+import ViewOutfits from "./screens/Outfits"
+import ViewDolls from "./screens/Dolls"
+import ViewPatterns from "./screens/Patterns"
+import BookDetails from "./screens/BookDetails"
+import DollDetails from "./screens/DollDetails"
+import OutfitDetails from "./screens/OutfitDetails"
+import CompareDolls from "./screens/CompareDolls"
+import FindSimilar from "./screens/FindSimilar"
+import Homepage from "./screens/Homepage"
+import Login from "./screens/Login"
+import FAQ from "./screens/FAQ"
+import Dashboard from "./screens/Dashboard"
+import ProtectedRoute from "./components/ProtectedRoute"
 
 const App = () => {
   return (
@@ -96,7 +96,7 @@ const App = () => {
 
     </div>
 
-  );
+  )
 }
 
-export default App;
+export default App

@@ -9,6 +9,6 @@ const filterByRange = (dolls, doll, measurementRanges) =>
       otherDoll.waist <= measurementRanges.waist.max &&
       otherDoll.hips >= measurementRanges.hips.min &&
       otherDoll.hips <= measurementRanges.hips.max
-    );
+    )
 
     export default filterByRange

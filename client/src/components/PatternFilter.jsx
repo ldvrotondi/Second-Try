@@ -1,5 +1,5 @@
-import React from "react";
-import { Form, Button } from "react-bootstrap";
+import React from "react"
+import { Form, Button } from "react-bootstrap"
 
 const PatternFilter = ({ patternTypes, selectedPatterns, setSelectedPatterns }) => {
     const handleCheckboxChange = (type) => {
@@ -7,12 +7,12 @@ const PatternFilter = ({ patternTypes, selectedPatterns, setSelectedPatterns }) 
             prev.includes(type)
                 ? prev.filter((t) => t !== type)
                 : [...prev, type]
-        );
-    };
+        )
+    }
 
     const clearAll = () => {
-        setSelectedPatterns([]);
-    };
+        setSelectedPatterns([])
+    }
 
     return (
         <div className="container mt-3">
@@ -31,7 +31,7 @@ const PatternFilter = ({ patternTypes, selectedPatterns, setSelectedPatterns }) 
                         {patternTypes
                             .sort((a, b) => a.localeCompare(b))  // Sort in alphabetical order
                             .map((type, index) => {
-                                const checkboxId = `checkbox-${type}-${index}`;
+                                const checkboxId = `checkbox-${type}-${index}`
                                 return (
                                     <div key={index} className="col-md-4 col-lg-3 mb-2">
                                         <Form.Check
@@ -43,13 +43,13 @@ const PatternFilter = ({ patternTypes, selectedPatterns, setSelectedPatterns }) 
                                             custom
                                         />
                                     </div>
-                                );
+                                )
                             })}
                     </div>
                 </div>
             </div>
         </div>
-    );
-};
+    )
+}
 
-export default PatternFilter;
+export default PatternFilter

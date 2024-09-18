@@ -1,46 +1,46 @@
-import React, { useState, useEffect } from "react";
-import axios from 'axios';
-import filterDolls from "../utils/filterDolls";
-import DollSearch from "../components/DollSearch";
-import DollTable from "../components/DollTable";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react"
+import axios from 'axios'
+import filterDolls from "../utils/filterDolls"
+import DollSearch from "../components/DollSearch"
+import DollTable from "../components/DollTable"
+import { Link } from "react-router-dom"
 
 const CompareDolls = () => {
-  const [dolls, setDolls] = useState([]);
-  const [searchTerm, setSearchTerm] = useState('');
-  const [filteredDolls, setFilteredDolls] = useState([]);
-  const [selectedDolls, setSelectedDolls] = useState([]);
+  const [dolls, setDolls] = useState([])
+  const [searchTerm, setSearchTerm] = useState('')
+  const [filteredDolls, setFilteredDolls] = useState([])
+  const [selectedDolls, setSelectedDolls] = useState([])
 
   useEffect(() => {
     const fetchDolls = async () => {
-      const { data } = await axios.get('api/dolls');
-      setDolls(data);
-    };
-    fetchDolls();
-  }, []);
+      const { data } = await axios.get('api/dolls')
+      setDolls(data)
+    }
+    fetchDolls()
+  }, [])
 
   const handleSearch = (e) => {
-    const value = e.target.value;
-    setSearchTerm(value);
-    setFilteredDolls(filterDolls(dolls, value));
-  };
+    const value = e.target.value
+    setSearchTerm(value)
+    setFilteredDolls(filterDolls(dolls, value))
+  }
 
   const handleSelectDoll = (doll) => {
     setSelectedDolls((prevSelectedDolls) => {
       if (!prevSelectedDolls.some(selected => selected.dollid === doll.dollid)) {
-        return [...prevSelectedDolls, doll];
+        return [...prevSelectedDolls, doll]
       }
-      return prevSelectedDolls;
-    });
-    setSearchTerm('');
-    setFilteredDolls([]);
-  };
+      return prevSelectedDolls
+    })
+    setSearchTerm('')
+    setFilteredDolls([])
+  }
 
   const handleRemoveDoll = (dollid) => {
     setSelectedDolls((prevSelectedDolls) =>
       prevSelectedDolls.filter((doll) => doll.dollid !== dollid)
-    );
-  };
+    )
+  }
 
   return (
     <div className="container px-5 my-3 text-custom">
@@ -74,7 +74,7 @@ const CompareDolls = () => {
         )}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default CompareDolls;
+export default CompareDolls

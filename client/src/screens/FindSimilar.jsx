@@ -1,52 +1,52 @@
-import React, { useState, useEffect } from "react";
-import axios from 'axios';
-import DollSearch from "../components/DollSearch";
-import DollTable from "../components/DollTable";
-import filterByRange from "../utils/filterByRange";
-import getMeasurementRanges from "../utils/getMeasurementRange";
-import filterDolls from "../utils/filterDolls";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react"
+import axios from 'axios'
+import DollSearch from "../components/DollSearch"
+import DollTable from "../components/DollTable"
+import filterByRange from "../utils/filterByRange"
+import getMeasurementRanges from "../utils/getMeasurementRange"
+import filterDolls from "../utils/filterDolls"
+import { Link } from "react-router-dom"
 
 const FindSimilar = () => {
-  const [dolls, setDolls] = useState([]);
-  const [searchTerm, setSearchTerm] = useState('');
-  const [filteredDolls, setFilteredDolls] = useState([]);
-  const [selectedDoll, setSelectedDoll] = useState(null);
-  const [similarDolls, setSimilarDolls] = useState([]);
+  const [dolls, setDolls] = useState([])
+  const [searchTerm, setSearchTerm] = useState('')
+  const [filteredDolls, setFilteredDolls] = useState([])
+  const [selectedDoll, setSelectedDoll] = useState(null)
+  const [similarDolls, setSimilarDolls] = useState([])
 
   useEffect(() => {
     const fetchDolls = async () => {
-      const { data } = await axios.get('api/dolls');
-      setDolls(data);
-    };
-    fetchDolls();
-  }, []);
+      const { data } = await axios.get('api/dolls')
+      setDolls(data)
+    }
+    fetchDolls()
+  }, [])
 
   const handleSearch = (e) => {
-    const value = e.target.value;
-    setSearchTerm(value);
-    setFilteredDolls(filterDolls(dolls, value));
-  };
+    const value = e.target.value
+    setSearchTerm(value)
+    setFilteredDolls(filterDolls(dolls, value))
+  }
 
   const handleSelectDoll = (doll) => {
-    setSelectedDoll(doll);
-    setSearchTerm('');
-    setFilteredDolls([]);
+    setSelectedDoll(doll)
+    setSearchTerm('')
+    setFilteredDolls([])
 
-    const measurementRanges = getMeasurementRanges(doll);
-    const dollsInRange = filterByRange(dolls, doll, measurementRanges);
+    const measurementRanges = getMeasurementRanges(doll)
+    const dollsInRange = filterByRange(dolls, doll, measurementRanges)
 
-    setSimilarDolls([doll, ...dollsInRange]);
-  };
+    setSimilarDolls([doll, ...dollsInRange])
+  }
 
   const handleRemoveDoll = (dollid) => {
     setSimilarDolls((prevDolls) =>
       prevDolls.filter((doll) => doll.dollid !== dollid)
-    );
+    )
     if (selectedDoll && selectedDoll.dollid === dollid) {
-      setSelectedDoll(null);
+      setSelectedDoll(null)
     }
-  };
+  }
 
   return (
     <div className="container px-5 my-3 text-dark">
@@ -81,7 +81,7 @@ const FindSimilar = () => {
         )}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default FindSimilar;
+export default FindSimilar

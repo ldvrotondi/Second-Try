@@ -1,21 +1,21 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import BookCards from "../components/BookCards";
-import SearchBar from "../components/SearchBar";
-import filteredData from "../utils/filteredData";
-import { bookKeys } from "../utils/searchKeys";
+import React, { useState, useEffect } from "react"
+import axios from "axios"
+import BookCards from "../components/BookCards"
+import SearchBar from "../components/SearchBar"
+import filteredData from "../utils/filteredData"
+import { bookKeys } from "../utils/searchKeys"
 
 const ViewBooks = () => {
-  const [books, setBooks] = useState([]);
-  const [query, setQuery] = useState("");
+  const [books, setBooks] = useState([])
+  const [query, setQuery] = useState("")
 
   useEffect(() => {
     const getBookData = async () => {
-      const { data } = await axios.get("api/books");
-      setBooks(data);
-    };
-    getBookData();
-  }, []);
+      const { data } = await axios.get("api/books")
+      setBooks(data)
+    }
+    getBookData()
+  }, [])
 
   return (
     <div className="container px-5 my-3 text-dark">
@@ -36,7 +36,7 @@ const ViewBooks = () => {
         }
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default ViewBooks;
+export default ViewBooks

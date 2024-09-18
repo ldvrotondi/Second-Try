@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
-import { Button } from 'react-bootstrap';
+import React, { useState } from 'react'
+import { Button } from 'react-bootstrap'
 
 const FAQ = () => {
-    const [openIndex, setOpenIndex] = useState(null);
+    const [openIndex, setOpenIndex] = useState(null)
 
     const toggleSection = (index) => {
-        setOpenIndex(openIndex === index ? null : index);
-    };
+        setOpenIndex(openIndex === index ? null : index)
+    }
 
     return (
         <div className="container px-5 my-5">
@@ -87,15 +87,34 @@ const FAQ = () => {
                                 aria-labelledby="headingFour"
                             >
                                 <div className="accordion-body">
-                                    Similar dolls are dolls that have a similar height, bust, waist, and hip size as the reference doll. They are included to help people figure out if clothes for one doll might fit another. Please note that the fit may not be perfect.   
+                                    Similar dolls are dolls that have a similar height, bust, waist, and hip size as the reference doll. They are included to help people figure out if clothes for one doll might fit another. Please note that the fit may not be perfect.
                                     <br />For example, MDDs, MSDs, and Kumakos would all be considered "similar dolls".                           </div>
+                            </div>
+                        </div>
+                        <div className="accordion-item">
+                            <div className="accordion-header" id="headingFive">
+                                <Button
+                                    className={`accordion-button ${openIndex === 3 ? 'collapsed' : ''}`}
+                                    onClick={() => toggleSection(4)}
+                                >
+                                    Some data is incorrect.
+                                </Button>
+                            </div>
+                            <div
+                                className={`accordion-collapse collapse ${openIndex === 4 ? 'show' : ''}`}
+                                id="collapseFive"
+                                aria-labelledby="headingFive"
+                            >
+                                <div className="accordion-body">
+                                    Please let me know via the contact form.
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    );
-};
+    )
+}
 
-export default FAQ;
+export default FAQ

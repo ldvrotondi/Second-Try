@@ -1,4 +1,4 @@
-import Form from "react-bootstrap/Form";
+import Form from "react-bootstrap/Form"
 
 
 const SearchBar = ({ query, setQuery }) => {
@@ -10,8 +10,8 @@ const SearchBar = ({ query, setQuery }) => {
             onChange={(e) => setQuery(e.target.value)}
             className="search-bar"
         />
-    );
-};
+    )
+}
 
 export default SearchBar
 

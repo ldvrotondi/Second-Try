@@ -1,5 +1,5 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from "react"
+import { Link } from "react-router-dom"
 
 const Homepage = () => {
   return (
@@ -37,7 +37,7 @@ const Homepage = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Homepage;
+export default Homepage

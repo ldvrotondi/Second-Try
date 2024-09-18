@@ -1,46 +1,52 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import AdminHeader from "../components/AdminHeader";
+import React, { useState, useEffect } from "react"
+import axios from "axios"
+import AdminHeader from "../components/AdminHeader"
 
 const AddPattern = () => {
-    const [patterns, setPatterns] = useState([]);
-    const [outfits, setOutfits] = useState([]);
+    const [patterns, setPatterns] = useState([])
+    const [outfits, setOutfits] = useState([])
+    const [success, setSuccess] = useState(false)
 
     useEffect(() => {
         const getPatternData = async () => {
-            const { data } = await axios.get('/api/patterns/all/');
-            setPatterns(data);
-        };
-        getPatternData();
-    }, []);
+            const { data } = await axios.get('/api/patterns/all/')
+            setPatterns(data)
+        }
+        getPatternData()
+    }, [])
 
-    const nextPatternID = (Math.max(...patterns.map(pattern => pattern.patternid), 0)) + 1;
+    const nextPatternID = (Math.max(...patterns.map(pattern => pattern.patternid), 0)) + 1
 
     useEffect(() => {
         const getOutfitData = async () => {
-            const { data } = await axios.get('/api/outfits/patterns/');
-            setOutfits(data);
-        };
-        getOutfitData();
-    }, []);
+            const { data } = await axios.get('/api/outfits/patterns/')
+            setOutfits(data)
+        }
+        getOutfitData()
+    }, [])
 
-    const nextOutfitID = (Math.max(...outfits.map(outfit => outfit.outfitid), 0));
+    const nextOutfitID = (Math.max(...outfits.map(outfit => outfit.outfitid), 0))
 
-    const [patternid, setPatternID] = useState(0);
-    const [outfitid, setOutfitID] = useState(0);
-    const [dollid, setDollID] = useState('');
-    const [type, setType] = useState('');
+    const [patternid, setPatternID] = useState(0)
+    const [outfitid, setOutfitID] = useState(0)
+    const [dollid, setDollID] = useState('')
+    const [type, setType] = useState('')
 
     const addPatternHandler = async (e) => {
-        e.preventDefault();
+        e.preventDefault()
         const data = {
             patternid: patternid,
             outfitid: outfitid,
             dollid: dollid,
             type: type,
-        };
-        await axios.post('/api/Patterns/addPattern', data);
-    };
+        }
+        try {
+            await axios.post('/api/Patterns/addPattern', data)
+            setSuccess(true)
+        } catch (error) {
+            console.error("There was an error adding the book!", error)
+        }
+    }
 
     return (
         <>
@@ -102,7 +108,7 @@ const AddPattern = () => {
                 </div>
             </div>
         </>
-    );
-};
+    )
+}
 
-export default AddPattern;
+export default AddPattern

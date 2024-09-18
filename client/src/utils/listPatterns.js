@@ -9,7 +9,7 @@ const listPatterns = (data, value) => {
           array.push(str)
           }
         };
-      let text = array.join(', ');
+      let text = array.join(', ')
       return text
     } 
   

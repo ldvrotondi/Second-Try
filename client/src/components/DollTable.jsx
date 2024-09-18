@@ -7,6 +7,7 @@ const DollTable = ({ dolls, onRemoveDoll }) => (
     <div className="table-responsive">
       <table className="table table-striped table-bordered bg-white text-dark">
         <thead>
+          {/* Row for the doll names and links */}
           <tr className="font-weight-bold">
             <th className="fw-bold table-attribute-col text-start">Name</th>
             {dolls.map(doll => (
@@ -21,7 +22,7 @@ const DollTable = ({ dolls, onRemoveDoll }) => (
           </tr>
         </thead>
         <tbody>
-          {/* Row for the "Remove" links */}
+          {/* Row for the "Remove" buttons */}
           <tr>
             <td className="fw-bold text-start">Actions</td>
             {dolls.map(doll => (

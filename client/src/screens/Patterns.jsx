@@ -1,33 +1,33 @@
-import React, { useState, useEffect } from "react";
-import axios from 'axios';
+import React, { useState, useEffect } from "react"
+import axios from 'axios'
 import PatternCards from '../components/PatternCards'
-import filteredData from "../utils/filteredData";
-import { patternKeys } from "../utils/searchKeys";
-import AdvancedSearch from "../components/AdvancedSearch";
-import getMeasurementRanges from "../utils/getMeasurementRange";
-import filterByRange from "../utils/filterByRange";
-import filterDolls from "../utils/filterDolls";
+import filteredData from "../utils/filteredData"
+import { patternKeys } from "../utils/searchKeys"
+import AdvancedSearch from "../components/AdvancedSearch"
+import getMeasurementRanges from "../utils/getMeasurementRange"
+import filterByRange from "../utils/filterByRange"
+import filterDolls from "../utils/filterDolls"
 
 
 
 const ViewPatterns = () => {
   const [patterns, setPatterns] = useState([])
-  const [query, setQuery] = useState('');
+  const [query, setQuery] = useState('')
 
-  const [filteredDolls, setFilteredDolls] = useState([]);
-  const [selectedPatterns, setSelectedPatterns] = useState([]);
-  const [patternTypes, setPatternTypes] = useState([]);
-  const [includeSimilar, setIncludeSimilar] = useState(false);
-  const [dolls, setDolls] = useState([]);
-  const [selectedDoll, setSelectedDoll] = useState([]);
-  const [searchTerm, setSearchTerm] = useState("");
+  const [filteredDolls, setFilteredDolls] = useState([])
+  const [selectedPatterns, setSelectedPatterns] = useState([])
+  const [patternTypes, setPatternTypes] = useState([])
+  const [includeSimilar, setIncludeSimilar] = useState(false)
+  const [dolls, setDolls] = useState([])
+  const [selectedDoll, setSelectedDoll] = useState([])
+  const [searchTerm, setSearchTerm] = useState("")
 
   useEffect(() => {
     const getPatternData = async () => {
       const { data } = await axios.get('api/patterns/all/')
       setPatterns(data)
-      const uniquePatterns = [...new Set(data.flatMap(pattern => pattern.type))];
-      setPatternTypes(uniquePatterns);
+      const uniquePatterns = [...new Set(data.flatMap(pattern => pattern.type))]
+      setPatternTypes(uniquePatterns)
     }
     getPatternData()
   }, []
@@ -35,93 +35,93 @@ const ViewPatterns = () => {
 
   useEffect(() => {
     const fetchDolls = async () => {
-      const { data } = await axios.get('api/dolls');
-      setDolls(data);
-    };
-    fetchDolls();
-  }, []);
+      const { data } = await axios.get('api/dolls')
+      setDolls(data)
+    }
+    fetchDolls()
+  }, [])
 
 
   const filterByPatternType = (data, selectedPatterns) => {
-    if (selectedPatterns.length === 0) return data;
+    if (selectedPatterns.length === 0) return data
     return data.filter(pattern =>
       selectedPatterns.includes(pattern.type)
-    );
-  };
+    )
+  }
 
   const handleSearch = (e) => {
-    const value = e.target.value;
-    setSearchTerm(value);
-    setFilteredDolls(filterDolls(dolls, value));
-};
+    const value = e.target.value
+    setSearchTerm(value)
+    setFilteredDolls(filterDolls(dolls, value))
+}
 
   const handleSelectDoll = (doll) => {
-    setSelectedDoll(doll);
+    setSelectedDoll(doll)
 
     const formattedSearchTerm = [doll.brand, doll.line, doll.type]
         .filter(Boolean)
         .join(" ")
-        .trim();
+        .trim()
 
-    setSearchTerm(formattedSearchTerm);
+    setSearchTerm(formattedSearchTerm)
 
     // Filter and add similar dolls if "Include Similar" is checked
-    let filtered = [doll];
+    let filtered = [doll]
     if (includeSimilar) {
-        const measurementRanges = getMeasurementRanges(doll);
-        const dollsInRange = filterByRange(dolls, doll, measurementRanges);
-        filtered = [...filtered, ...dollsInRange];
+        const measurementRanges = getMeasurementRanges(doll)
+        const dollsInRange = filterByRange(dolls, doll, measurementRanges)
+        filtered = [...filtered, ...dollsInRange]
     }
 
-    setFilteredDolls(filtered);
-};
+    setFilteredDolls(filtered)
+}
 
 const handleCheck = () => {
     setIncludeSimilar((prevIncludeSimilar) => {
-        const checked = !prevIncludeSimilar;
+        const checked = !prevIncludeSimilar
 
         // If there's a selected doll, update filtered dolls based on "Include Similar" being checked or unchecked
         if (selectedDoll) {
-            let filtered = [selectedDoll];
+            let filtered = [selectedDoll]
             if (checked) {
-                const measurementRanges = getMeasurementRanges(selectedDoll);
+                const measurementRanges = getMeasurementRanges(selectedDoll)
                 const dollsInRange = filterByRange(
                     dolls,
                     selectedDoll,
                     measurementRanges
-                );
-                filtered = [...filtered, ...dollsInRange];
+                )
+                filtered = [...filtered, ...dollsInRange]
             }
-            setFilteredDolls(filtered);
+            setFilteredDolls(filtered)
         }
 
-        return checked;
-    });
-};
+        return checked
+    })
+}
 
 const clearDoll = () => {
-    setIncludeSimilar(false);
-    setSelectedDoll(null);
-    setFilteredDolls([]);
-    setSearchTerm("");
-};
+    setIncludeSimilar(false)
+    setSelectedDoll(null)
+    setFilteredDolls([])
+    setSearchTerm("")
+}
 
 const filterByDoll = (patterns, selectedDolls) => {
-    if (selectedDolls.length === 0) return patterns;
+    if (selectedDolls.length === 0) return patterns
 
     // Create a Set of selected doll IDs for efficient lookup
-    const selectedDollIds = new Set(selectedDolls.map(doll => doll.dollid));
+    const selectedDollIds = new Set(selectedDolls.map(doll => doll.dollid))
 
     return patterns.filter(pattern => 
         selectedDollIds.has(pattern.dollid)
-    );
-};
+    )
+}
 
 
 const filteredPatterns = filterByDoll(
   filterByPatternType(filteredData(patterns, patternKeys, query), selectedPatterns),
   filteredDolls
-);
+)
 
   return (
     <div className="container px-5 my-3 text-dark">
@@ -154,7 +154,7 @@ const filteredPatterns = filterByDoll(
         ))}
       </div>
     </div>
-  );
+  )
 }
 
 export default ViewPatterns

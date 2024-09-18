@@ -1,31 +1,32 @@
-import React, { useState } from "react";
-import axios from "axios";
-import AdminHeader from "../components/AdminHeader";
+import React, { useState } from "react"
+import axios from "axios"
+import AdminHeader from "../components/AdminHeader"
 
 const AddDoll = () => {
-    const [dollid, setDollID] = useState('');
-    const [brand, setBrand] = useState('');
-    const [line, setLine] = useState('');
-    const [type, setType] = useState('');
-    const [height, setHeight] = useState(0);
-    const [head, setHead] = useState(0);
-    const [neck, setNeck] = useState(0);
-    const [bust, setBust] = useState(0);
-    const [waist, setWaist] = useState(0);
-    const [hips, setHips] = useState(0);
-    const [thigh, setThigh] = useState(0);
-    const [calf, setCalf] = useState(0);
-    const [shoulders, setShoulders] = useState(0);
-    const [armlen, setArmlen] = useState(0);
-    const [upperarmcirc, setUpperarmcirc] = useState(0);
-    const [lowerarmcirc, setLowerarmcirc] = useState(0);
-    const [wrist, setWrist] = useState(0);
-    const [inseam, setInseam] = useState(0);
-    const [footlen, setFootlen] = useState(0);
-    const [footwid, setFootwid] = useState(0);
+    const [dollid, setDollID] = useState('')
+    const [brand, setBrand] = useState('')
+    const [line, setLine] = useState('')
+    const [type, setType] = useState('')
+    const [height, setHeight] = useState(0)
+    const [head, setHead] = useState(0)
+    const [neck, setNeck] = useState(0)
+    const [bust, setBust] = useState(0)
+    const [waist, setWaist] = useState(0)
+    const [hips, setHips] = useState(0)
+    const [thigh, setThigh] = useState(0)
+    const [calf, setCalf] = useState(0)
+    const [shoulders, setShoulders] = useState(0)
+    const [armlen, setArmlen] = useState(0)
+    const [upperarmcirc, setUpperarmcirc] = useState(0)
+    const [lowerarmcirc, setLowerarmcirc] = useState(0)
+    const [wrist, setWrist] = useState(0)
+    const [inseam, setInseam] = useState(0)
+    const [footlen, setFootlen] = useState(0)
+    const [footwid, setFootwid] = useState(0)
+    const [success, setSuccess] = useState(false)
 
     const AddDollHandler = async (e) => {
-        e.preventDefault();
+        e.preventDefault()
         const data = {
             dollid,
             brand,
@@ -47,15 +48,21 @@ const AddDoll = () => {
             inseam,
             footlen,
             footwid,
-        };
-        await axios.post('/api/dolls/adddoll', data);
-    };
+        }
+        try {
+            await axios.post('/api/dolls/adddoll', data)
+            setSuccess(true)
+        } catch (error) {
+            console.error("There was an error adding the book!", error)
+        }
+
+    }
 
     return (
         <>
             <AdminHeader />
             <div className="container mt-4">
-            <div className="row justify-content-center">
+                <div className="row justify-content-center">
                     <div className="col-md-6 px-5 my-3 text-custom bg-transparent-white">
                         <h2 className="display-6 fw-bolder text-custom mb-4 text-center">Add New Doll</h2>
                         <form onSubmit={AddDollHandler}>
@@ -310,11 +317,16 @@ const AddDoll = () => {
                                 <button type="submit" className="btn btn-primary text-light">Add Doll</button>
                             </div>
                         </form>
+                        {success && (
+                            <div className="mt-3 alert alert-success" role="alert">
+                                Book added successfully!
+                            </div>
+                        )}
                     </div>
                 </div>
             </div>
         </>
-    );
-};
+    )
+}
 
-export default AddDoll;
+export default AddDoll

@@ -3,15 +3,15 @@
 //formats doll measurements for easier radability 
  const formatMeasurements = (measurement) => {
     if (!measurement || measurement == 0) {
-      return '---';
+      return '---'
     } else {
-      measurement = measurement.toString();
+      measurement = measurement.toString()
       if (measurement.includes('.')) {
-        return measurement;
+        return measurement
       } else {
-        return measurement + '.0';
+        return measurement + '.0'
       }
     }
-  };
+  }
 
   export default formatMeasurements

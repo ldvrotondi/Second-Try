@@ -1,12 +1,12 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom"
 
 const AdminHeader = () => {
-    const navigate = useNavigate();
+    const navigate = useNavigate()
 
     const handleLogout = () => {
-        localStorage.removeItem('token'); // Remove the token from localStorage
-        navigate('/'); // Redirect to the home page
-    };
+        localStorage.removeItem('token') // Remove the token from localStorage
+        navigate('/') // Redirect to the home page upon logout
+    }
 
     return (
         <div>
@@ -24,7 +24,7 @@ const AdminHeader = () => {
                 </div>
             </nav>
         </div>
-    );
-};
+    )
+}
 
-export default AdminHeader;
+export default AdminHeader

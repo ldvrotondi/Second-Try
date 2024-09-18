@@ -1,138 +1,135 @@
-import React, { useEffect, useState } from "react";
-import axios from 'axios';
-import { useParams } from "react-router-dom";
-import OutfitCards from "../components/OutfitCards";
-import filteredData from "../utils/filteredData";
-import { outfitKeys } from "../utils/searchKeys";
-import AdvancedSearch from "../components/AdvancedSearch";
-import filterByPatternType from "../utils/filterbyPattern";
-import filterByDoll from "../utils/filterByDoll";
-import filterDolls from "../utils/filterDolls";
-import getMeasurementRanges from "../utils/getMeasurementRange";
-import filterByRange from "../utils/filterByRange";
+import React, { useEffect, useState } from "react"
+import axios from 'axios'
+import { useParams } from "react-router-dom"
+import OutfitCards from "../components/OutfitCards"
+import filteredData from "../utils/filteredData"
+import { outfitKeys } from "../utils/searchKeys"
+import AdvancedSearch from "../components/AdvancedSearch"
+import filterByPatternType from "../utils/filterbyPattern"
+import filterByDoll from "../utils/filterByDoll"
+import filterDolls from "../utils/filterDolls"
+import getMeasurementRanges from "../utils/getMeasurementRange"
+import filterByRange from "../utils/filterByRange"
 
 const BookDetails = () => {
-    const { id } = useParams();
-    const [query, setQuery] = useState('');
-    const [series, setSeries] = useState('');
-    const [seriesjp, setSeriesJP] = useState('');
-    const [issue, setIssue] = useState('');
-    const [issuejp, setIssueJP] = useState('');
-    const [publisher, setPublisher] = useState('');
-    const [isbn, setISBN] = useState(0);
-    const [outfits, setOutfits] = useState([]);
-    const [selectedPatterns, setSelectedPatterns] = useState([]);
-    const [patternTypes, setPatternTypes] = useState([]);
-    const [filteredDolls, setFilteredDolls] = useState([]);
-    const [selectedDoll, setSelectedDoll] = useState(null);
-    const [searchTerm, setSearchTerm] = useState("");
-    const [includeSimilar, setIncludeSimilar] = useState(false);
-    const [dolls, setDolls] = useState([]);
+    const { id } = useParams()
+    const [query, setQuery] = useState('')
+    const [series, setSeries] = useState('')
+    const [seriesjp, setSeriesJP] = useState('')
+    const [issue, setIssue] = useState('')
+    const [issuejp, setIssueJP] = useState('')
+    const [publisher, setPublisher] = useState('')
+    const [isbn, setISBN] = useState(0)
+    const [outfits, setOutfits] = useState([])
+    const [selectedPatterns, setSelectedPatterns] = useState([])
+    const [patternTypes, setPatternTypes] = useState([])
+    const [filteredDolls, setFilteredDolls] = useState([])
+    const [selectedDoll, setSelectedDoll] = useState(null)
+    const [searchTerm, setSearchTerm] = useState("")
+    const [includeSimilar, setIncludeSimilar] = useState(false)
+    const [dolls, setDolls] = useState([])
 
     useEffect(() => {
         const getBook = async () => {
-            const { data } = await axios.get(`/api/books/book/${id}`);
-            setSeries(data.series);
-            setSeriesJP(data.seriesjp);
-            setIssue(data.issue);
-            setIssueJP(data.issuejp);
-            setPublisher(data.publisher);
-            setISBN(data.isbn);
-        };
-        getBook();
-    }, [id]);
+            const { data } = await axios.get(`/api/books/book/${id}`)
+            setSeries(data.series)
+            setSeriesJP(data.seriesjp)
+            setIssue(data.issue)
+            setIssueJP(data.issuejp)
+            setPublisher(data.publisher)
+            setISBN(data.isbn)
+        }
+        getBook()
+    }, [id])
 
     useEffect(() => {
         const getOutfitData = async () => {
-            const { data } = await axios.get(`/api/outfits/bybook/${id}`);
-            setOutfits(data);
+            const { data } = await axios.get(`/api/outfits/bybook/${id}`)
+            setOutfits(data)
 
-            // Extract unique doll IDs from the outfits
+            // Extract unique doll IDs from the outfits for the advanced search component
             const allDollIds = data.flatMap(outfit =>
                 outfit.pattern.map(p => p.dollid)
-            );
-            const uniqueDollIds = [...new Set(allDollIds)];
+            )
+            const uniqueDollIds = [...new Set(allDollIds)]
+            getDollData(uniqueDollIds)
 
-            // Fetch dolls filtered by these doll IDs
-            getDollData(uniqueDollIds);
-
-            // Extract unique pattern types from the outfits
-            const allPatterns = data.flatMap(outfit => outfit.pattern.map(p => p.type));
-            const uniquePatterns = [...new Set(allPatterns)];
-            setPatternTypes(uniquePatterns);
-        };
+            // Extract unique pattern types from the outfits for the advanced search component
+            const allPatterns = data.flatMap(outfit => outfit.pattern.map(p => p.type))
+            const uniquePatterns = [...new Set(allPatterns)]
+            setPatternTypes(uniquePatterns)
+        }
 
         const getDollData = async (dollIds) => {
-            const { data } = await axios.get('/api/dolls');
-            // Filter dolls to only include those with dollid in the uniqueDollIds
-            const filtered = data.filter(doll => dollIds.includes(doll.dollid));
-            setDolls(filtered);
-        };
+            const { data } = await axios.get('/api/dolls')
+            // Filter dolls to only include those with dollid in the pattern set
+            const filtered = data.filter(doll => dollIds.includes(doll.dollid))
+            setDolls(filtered)
+        }
 
-        getOutfitData();
-    }, [id]);
+        getOutfitData()
+    }, [id])
 
     const handleSearch = (e) => {
-        const value = e.target.value;
-        setSearchTerm(value);
-        setFilteredDolls(filterDolls(dolls, value));
-    };
+        const value = e.target.value
+        setSearchTerm(value)
+        setFilteredDolls(filterDolls(dolls, value))
+    }
 
     const handleSelectDoll = (doll) => {
-        setSelectedDoll(doll);
+        setSelectedDoll(doll)
 
         const formattedSearchTerm = [doll.brand, doll.line, doll.type]
             .filter(Boolean)
             .join(" ")
-            .trim();
+            .trim()
 
-        setSearchTerm(formattedSearchTerm);
+        setSearchTerm(formattedSearchTerm)
 
         // Filter and add similar dolls if "Include Similar" is checked
-        let filtered = [doll];
+        let filtered = [doll]
         if (includeSimilar) {
-            const measurementRanges = getMeasurementRanges(doll);
-            const dollsInRange = filterByRange(dolls, doll, measurementRanges);
-            filtered = [...filtered, ...dollsInRange];
+            const measurementRanges = getMeasurementRanges(doll)
+            const dollsInRange = filterByRange(dolls, doll, measurementRanges)
+            filtered = [...filtered, ...dollsInRange]
         }
 
-        setFilteredDolls(filtered);
-    };
+        setFilteredDolls(filtered)
+    }
 
     const handleCheck = () => {
         setIncludeSimilar((prevIncludeSimilar) => {
-            const checked = !prevIncludeSimilar;
+            const checked = !prevIncludeSimilar
 
-            // If there's a selected doll, update filtered dolls based on "Include Similar" being checked or unchecked
             if (selectedDoll) {
-                let filtered = [selectedDoll];
+                let filtered = [selectedDoll]
                 if (checked) {
-                    const measurementRanges = getMeasurementRanges(selectedDoll);
+                    const measurementRanges = getMeasurementRanges(selectedDoll)
                     const dollsInRange = filterByRange(
                         dolls,
                         selectedDoll,
                         measurementRanges
-                    );
-                    filtered = [...filtered, ...dollsInRange];
+                    )
+                    filtered = [...filtered, ...dollsInRange]
                 }
-                setFilteredDolls(filtered);
+                setFilteredDolls(filtered)
             }
 
-            return checked;
-        });
-    };
+            return checked
+        })
+    }
 
     const clearDoll = () => {
-        setIncludeSimilar(false);
-        setSelectedDoll(null);
-        setFilteredDolls([]);
-        setSearchTerm("");
-    };
+        setIncludeSimilar(false)
+        setSelectedDoll(null)
+        setFilteredDolls([])
+        setSearchTerm("")
+    }
 
     const filteredOutfits = filterByDoll(
         filterByPatternType(filteredData(outfits, outfitKeys, query), selectedPatterns),
         filteredDolls
-    );
+    )
 
     return (
         <div className="container px-5 my-3 text-dark">
@@ -184,7 +181,7 @@ const BookDetails = () => {
                 </div>
             </div>
         </div>
-    );
-};
+    )
+}
 
-export default BookDetails;
+export default BookDetails

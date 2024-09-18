@@ -1,18 +1,19 @@
-import React, { useState } from "react";
-import axios from "axios";
-import AdminHeader from "../components/AdminHeader";
+import React, { useState } from "react"
+import axios from "axios"
+import AdminHeader from "../components/AdminHeader"
 
 const AddBook = () => {
-    const [issueid, setIssueID] = useState('');
-    const [series, setSeries] = useState('');
-    const [seriesjp, setSeriesJP] = useState('');
-    const [issue, setIssue] = useState('');
-    const [issuejp, setIssueJP] = useState('');
-    const [publisher, setPublisher] = useState('');
-    const [isbn, setISBN] = useState(0);
+    const [issueid, setIssueID] = useState('')
+    const [series, setSeries] = useState('')
+    const [seriesjp, setSeriesJP] = useState('')
+    const [issue, setIssue] = useState('')
+    const [issuejp, setIssueJP] = useState('')
+    const [publisher, setPublisher] = useState('')
+    const [isbn, setISBN] = useState(0)
+    const [success, setSuccess] = useState(false)
 
     const addBookHandler = async (e) => {
-        e.preventDefault();
+        e.preventDefault()
         const data = {
             issueid: issueid,
             series: series,
@@ -21,9 +22,14 @@ const AddBook = () => {
             issuejp: issuejp,
             publisher: publisher,
             isbn: isbn
-        };
-        await axios.post('/api/books/addbook', data);
-    };
+        }
+        try {
+            await axios.post('/api/books/addbook', data)
+            setSuccess(true)
+        } catch (error) {
+            console.error("There was an error adding the book!", error)
+        }
+    }
 
     return (
         <>
@@ -108,12 +114,17 @@ const AddBook = () => {
                                     Add Book
                                 </button>
                             </form>
+                            {success && (
+                                <div className="mt-3 alert alert-success" role="alert">
+                                    Book added successfully!
+                                </div>
+                            )}
                         </div>
                     </div>
                 </div>
             </div>
         </>
-    );
-};
+    )
+}
 
-export default AddBook;
+export default AddBook

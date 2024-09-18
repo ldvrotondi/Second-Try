@@ -1,34 +1,40 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import AdminHeader from "../components/AdminHeader";
+import React, { useState, useEffect } from "react"
+import axios from "axios"
+import AdminHeader from "../components/AdminHeader"
 
 const AddOutfit = () => {
-    const [outfitid, setOutfitID] = useState(0);
-    const [issueid, setIssueID] = useState('');
-    const [name, setName] = useState('');
-    const [designer, setDesigner] = useState('');
-    const [outfits, setOutfits] = useState([]);
+    const [outfitid, setOutfitID] = useState(0)
+    const [issueid, setIssueID] = useState('')
+    const [name, setName] = useState('')
+    const [designer, setDesigner] = useState('')
+    const [outfits, setOutfits] = useState([])
+    const [success, setSuccess] = useState(false)
 
     const addOutfitHandler = async (e) => {
-        e.preventDefault();
+        e.preventDefault()
         const data = {
             outfitid: outfitid,
             issueid: issueid,
             name: name,
             designer: designer,
-        };
-        await axios.post('/api/outfits/addoutfit', data);
-    };
+        }
+        try {
+            await axios.post('/api/outfits/addoutfit', data)
+            setSuccess(true)
+        } catch (error) {
+            console.error("There was an error adding the book!", error)
+        }
+    }
 
     useEffect(() => {
         const getOutfitData = async () => {
-            const { data } = await axios.get('/api/outfits/patterns/');
-            setOutfits(data);
-        };
-        getOutfitData();
-    }, []);
+            const { data } = await axios.get('/api/outfits/patterns/')
+            setOutfits(data)
+        }
+        getOutfitData()
+    }, [])
 
-    const nextOutfitID = (Math.max(...outfits.map(outfit => outfit.outfitid), 0)) + 1;
+    const nextOutfitID = (Math.max(...outfits.map(outfit => outfit.outfitid), 0)) + 1
 
     return (
         <>
@@ -88,7 +94,7 @@ const AddOutfit = () => {
                 </div>
             </div>
         </>
-    );
-};
+    )
+}
 
-export default AddOutfit;
+export default AddOutfit

@@ -1,10 +1,11 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from "react"
+import { Link } from "react-router-dom"
 
 const typeUppercase = (str) => {
   return str.length ? str.charAt(0).toUpperCase() + str.slice(1) : str
 }
 
+//format doll name as a human-readable string
 const listSizes = (data) => {
           var dollexists = data.doll
           if (!dollexists){
@@ -15,7 +16,7 @@ const listSizes = (data) => {
           let brand = data.doll.brand
           let line = data.doll.line
           let type = data.doll.type
-          let result = [brand, line, type].filter(Boolean).join(" ");
+          let result = [brand, line, type].filter(Boolean).join(" ")
           return <Link to={`/dolls/${data.dollid}`} key={result} className={`outfit-card-innerLink`}>
           {result}
         </Link>
@@ -47,8 +48,8 @@ const listSizes = (data) => {
           </div>
         </div>
       </div>
-    );
-  };
+    )
+  }
   
-  export default PatternCard;
+  export default PatternCard
   

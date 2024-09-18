@@ -1,8 +1,8 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import './card.css';
-import listSizes from "../utils/listSizes";
-import listPatterns from "../utils/listPatterns";
+import React from "react"
+import { Link } from "react-router-dom"
+import './card.css'
+import listSizes from "../utils/listSizes"
+import listPatterns from "../utils/listPatterns"
 
 
 const OutfitCards = ({ outfit }) => {
@@ -24,7 +24,7 @@ const OutfitCards = ({ outfit }) => {
     </div>
   </div>
   
-  );
-};
+  )
+}
 
-export default OutfitCards;
+export default OutfitCards
