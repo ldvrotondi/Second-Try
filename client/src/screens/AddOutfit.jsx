@@ -89,6 +89,11 @@ const AddOutfit = () => {
                                     Add Outfit
                                 </button>
                             </form>
+                            {success && (
+                            <div className="mt-3 alert alert-success" role="alert">
+                                Outfit added successfully!
+                            </div>
+                        )}
                         </div>
                     </div>
                 </div>

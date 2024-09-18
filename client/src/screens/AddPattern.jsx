@@ -103,6 +103,11 @@ const AddPattern = () => {
                                     Add Pattern
                                 </button>
                             </form>
+                            {success && (
+                            <div className="mt-3 alert alert-success" role="alert">
+                                Pattern added successfully!
+                            </div>
+                        )}
                         </div>
                     </div>
                 </div>

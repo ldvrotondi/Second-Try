@@ -319,7 +319,7 @@ const AddDoll = () => {
                         </form>
                         {success && (
                             <div className="mt-3 alert alert-success" role="alert">
-                                Book added successfully!
+                                Doll added successfully!
                             </div>
                         )}
                     </div>
