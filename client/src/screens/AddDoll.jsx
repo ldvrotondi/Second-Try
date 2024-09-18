@@ -1,178 +1,320 @@
-import React, {useState} from "react";
-import { Container, Row, Col } from "react-bootstrap";
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
+import React, { useState } from "react";
 import axios from "axios";
+import AdminHeader from "../components/AdminHeader";
 
-//to do: password protect
+const AddDoll = () => {
+    const [dollid, setDollID] = useState('');
+    const [brand, setBrand] = useState('');
+    const [line, setLine] = useState('');
+    const [type, setType] = useState('');
+    const [height, setHeight] = useState(0);
+    const [head, setHead] = useState(0);
+    const [neck, setNeck] = useState(0);
+    const [bust, setBust] = useState(0);
+    const [waist, setWaist] = useState(0);
+    const [hips, setHips] = useState(0);
+    const [thigh, setThigh] = useState(0);
+    const [calf, setCalf] = useState(0);
+    const [shoulders, setShoulders] = useState(0);
+    const [armlen, setArmlen] = useState(0);
+    const [upperarmcirc, setUpperarmcirc] = useState(0);
+    const [lowerarmcirc, setLowerarmcirc] = useState(0);
+    const [wrist, setWrist] = useState(0);
+    const [inseam, setInseam] = useState(0);
+    const [footlen, setFootlen] = useState(0);
+    const [footwid, setFootwid] = useState(0);
 
-const AddDoll = () =>{
-    
-    const [dollid, setDollID] = useState('')
-    const [brand, setBrand] = useState('')
-    const [line, setLine] = useState('')
-    const [type, setType] = useState('')
-    const [height, setHeight] = useState(0)
-    const [head, setHead] = useState(0)
-    const [neck, setNeck] = useState(0)
-    const [bust, setBust] = useState(0)
-    const [waist, setWaist] = useState(0)
-    const [hips, setHips] = useState(0)
-    const [thigh, setThigh] = useState(0)
-    const [calf, setCalf] = useState(0)
-    const [shoulders, setShoulders] = useState(0)
-    const [armlen, setArmlen] = useState(0)
-    const [upperarmcirc, setUpperarmcirc] = useState(0)
-    const [lowerarmcirc, setLowerarmcirc] = useState(0)
-    const [wrist, setWrist] = useState(0)
-    const [inseam, setInseam] = useState(0)
-    const [footlen, setFootlen] = useState(0)
-    const [footwid, setFootwid] = useState(0)
+    const AddDollHandler = async (e) => {
+        e.preventDefault();
+        const data = {
+            dollid,
+            brand,
+            line,
+            type,
+            height,
+            head,
+            neck,
+            bust,
+            waist,
+            hips,
+            thigh,
+            calf,
+            shoulders,
+            armlen,
+            upperarmcirc,
+            lowerarmcirc,
+            wrist,
+            inseam,
+            footlen,
+            footwid,
+        };
+        await axios.post('/api/dolls/adddoll', data);
+    };
 
-    const AddDollHandler = async () => {
-            const data = {
-                dollid: dollid,
-                brand: brand,
-                line: line,
-                type: type,
-                height: height,
-                head: head,
-                neck: neck,
-                bust: bust,
-                waist: waist,
-                hips: hips,
-                thigh: thigh,
-                calf: calf,
-                shoulders: shoulders,
-                armlen: armlen,
-                upperarmcirc: upperarmcirc,
-                lowerarmcirc: lowerarmcirc,
-                wrist: wrist,
-                inseam: inseam,
-                footlen: footlen,
-                footwid: footwid,
-
-            }
-            await axios.post('/api/dolls/adddoll', data)
-    }
-
-    return(
+    return (
         <>
-      <Container>
-        <h2>Add New Doll</h2>
-        <hr />
-            <Col>
-            <Form onSubmit={AddDollHandler}>
+            <AdminHeader />
+            <div className="container mt-4">
+            <div className="row justify-content-center">
+                    <div className="col-md-6 px-5 my-3 text-custom bg-transparent-white">
+                        <h2 className="display-6 fw-bolder text-custom mb-4 text-center">Add New Doll</h2>
+                        <form onSubmit={AddDollHandler}>
+                            <div className="mb-3">
+                                <label htmlFor="dollid" className="form-label">Doll ID</label>
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    id="dollid"
+                                    value={dollid}
+                                    onChange={(e) => setDollID(e.target.value)}
+                                    placeholder="Enter Doll ID"
+                                />
+                            </div>
 
-            <Form.Group className="mb-3" as={Row} controlId="dollid">
-            <Form.Label> Doll ID: </Form.Label>
-               <Form.Control type="text" value={dollid} onChange={((e)=> setDollID(e.target.value))} placeholder="Enter Doll ID" />
-            </Form.Group>
+                            <div className="mb-3">
+                                <label htmlFor="brand" className="form-label">Brand</label>
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    id="brand"
+                                    value={brand}
+                                    onChange={(e) => setBrand(e.target.value)}
+                                    placeholder="Enter Brand"
+                                />
+                            </div>
 
-           
-            <Form.Group as={Row} className="mb-3" controlId="brand">
-            <Form.Label> Brand:   </Form.Label>
-                <Form.Control type="text" value={brand} onChange={((e)=> setBrand(e.target.value))} placeholder="Enter Brand" />
-            </Form.Group>
+                            <div className="mb-3">
+                                <label htmlFor="line" className="form-label">Line</label>
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    id="line"
+                                    value={line}
+                                    onChange={(e) => setLine(e.target.value)}
+                                    placeholder="Enter Line"
+                                />
+                            </div>
 
-            <Form.Group as={Row} className="mb-3" controlId="Line">
-            <Form.Label>  Line: </Form.Label>
-                <Form.Control type="text" value={line} onChange={((e)=> setLine(e.target.value))} placeholder="Enter Line" />
-            </Form.Group>
-           
-            <Form.Group as={Row} className="mb-3" controlId="type">
-            <Form.Label> Type: </Form.Label>
-                <Form.Control type="text" value={type} onChange={((e)=> setType(e.target.value))} placeholder="Enter Type" />
-            </Form.Group>
+                            <div className="mb-3">
+                                <label htmlFor="type" className="form-label">Type</label>
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    id="type"
+                                    value={type}
+                                    onChange={(e) => setType(e.target.value)}
+                                    placeholder="Enter Type"
+                                />
+                            </div>
 
-             <Form.Group as={Row} className="mb-3" controlId="height">
-             <Form.Label>  Height: </Form.Label>
-             <Form.Control type="text" value={height} onChange={((e)=> setHeight(e.target.value))} placeholder="Enter Height" />
-               </Form.Group> 
+                            <div className="row">
+                                <div className="col-md-6 mb-3">
+                                    <label htmlFor="height" className="form-label">Height</label>
+                                    <input
+                                        type="text"
+                                        className="form-control"
+                                        id="height"
+                                        value={height}
+                                        onChange={(e) => setHeight(e.target.value)}
+                                        placeholder="Enter Height"
+                                    />
+                                </div>
+                                <div className="col-md-6 mb-3">
+                                    <label htmlFor="head" className="form-label">Head</label>
+                                    <input
+                                        type="text"
+                                        className="form-control"
+                                        id="head"
+                                        value={head}
+                                        onChange={(e) => setHead(e.target.value)}
+                                        placeholder="Enter Head Size"
+                                    />
+                                </div>
+                            </div>
 
-            <Form.Group as={Row} className="mb-3" controlId="head">
-            <Form.Label>Head: </Form.Label>
-            <Form.Control type="text" value={head} onChange={((e)=> setHead(e.target.value))} placeholder="Enter Head Size" />
-            </Form.Group>
+                            <div className="row">
+                                <div className="col-md-6 mb-3">
+                                    <label htmlFor="neck" className="form-label">Neck</label>
+                                    <input
+                                        type="text"
+                                        className="form-control"
+                                        id="neck"
+                                        value={neck}
+                                        onChange={(e) => setNeck(e.target.value)}
+                                        placeholder="Enter Neck Size"
+                                    />
+                                </div>
+                                <div className="col-md-6 mb-3">
+                                    <label htmlFor="bust" className="form-label">Bust</label>
+                                    <input
+                                        type="text"
+                                        className="form-control"
+                                        id="bust"
+                                        value={bust}
+                                        onChange={(e) => setBust(e.target.value)}
+                                        placeholder="Enter Bust Size"
+                                    />
+                                </div>
+                            </div>
 
-            <Form.Group as={Row} className="mb-3" controlId="neck">
-            <Form.Label>Neck: </Form.Label>
-            <Form.Control type="text" value={neck} onChange={((e)=> setNeck(e.target.value))} placeholder="Enter Neck Size" />
-            </Form.Group>
+                            <div className="row">
+                                <div className="col-md-6 mb-3">
+                                    <label htmlFor="waist" className="form-label">Waist</label>
+                                    <input
+                                        type="text"
+                                        className="form-control"
+                                        id="waist"
+                                        value={waist}
+                                        onChange={(e) => setWaist(e.target.value)}
+                                        placeholder="Enter Waist Size"
+                                    />
+                                </div>
+                                <div className="col-md-6 mb-3">
+                                    <label htmlFor="hips" className="form-label">Hips</label>
+                                    <input
+                                        type="text"
+                                        className="form-control"
+                                        id="hips"
+                                        value={hips}
+                                        onChange={(e) => setHips(e.target.value)}
+                                        placeholder="Enter Hips Size"
+                                    />
+                                </div>
+                            </div>
 
-            <Form.Group as={Row} className="mb-3" controlId="bust">
-            <Form.Label>Bust: </Form.Label>
-            <Form.Control type="text" value={bust} onChange={((e)=> setBust(e.target.value))} placeholder="Enter Bust Size" />
-            </Form.Group>
+                            <div className="row">
+                                <div className="col-md-6 mb-3">
+                                    <label htmlFor="thigh" className="form-label">Thigh</label>
+                                    <input
+                                        type="text"
+                                        className="form-control"
+                                        id="thigh"
+                                        value={thigh}
+                                        onChange={(e) => setThigh(e.target.value)}
+                                        placeholder="Enter Thigh Size"
+                                    />
+                                </div>
+                                <div className="col-md-6 mb-3">
+                                    <label htmlFor="calf" className="form-label">Calf</label>
+                                    <input
+                                        type="text"
+                                        className="form-control"
+                                        id="calf"
+                                        value={calf}
+                                        onChange={(e) => setCalf(e.target.value)}
+                                        placeholder="Enter Calf Size"
+                                    />
+                                </div>
+                            </div>
 
-            <Form.Group as={Row} className="mb-3" controlId="waist">
-            <Form.Label>Waist: </Form.Label>
-            <Form.Control type="text" value={waist} onChange={((e)=> setWaist(e.target.value))} placeholder="Enter Waist Size" />
-            </Form.Group>
+                            <div className="row">
+                                <div className="col-md-6 mb-3">
+                                    <label htmlFor="shoulders" className="form-label">Shoulders</label>
+                                    <input
+                                        type="text"
+                                        className="form-control"
+                                        id="shoulders"
+                                        value={shoulders}
+                                        onChange={(e) => setShoulders(e.target.value)}
+                                        placeholder="Enter Shoulder Width"
+                                    />
+                                </div>
+                                <div className="col-md-6 mb-3">
+                                    <label htmlFor="armlen" className="form-label">Arm Length</label>
+                                    <input
+                                        type="text"
+                                        className="form-control"
+                                        id="armlen"
+                                        value={armlen}
+                                        onChange={(e) => setArmlen(e.target.value)}
+                                        placeholder="Enter Arm Length"
+                                    />
+                                </div>
+                            </div>
 
-            <Form.Group as={Row} className="mb-3" controlId="hips">
-            <Form.Label>Hips: </Form.Label>
-            <Form.Control type="text" value={hips} onChange={((e)=> setHips(e.target.value))} placeholder="Enter Hip Size" />
-            </Form.Group>
+                            <div className="row">
+                                <div className="col-md-6 mb-3">
+                                    <label htmlFor="upperarmcirc" className="form-label">Upper Arm</label>
+                                    <input
+                                        type="text"
+                                        className="form-control"
+                                        id="upperarmcirc"
+                                        value={upperarmcirc}
+                                        onChange={(e) => setUpperarmcirc(e.target.value)}
+                                        placeholder="Enter Upper Arm Circumference"
+                                    />
+                                </div>
+                                <div className="col-md-6 mb-3">
+                                    <label htmlFor="lowerarmcirc" className="form-label">Lower Arm</label>
+                                    <input
+                                        type="text"
+                                        className="form-control"
+                                        id="lowerarmcirc"
+                                        value={lowerarmcirc}
+                                        onChange={(e) => setLowerarmcirc(e.target.value)}
+                                        placeholder="Enter Lower Arm Circumference"
+                                    />
+                                </div>
+                            </div>
 
-            <Form.Group as={Row} className="mb-3" controlId="thigh">
-            <Form.Label>Thigh: </Form.Label>
-            <Form.Control type="text" value={thigh} onChange={((e)=> setThigh(e.target.value))} placeholder="Enter Thigh Size" />
-            </Form.Group>
+                            <div className="row">
+                                <div className="col-md-6 mb-3">
+                                    <label htmlFor="wrist" className="form-label">Wrist</label>
+                                    <input
+                                        type="text"
+                                        className="form-control"
+                                        id="wrist"
+                                        value={wrist}
+                                        onChange={(e) => setWrist(e.target.value)}
+                                        placeholder="Enter Wrist Circumference"
+                                    />
+                                </div>
+                                <div className="col-md-6 mb-3">
+                                    <label htmlFor="inseam" className="form-label">Inseam</label>
+                                    <input
+                                        type="text"
+                                        className="form-control"
+                                        id="inseam"
+                                        value={inseam}
+                                        onChange={(e) => setInseam(e.target.value)}
+                                        placeholder="Enter Inseam Length"
+                                    />
+                                </div>
+                            </div>
 
-            <Form.Group as={Row} className="mb-3" controlId="calf">
-            <Form.Label>Calf: </Form.Label>
-            <Form.Control type="text" value={calf} onChange={((e)=> setCalf(e.target.value))} placeholder="Enter Calf Size" />
-            </Form.Group>
-
-            <Form.Group as={Row} className="mb-3" controlId="shoulders">
-            <Form.Label>Shoulders: </Form.Label>
-               <Form.Control type="text" value={shoulders} onChange={((e)=> setShoulders(e.target.value))} placeholder="Enter Shoulder Width" />
-            </Form.Group>
-
-            <Form.Group as={Row} className="mb-3" controlId="armlen">
-            <Form.Label>Arm Length: </Form.Label>
-            <Form.Control type="text" value={armlen} onChange={((e)=> setArmlen(e.target.value))} placeholder="Enter Arm Length" />
-            </Form.Group>
-
-            <Form.Group as={Row} className="mb-3" controlId="upperarmcirc">
-            <Form.Label>Upper Arm: </Form.Label>
-                <Form.Control type="text" value={upperarmcirc} onChange={((e)=> setUpperarmcirc(e.target.value))} placeholder="Enter Upper Arm Circumference" />
-            </Form.Group>
-
-            <Form.Group as={Row} className="mb-3" controlId="lowerarmcirc">
-            <Form.Label>Lower Arm: </Form.Label>
-                <Form.Control type="text" value={lowerarmcirc} onChange={((e)=> setLowerarmcirc(e.target.value))} placeholder="Enter Lower Arm Circumference" />
-            </Form.Group>
-
-            <Form.Group as={Row} className="mb-3" controlId="wrist">
-            <Form.Label>Wrist: </Form.Label>
-                <Form.Control type="text" value={wrist} onChange={((e)=> setWrist(e.target.value))} placeholder="Enter Wrist Circumference" />
-            </Form.Group>
-
-            <Form.Group as={Row} className="mb-3" controlId="inseam">
-            <Form.Label>Inseam: </Form.Label>
-            <Form.Control type="text" value={inseam} onChange={((e)=> setInseam(e.target.value))} placeholder="Enter Inseam Length" />
-            </Form.Group>
-
-            <Form.Group as={Row} className="mb-3" controlId="footlen">
-            <Form.Label>Foot Length: </Form.Label>
-            <Form.Control type="text" value={footlen} onChange={((e)=> setFootlen(e.target.value))} placeholder="Enter Foot Length" />
-            </Form.Group>
-
-            <Form.Group as={Row} className="mb-3" controlId="footwid">
-            <Form.Label>Foot Width: </Form.Label>
-            <Form.Control type="text" value={footwid} onChange={((e)=> setFootwid(e.target.value))} placeholder="Enter Foot Width" />
-            </Form.Group>
-
-            <Button variant="primary" type="submit">
-                Add Doll
-            </Button>
-            </Form>
-            </Col>
-        </Container>
+                            <div className="row">
+                                <div className="col-md-6 mb-3">
+                                    <label htmlFor="footlen" className="form-label">Foot Length</label>
+                                    <input
+                                        type="text"
+                                        className="form-control"
+                                        id="footlen"
+                                        value={footlen}
+                                        onChange={(e) => setFootlen(e.target.value)}
+                                        placeholder="Enter Foot Length"
+                                    />
+                                </div>
+                                <div className="col-md-6 mb-3">
+                                    <label htmlFor="footwid" className="form-label">Foot Width</label>
+                                    <input
+                                        type="text"
+                                        className="form-control"
+                                        id="footwid"
+                                        value={footwid}
+                                        onChange={(e) => setFootwid(e.target.value)}
+                                        placeholder="Enter Foot Width"
+                                    />
+                                </div>
+                            </div>
+                            <div className="text-center mt-4">
+                                <button type="submit" className="btn btn-primary text-light">Add Doll</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </>
-    )
-}
+    );
+};
 
-export default AddDoll
+export default AddDoll;

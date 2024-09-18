@@ -1,77 +1,94 @@
-import React, {useState,useEffect} from "react";
-import { Container, Row, Col } from "react-bootstrap";
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
+import React, { useState, useEffect } from "react";
 import axios from "axios";
+import AdminHeader from "../components/AdminHeader";
 
-//to do: password protect
+const AddOutfit = () => {
+    const [outfitid, setOutfitID] = useState(0);
+    const [issueid, setIssueID] = useState('');
+    const [name, setName] = useState('');
+    const [designer, setDesigner] = useState('');
+    const [outfits, setOutfits] = useState([]);
 
-const AddOutfit = () =>{
-
-    //e.preventDefault()
-
-    
-    const [outfitid, setOutfitID] = useState(0)
-    const [issueid, setIssueID] = useState('')
-    const [name, setName] = useState('')
-    const [designer, setDesigner] = useState('')
-
-    const [outfits, setOutfits] = useState([])
-
-
-    const addOutfitHandler = async () => {
-            const data = {
-                outfitid: outfitid,
-                issueid: issueid,
-                name: name,
-                designer: designer,
-
-            }
-            await axios.post('/api/outfits/addoutfit', data)
-    }
+    const addOutfitHandler = async (e) => {
+        e.preventDefault();
+        const data = {
+            outfitid: outfitid,
+            issueid: issueid,
+            name: name,
+            designer: designer,
+        };
+        await axios.post('/api/outfits/addoutfit', data);
+    };
 
     useEffect(() => {
         const getOutfitData = async () => {
-            const {data} = await axios.get('api/outfits/patterns/')
-            setOutfits(data)
-        }
-        getOutfitData()
-    },[]
-    )
+            const { data } = await axios.get('/api/outfits/patterns/');
+            setOutfits(data);
+        };
+        getOutfitData();
+    }, []);
 
-    const nextOutfitID = (Math.max(...outfits.map(outfit => outfit.outfitid), 0)) + 1
+    const nextOutfitID = (Math.max(...outfits.map(outfit => outfit.outfitid), 0)) + 1;
 
-
-    return(
+    return (
         <>
-      <Container>
-        <h2>Add New Outfit</h2>
-        <hr />
-        <Row>
-            <Col>
-            <Form onSubmit={addOutfitHandler}>
-            <Form.Group className="mb-3" controlId="outfitid">
-            Next Outfit ID: {nextOutfitID}
-                <Form.Control type="text" value={outfitid} onChange={((e)=> setOutfitID(e.target.value))} placeholder="Enter OutfitID" />
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="issueid">
-                <Form.Control type="text" value={issueid} onChange={((e)=> setIssueID(e.target.value))} placeholder="Enter Issue ID" />
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="name">
-                <Form.Control type="text" value={name}  onChange={((e)=> setName(e.target.value))} placeholder="Enter Name" />
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="designer">
-                <Form.Control type="text" value={designer} onChange={((e)=> setDesigner(e.target.value))} placeholder="Enter Designer Name" />
-            </Form.Group>
-            <Button variant="primary" type="submit">
-                Add Outfit
-            </Button>
-            </Form>
-            </Col>
-            </Row>
-        </Container>
+            <AdminHeader />
+            <div className="container mt-4">
+                <div className="row justify-content-center">
+                    <div className="col-md-6 px-5 my-3 text-custom bg-transparent-white">
+                        <h2 className="display-6 fw-bolder text-custom mb-4 text-center">Add New Outfit</h2>
+                        <div className="p-4 border rounded shadow-sm bg-light">
+                            <form onSubmit={addOutfitHandler}>
+                                <div className="mb-3">
+                                    <label className="form-label">Next Outfit ID: {nextOutfitID}</label>
+                                    <input
+                                        type="text"
+                                        className="form-control"
+                                        value={outfitid}
+                                        onChange={(e) => setOutfitID(e.target.value)}
+                                        placeholder="Enter Outfit ID"
+                                    />
+                                </div>
+                                <div className="mb-3">
+                                    <label className="form-label">Issue ID</label>
+                                    <input
+                                        type="text"
+                                        className="form-control"
+                                        value={issueid}
+                                        onChange={(e) => setIssueID(e.target.value)}
+                                        placeholder="Enter Issue ID"
+                                    />
+                                </div>
+                                <div className="mb-3">
+                                    <label className="form-label">Name</label>
+                                    <input
+                                        type="text"
+                                        className="form-control"
+                                        value={name}
+                                        onChange={(e) => setName(e.target.value)}
+                                        placeholder="Enter Outfit Name"
+                                    />
+                                </div>
+                                <div className="mb-3">
+                                    <label className="form-label">Designer</label>
+                                    <input
+                                        type="text"
+                                        className="form-control"
+                                        value={designer}
+                                        onChange={(e) => setDesigner(e.target.value)}
+                                        placeholder="Enter Designer Name"
+                                    />
+                                </div>
+                                <button type="submit" className="btn btn-primary w-100 text-light">
+                                    Add Outfit
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </>
-    )
-}
+    );
+};
 
-export default AddOutfit
+export default AddOutfit;

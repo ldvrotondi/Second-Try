@@ -19,6 +19,8 @@ import FindSimilar from "./screens/FindSimilar";
 import Homepage from "./screens/Homepage";
 import Login from "./screens/Login";
 import FAQ from "./screens/FAQ";
+import Dashboard from "./screens/Dashboard";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 const App = () => {
   return (
@@ -46,11 +48,47 @@ const App = () => {
 
             <Route path="/login" element={<Login />} />
 
-              <Route path="/addDoll" element={<AddDoll />} />
-              <Route path="/addPattern" element={<AddPattern />} />
-              <Route path="/addBook" element={<AddBook />} />
-              <Route path="/addOutfit" element={<AddOutfit />} />
-            
+            {/*protected routes for managing data */}
+                  <Route
+                    path="/dashboard"
+                    element={
+                      <ProtectedRoute>
+                        <Dashboard />
+                      </ProtectedRoute>
+                    }
+                  />
+                  <Route
+                    path="/addDoll"
+                    element={
+                      <ProtectedRoute>
+                        <AddDoll />
+                      </ProtectedRoute>
+                    }
+                  />
+                  <Route
+                    path="/addOutfit"
+                    element={
+                      <ProtectedRoute>
+                        <AddOutfit />
+                      </ProtectedRoute>
+                    }
+                  />
+                  <Route
+                    path="/addPattern"
+                    element={
+                      <ProtectedRoute>
+                        <AddPattern />
+                      </ProtectedRoute>
+                    }
+                  />
+                  <Route
+                    path="/addBook"
+                    element={
+                      <ProtectedRoute>
+                        <AddBook />
+                      </ProtectedRoute>
+                    }
+                  />
           </Routes>
         </div>
         <Footer />

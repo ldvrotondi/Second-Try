@@ -3,7 +3,6 @@ const dollController = require('../controllers/doll.js')
 const outfitController = require('../controllers/outfit.js')
 const patternController = require('../controllers/pattern.js')
 const userController = require('../controllers/user.js')
-const authenticateToken = require('../util/authenticateToken.js')
 
 
 const router = require('express').Router()
@@ -86,11 +85,13 @@ router.get('/patterns/bytype/:id', patternController.findByType)
 router.get('/patterns/bydoll/:id', patternController.findByDoll)
 
 // Route to handle login (public)
-router.post('/login', userController.login);
+router.post('/login', userController.login)
 
 // Route to get user info (protected)
-router.get('/user', userController.getUser);
+router.get('/user/:id', userController.getUser)
 
-//
+//Route to add users
+router.post('/user/signup', userController.signUp)
+
 
 module.exports = router

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import PatternCards from '../components/PatternCards'
 import filteredData from "../utils/filteredData";
-import { outfitKeys, patternKeys } from "../utils/searchKeys";
+import { patternKeys } from "../utils/searchKeys";
 import AdvancedSearch from "../components/AdvancedSearch";
 import getMeasurementRanges from "../utils/getMeasurementRange";
 import filterByRange from "../utils/filterByRange";
