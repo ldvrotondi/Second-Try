@@ -9,7 +9,7 @@ const Footer =() => {
         <div className="col-auto">
           <a className="small" href="/faq">FAQ</a>
           <span className="mx-1">&middot;</span>
-          <a className="small" href="#!">Contact</a>
+          <a className="small" href="/contact">Contact</a>
         </div>
       </div>
     </div>

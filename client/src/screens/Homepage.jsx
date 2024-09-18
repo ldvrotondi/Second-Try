@@ -23,7 +23,7 @@ const Homepage = () => {
             , and access a variety of published{" "}
             <Link to="/patterns" className="link">
               patterns
-            </Link>{" "}
+            </Link>{" "} (pattern-specific pictures coming soon!) 
             organized by{" "}
             <Link to="/outfits" className="link">
               outfit

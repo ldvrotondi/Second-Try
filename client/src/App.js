@@ -21,6 +21,7 @@ import Login from "./screens/Login"
 import FAQ from "./screens/FAQ"
 import Dashboard from "./screens/Dashboard"
 import ProtectedRoute from "./components/ProtectedRoute"
+import Contact from "./screens/Contact"
 
 const App = () => {
   return (
@@ -32,6 +33,7 @@ const App = () => {
           <Routes>
             <Route path="/" element={<Homepage />} />
             <Route path="/faq" element={<FAQ />} />
+            <Route path="/contact" element={<Contact />} />
 
             <Route path="/books" element={<ViewBooks />} />
             <Route path="/books/:id" element={<BookDetails />} />

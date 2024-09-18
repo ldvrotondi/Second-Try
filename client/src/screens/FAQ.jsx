@@ -18,7 +18,6 @@ const FAQ = () => {
                             <div className="accordion-header" id="headingOne">
                                 <Button
                                     className={`accordion-button ${openIndex === 0 ? 'collapsed' : ''}`}
-
                                     onClick={() => toggleSection(0)}
                                 >
                                     Where can I download the patterns?
@@ -30,7 +29,7 @@ const FAQ = () => {
                                 aria-labelledby="headingOne"
                             >
                                 <div className="accordion-body">
-                                    The patterns are not available through this website. The pattern page will contain the pattern source. Patterns found in books or magazines can often be found via secondhand retailers such as <a href="https://order.mandarake.co.jp/order/listPage/list?categoryCode=02011401&lang=en" target="_blank" rel="noopener noreferrer">Mandarake</a> or <a href="https://www.dollyteria.com/product-list/36/0/photo?num=50&img=120&available=1&sort=" target="_blank" rel="noopener noreferrer">Dollyteria</a>.
+                                    The patterns are not available through this website. The pattern page will contain the pattern source. Patterns found in books or magazines can often be purchased via secondhand retailers such as <a href="https://order.mandarake.co.jp/order/listPage/list?categoryCode=02011401&lang=en" target="_blank" rel="noopener noreferrer">Mandarake</a> or <a href="https://www.dollyteria.com/product-list/36/0/photo?num=50&img=120&available=1&sort=" target="_blank" rel="noopener noreferrer">Dollyteria</a>.
                                 </div>
                             </div>
                         </div>
@@ -49,7 +48,7 @@ const FAQ = () => {
                                 aria-labelledby="headingTwo"
                             >
                                 <div className="accordion-body">
-                                    This website only contains patterns from books I own. I do update it when I get a new book, but unfortunately there isn't enough information available online for me to add anything I do not own. If you would like to get in touch with me to get other data added, please use the contact form.
+                                    This website only contains patterns from books I own. I update it when I get a new book, but unfortunately, there isn't enough information available online for me to add anything I do not own. If you'd like to get in touch with me to suggest other data to add, please use the contact form.
                                 </div>
                             </div>
                         </div>
@@ -68,7 +67,7 @@ const FAQ = () => {
                                 aria-labelledby="headingThree"
                             >
                                 <div className="accordion-body">
-                                    I add doll sizes based on what I encounter in books or remember off the top of my head. If you would like a doll added, please contact me using the contact form and send the name of the doll and its measurements.
+                                    I add doll sizes based on what I encounter in books or remember off the top of my head. If you'd like a doll added, please contact me using the contact form and send the name of the doll along with its measurements.
                                 </div>
                             </div>
                         </div>
@@ -87,17 +86,19 @@ const FAQ = () => {
                                 aria-labelledby="headingFour"
                             >
                                 <div className="accordion-body">
-                                    Similar dolls are dolls that have a similar height, bust, waist, and hip size as the reference doll. They are included to help people figure out if clothes for one doll might fit another. Please note that the fit may not be perfect.
-                                    <br />For example, MDDs, MSDs, and Kumakos would all be considered "similar dolls".                           </div>
+                                    "Similar dolls" are dolls that have similar height, bust, waist, and hip measurements to the reference doll. They are included to help people figure out if clothes for one doll might fit another. Please note that the fit may not be perfect.
+                                    <br />
+                                    For example, MDDs, MSDs, and Kumakos would all be considered "similar dolls".
+                                </div>
                             </div>
                         </div>
                         <div className="accordion-item">
                             <div className="accordion-header" id="headingFive">
                                 <Button
-                                    className={`accordion-button ${openIndex === 3 ? 'collapsed' : ''}`}
+                                    className={`accordion-button ${openIndex === 4 ? 'collapsed' : ''}`}
                                     onClick={() => toggleSection(4)}
                                 >
-                                    Some data is incorrect.
+                                    Some data is incorrect, or something isn't working.
                                 </Button>
                             </div>
                             <div
@@ -106,7 +107,7 @@ const FAQ = () => {
                                 aria-labelledby="headingFive"
                             >
                                 <div className="accordion-body">
-                                    Please let me know via the contact form.
+                                    Sorry about that! Please let me know what the problem is via the contact form, and I'll take care of it as soon as possible.
                                 </div>
                             </div>
                         </div>

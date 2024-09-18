@@ -100,7 +100,7 @@ body {
   color: var(--bs-body-color);
   text-align: var(--bs-body-text-align);
   background: #1e30f3;
-  background: linear-gradient(135deg, #edd1ff 0%, #afdcff  60% 70%, #a4fff0 100%);
+  background: linear-gradient(135deg, #f1dbff 0%, #d4edff  60% 70%, #cdfff7 100%);
   background-attachment: fixed;
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
@@ -8281,7 +8281,7 @@ textarea.form-control-lg {
 
 .text-custom {
   --bs-text-opacity: 1;
-  color: #ff4da6;
+  color: #f75aa9;
 }
 
 .text-white {
