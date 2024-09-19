@@ -5,6 +5,7 @@ const app = express()
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const nodemailer = require('nodemailer');
+const path = require('path');
 
 app.use(cors())
 app.use(express.json())
@@ -12,8 +13,8 @@ app.use(express.urlencoded({extended: true}))
 
 app.use(bodyParser.json())
 
-const router = require('./routes/routes.js')
-app.use('/api', router)
+app.use(express.static(path.join(__dirname, 'client/build')));
+
 
 // API route to handle form submission
 app.post('/api/contact', async (req, res) => {
@@ -50,13 +51,20 @@ app.post('/api/contact', async (req, res) => {
   }
 });
 
+const router = require('./routes/routes.js')
+app.use('/api', router)
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
+});
+
 //api test
 app.get('/', (req, res) => {
-    response.json({message: 'API connection successful'})
+    res.json({message: 'API connection successful'})
   })
 
   const unknownEndpoint = (req, res) => {
-    response.status(404).send({ error: 'unknown endpoint' })
+    res.status(404).send({ error: 'unknown endpoint' })
   }
   
   app.use(unknownEndpoint)

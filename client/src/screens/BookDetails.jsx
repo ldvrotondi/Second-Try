@@ -135,7 +135,7 @@ const BookDetails = () => {
         <div className="container px-5 my-3 text-dark">
             <div className="row">
 
-                <div className="col-md-auto position-static">
+                <div className="col-md-auto position-static mb-3">
                     <div className="card" style={{ width: '18rem' }}>
                         <img src={`/images/books/${id}.png`} className="card-img-top" alt="Book cover" />
                         <div className="card-body">

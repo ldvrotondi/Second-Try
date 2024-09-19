@@ -1,4 +1,7 @@
 # DollDB 
+
+[dolldb.com](https://dolldb.com/)
+
 A database of doll sizing and published sewing patterns
 This project is a web application built using the PERN stack (PostgreSQL, Express.js, React, and Node.js) that helps users compare doll sizes, find similar dolls, and view published sewing patterns based on doll size and source.
 
@@ -14,6 +17,7 @@ Express.js: Backend framework for building the RESTful API.
 React.js: Frontend for a dynamic, user-friendly interface. 
 Node.js: Server-side environment to handle requests and serve data.
 This project uses the [StartBootstrap Personal](https://startbootstrap.com/theme/personal) theme, licensed under the MIT license. Thanks to the creators for providing the design and components!
+The website is hosted on fly.io.
 
 
 **Usage**
