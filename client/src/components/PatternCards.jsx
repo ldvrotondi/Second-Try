@@ -28,9 +28,10 @@ const listSizes = (data) => {
       <div className="outfit-card">
         <div className="outfit-card-image-wrapper">
           <img
-            src={`/images/outfits/${pattern.outfitid}.png`}
+            src={`/images/patterns/${pattern.patternid}.png`}
             alt={pattern.outfit.name}
             className="outfit-card-image"
+            onError={(e) => (e.target.src = '/images/notfound.png')}
           />
         </div>
         <div className="outfit-card-overlay">

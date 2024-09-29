@@ -9,7 +9,10 @@ const OutfitCards = ({ outfit }) => {
   return (
     <div className="outfit-card">
     <div className="outfit-card-image-wrapper">
-      <img src={`/images/outfits/${outfit.outfitid}.png`} alt={outfit.name} className="outfit-card-image"/>
+      <img src={`/images/outfits/${outfit.outfitid}.png`} 
+      alt={outfit.name} 
+      className="outfit-card-image" 
+      onError={(e) => (e.target.src = '/images/notfound.png')}/>
     </div>
     <div className="outfit-card-overlay">
       <div className="outfit-card-content">

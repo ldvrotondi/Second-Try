@@ -10,6 +10,7 @@ const BookCard = ({ book }) => {
           src={`/images/books/${book.issueid}.png`}
           alt={`${book.series} ${book.issue}`}
           className="outfit-card-image"
+          onError={(e) => (e.target.src = '/images/notfound.png')}
         />
       </div>
       <div className="outfit-card-overlay">
