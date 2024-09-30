@@ -15,7 +15,6 @@ app.use(bodyParser.json())
 
 app.use(express.static(path.join(__dirname, 'client/build')));
 
-
 // API route to handle form submission
 app.post('/api/contact', async (req, res) => {
   const { name, email, message } = req.body;

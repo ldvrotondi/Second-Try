@@ -137,7 +137,7 @@ const BookDetails = () => {
 
                 <div className="col-md-auto position-static mb-3">
                     <div className="card" style={{ width: '18rem' }}>
-                        <img src={`/images/books/${id}.png`} className="card-img-top" alt="Book cover" />
+                        <img src={`https://fly.storage.tigris.dev/dolldb-images/books/${id}.png`} className="card-img-top" alt="Book cover" />
                         <div className="card-body">
                             <h5 className="card-title">{series}: {issue}</h5>
                             <p className="card-text">
@@ -155,7 +155,7 @@ const BookDetails = () => {
                             <h1>Included Patterns</h1>
                         </div>
                     </div>
-                    <div className="row justify-content-center bg-transparent-white mt-3">
+                    <div className="row justify-content-center bg-transparent-white my-3">
                         <AdvancedSearch
                             query={query}
                             setQuery={setQuery}

@@ -1,9 +1,34 @@
-import React from "react"
-import { Link } from "react-router-dom"
+import React, { useState, useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
 
 const NavBar = () => {
+  const [isExpanded, setIsExpanded] = useState(false);
+  const navRef = useRef();
+
+  const handleToggle = () => {
+    setIsExpanded(!isExpanded);
+  };
+
+  const handleClickOutside = (event) => {
+    if (navRef.current && !navRef.current.contains(event.target)) {
+      setIsExpanded(false);
+    }
+  };
+
+  useEffect(() => {
+    if (isExpanded) {
+      document.addEventListener("click", handleClickOutside);
+    } else {
+      document.removeEventListener("click", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, [isExpanded]);
+
   return (
-    <nav className="navbar sticky-top navbar-expand-lg navbar-light bg-white py-3">
+    <nav ref={navRef} className="navbar sticky-top navbar-expand-lg navbar-light bg-white py-3">
       <div className="container px-5">
         <Link className="navbar-brand" to="/">
           <span className="fw-bolder text-primary">DollDB</span>
@@ -14,12 +39,13 @@ const NavBar = () => {
           data-bs-toggle="collapse"
           data-bs-target="#navbarSupportedContent"
           aria-controls="navbarSupportedContent"
-          aria-expanded="false"
+          aria-expanded={isExpanded}
           aria-label="Toggle navigation"
+          onClick={handleToggle}
         >
           <span className="navbar-toggler-icon"></span>
         </button>
-        <div className="collapse navbar-collapse" id="navbarSupportedContent">
+        <div className={`collapse navbar-collapse ${isExpanded ? "show" : ""}`} id="navbarSupportedContent">
           <ul className="navbar-nav ms-auto mb-2 mb-lg-0 small fw-bolder">
             <div className="nav-item dropdown">
               <Link
@@ -70,7 +96,7 @@ const NavBar = () => {
         </div>
       </div>
     </nav>
-  )
-}
+  );
+};
 
-export default NavBar
+export default NavBar;

@@ -7,10 +7,10 @@ const BookCard = ({ book }) => {
     <div className="outfit-card">
       <div className="outfit-card-image-wrapper">
         <img
-          src={`/images/books/${book.issueid}.png`}
+          src={`https://fly.storage.tigris.dev/dolldb-images/books/${book.issueid}.png`}
           alt={`${book.series} ${book.issue}`}
           className="outfit-card-image"
-          onError={(e) => (e.target.src = '/images/notfound.png')}
+          onError={(e) => (e.target.src = 'https://fly.storage.tigris.dev/dolldb-images/notfound.png')}
         />
       </div>
       <div className="outfit-card-overlay">

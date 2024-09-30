@@ -28,10 +28,10 @@ const listSizes = (data) => {
       <div className="outfit-card">
         <div className="outfit-card-image-wrapper">
           <img
-            src={`/images/patterns/${pattern.patternid}.png`}
+            src={`https://fly.storage.tigris.dev/dolldb-images/patterns/${pattern.patternid}.png`}
             alt={pattern.outfit.name}
             className="outfit-card-image"
-            onError={(e) => (e.target.src = '/images/notfound.png')}
+            onError={(e) => (e.target.src = 'https://fly.storage.tigris.dev/dolldb-images/notfound.png')}
           />
         </div>
         <div className="outfit-card-overlay">

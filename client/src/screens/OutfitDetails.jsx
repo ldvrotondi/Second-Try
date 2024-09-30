@@ -148,7 +148,7 @@ const OutfitDetails = () => {
                     {
                         outfits.map(outfit => (
                             <div key={outfit.outfitid} className="card mb-4" style={{ width: '18rem' }}>
-                                <img src={`/images/outfits/${outfit.outfitid}.png`} className="card-img-top" alt={outfit.name} />
+                                <img src={`https://fly.storage.tigris.dev/dolldb-images/outfits/${outfit.outfitid}.png`} className="card-img-top" alt={outfit.name} />
                                 <div className="card-body">
                                     <h5 className="card-title">{outfit.name}</h5>
                                     <p className="card-text">
@@ -171,7 +171,7 @@ const OutfitDetails = () => {
                             <h1>Included Patterns</h1>
                         </div>
                     </div>
-                    <div className="row justify-content-center bg-transparent-white mt-3">
+                    <div className="row justify-content-center bg-transparent-white my-3">
                         <AdvancedSearch
                             query={query}
                             setQuery={setQuery}

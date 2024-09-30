@@ -102,45 +102,51 @@ const DollDetails = () => {
                 </div>
 
                 <div className="col">
-                    <div className="row justify-content-center mb-3 text-center bg-transparent-white">
+                    <div className="row justify-content-center my-3 text-center bg-transparent-white">
                         <div className="col text-custom d-flex justify-content-between align-items-center">
                             <h1>Indexed Outfits</h1>
-                            <Button
-                                onClick={() => setOpen(!open)}
-                                aria-controls="advanced-search-collapse"
-                                aria-expanded={open}
-                                variant="primary"
-                                className="ml-3 text-light"
-                            >
-                                {open ? "Hide Options" : "More Options"}
-                            </Button>
+
                         </div>
                     </div>
 
-                    <Collapse in={open}>
-                        <div id="advanced-search-collapse" className="container bg-transparent-white">
-                            <hr className="hr-bolder" />
-                            <div className="row">
-                                <div className="col-md-12">
-                                    <PatternFilter
-                                        patternTypes={patternTypes}
-                                        selectedPatterns={selectedPatterns}
-                                        setSelectedPatterns={setSelectedPatterns}
-                                    />
+                    <div className="row justify-content-center bg-transparent-white my-3">
+                        <Button
+                            onClick={() => setOpen(!open)}
+                            aria-controls="advanced-search-collapse"
+                            aria-expanded={open}
+                            variant="primary"
+                            className="ml-3 text-light"
+                        >
+                            {open ? "Hide Options" : "More Options"}
+                        </Button>
+
+                        <Collapse in={open}>
+                            <div id="advanced-search-collapse" className="container">
+                                <hr className="my-4 hr-bolder" />
+                                <div className="row">
+                                    <div className="col-md-12">
+                                        <PatternFilter
+                                            patternTypes={patternTypes}
+                                            selectedPatterns={selectedPatterns}
+                                            setSelectedPatterns={setSelectedPatterns}
+                                        />
+                                    </div>
                                 </div>
-                            </div>
-                            <hr className="hr-medium" />
-                            <div className="row">
-                                <div className="col-md-12">
-                                    <FindSimilarDolls
-                                        includeSimilar={includeSimilar}
-                                        onChange={handleCheck}
-                                    />
+                                <hr className="my-4 hr-medium" />
+                                <div className="row mt-3">
+                                    <div className="col-md-12">
+                                        <FindSimilarDolls
+                                            includeSimilar={includeSimilar}
+                                            onChange={handleCheck}
+                                        />
+                                    </div>
                                 </div>
+                                <hr className="my-4 hr-bolder" />
                             </div>
-                            <hr className="hr-bolder" />
-                        </div>
-                    </Collapse>
+                        </Collapse>
+                    </div>
+
+
 
                     <div className="row justify-content-center bg-transparent-white">
                         {filteredOutfits.length === 0 ? (

@@ -24,7 +24,7 @@ const PatternFilter = ({ patternTypes, selectedPatterns, setSelectedPatterns }) 
                             onClick={clearAll} 
                             variant="danger" 
                             className="p-1"
-                        >Clear Garment Type
+                        >Clear
                         </Button>
                     </div>
                     <div className="row">
